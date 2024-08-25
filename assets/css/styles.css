@@ -1,0 +1,60 @@
+/* Colores personalizados */
+:root {
+  --dark-bg: #040316;
+  --darker-bg: #06042d;
+  --darkest-bg: #060340;
+  --light-text: #d9d8df;
+  --lighter-text: #e6e6ef;
+  --subtitle-text: #a39999;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+}
+
+header {
+  background: linear-gradient(
+    180deg,
+    var(--darkest-bg) 0%,
+    var(--darker-bg) 50%,
+    var(--dark-bg) 100%
+  );
+  color: var(--lighter-text);
+  margin-bottom: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--lighter-text);
+}
+
+.profile img {
+  border: 2px solid var(--light-text);
+}
+
+.projects .project-item {
+  background-color: var(--darkest-bg);
+  color: var(--lighter-text);
+}
+
+.btn-primary {
+  background-color: var(--darker-bg);
+  border-color: var(--darker-bg);
+}
+
+.btn-primary:hover {
+  background-color: var(--darkest-bg);
+  border-color: var(--darkest-bg);
+}
+
+.justify{
+    text-align: justify;
+}
+.subtitle{
+    color: var(--subtitle-text);
+    font-style: italic;
+}
