@@ -10,7 +10,11 @@ const proyectos = [
         descripcion:
             "Administra registros de mascotas, historial médico, y citas. Ofrece alertas para vacunas y exámenes, y genera informes detallados sobre la salud y el bienestar de los animales.",
         url: "https://enlace-a-ficha-veterinaria.com", // Cambiar cuando necesario
-    },
+    },{
+        nombre:"Bot Discord",
+        descripcion:"Bot designado para la administracion de usuarios y funcionalidades dentro de un servidor de discord, inspirador por completo en la tematica DnD",
+        url:"https://enlace-a-ficha-veterinaria.com",
+    }
 ];
 function cargarProyectos() {
     const container = document.getElementById('Proyectos');
