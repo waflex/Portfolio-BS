@@ -11,6 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <!--Font Awesome-->
+    <link rel="stylesheet"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Mis Estilos -->
     <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -30,7 +33,7 @@
                 <h2>Jonathan Rojas</h2>
                 <p>Informatics Engineer | Full Stack Developer</p>
                 <p class="justify">
-                    <b>Sobre mi...</b> <br>
+                    <b>Sobre mi...</b> <br />
                     Soy un ingeniero en informática con amplia experiencia en desarrollo
                     de soluciones tecnológicas personalizadas, enfocadas en la
                     automatización de procesos y la mejora de la eficiencia.
@@ -47,9 +50,7 @@
 
         <section class="projects mb-5 text-center">
             <h3 class="mb-4">Mis Proyectos</h3>
-            <div id="Proyectos" class="row justify-content-center">                
-                
-            </div>
+            <div id="Proyectos" class="row justify-content-center"></div>
         </section>
         <section class="work-history mb-5 text-center">
             <h3 class="mb-4">Historial de Trabajo</h3>
@@ -82,8 +83,57 @@
                 </div>
             </div>
         </section>
+        <section class="contact mb-5 text-center">
+            <h3 class="mb-4 text-uppercase">Contacto</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Mis Datos de Contacto</h4>
+                        <ul class="list-unstyled text-start fs-5 align-self-center">
+                            <li>
 
-        <!-- Modal -->
+                                
+                                <i class="fa-solid fa-at"></i> <strong>Correo Electrónico:</strong> jonathan@example.com
+                            </li>
+                            <li><i class="fa-brands fa-whatsapp"></i> <strong>Teléfono:</strong> <a
+                                    href="https://wa.me/56930744391?text=Hola%20quisiera%20consultar%20por%20valores%20en%20desarrollo%20de%20un%20producto"
+                                    target="_blank" style="text-decoration: none;">+56 9 3074 4391</a></li>
+                            <li>
+                                <i class="fa-brands fa-linkedin"></i> <strong>LinkedIn:</strong>
+                                <a href="https://www.linkedin.com/in/jonathan-rojas-532b9a146/" target="_blank">Jonathan
+                                    Rojas</a>
+                            </li>
+                            <li>
+                                <i class="fa-brands fa-github"></i> <strong>GitHub:</strong>
+                                <a href="https://github.com/waflex" target="_blank">Waflex</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Envíame un Mensaje</h4>
+                        <form action="https://formspree.io/f/mdknyrvp" method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="name" name="name" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" name="email" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Enviar Mensaje
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Proyectos-->
         <div class="modal fade" id="projectModal" aria-labelledby="projectModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content text-bg-dark">
