@@ -38,7 +38,7 @@ function cargarProyectos() {
         card.className = 'col-md-4 mb-4';
         card.innerHTML = `
             <div class="card text-bg-dark h-75">
-                <img src="${proyecto.imagen}" class="card-img-top" alt="${proyecto.nombre}">
+                <img src="${proyecto.imagen}" class="card-img-top mt-2" alt="${proyecto.nombre}">
                 <div class="card-body">
                     <h4 class="card-title">${proyecto.nombre}</h4>
                     <p class="card-text">${proyecto.descripcion}</p>
