@@ -52,7 +52,7 @@
             </div>
         </section>
 
-        <section class="projects mb-5 text-center mx-3">
+        <section class="projects mb-auto text-center mx-3">
             <h3 class="mb-4">Mis Proyectos</h3>
             <div id="Proyectos" class="row justify-content-center"></div>
         </section>
@@ -89,11 +89,12 @@
                 </div>
             </div>
         </section>
+       
         <section class="contact mb-5 text-center mx-3">
             <h3 class="mb-4 text-uppercase">Contacto</h3>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 d-flex flex-column">
                         <h4>Mis Datos de Contacto</h4>
                         <ul class="list-unstyled text-start fs-5 align-self-center">
                             <li>
@@ -117,8 +118,11 @@
                                 <a href="https://github.com/waflex" target="_blank">Waflex</a>
                             </li>
                         </ul>
+                        <div class="text-center mt-auto">
+                            <a href="assets/files/CVJONATHANROJAS.pdf" class="btn btn-primary btn-neon" download>Obten mi CV</a>
+                        </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-3 mt-md-0">
                         <h4>Envíame un Mensaje</h4>
                         <form action="https://formspree.io/f/mdknyrvp" method="POST">
                             <div class="mb-3">
@@ -133,7 +137,7 @@
                                 <label for="message" class="form-label">Mensaje</label>
                                 <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary btn-neon">
                                 Enviar Mensaje
                             </button>
                         </form>
@@ -141,6 +145,7 @@
                 </div>
             </div>
         </section>
+        
 
         <!-- Modal Proyectos-->
         <div class="modal fade" id="projectModal" aria-labelledby="projectModalLabel" aria-hidden="true">
@@ -167,9 +172,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center">
-            <a href="assets/files/CVJONATHANROJAS.pdf" class="btn btn-primary" download>Obten mi CV</a>
-        </div>
+        
     </div>
     <script src="assets/js/index.js"></script>
 </body>
