@@ -5,7 +5,7 @@ const proyectos = [
             "Gestiona productos, controla stock en tiempo real, envía alertas de bajo inventario, y genera informes detallados. Integra con otros sistemas para una gestión eficiente.",
         url: "https://enlace-a-sistema-inventario.com", // Cambiar cuando necesario
         langs: ["Javascript", "HTML", "CSS", "Express", "Handlebars"],
-        imagen: "assets/img/proyectos/inventario.png" // Ruta de la imagen del proyecto
+        imagen: "assets/img/Proyectos/inventario.png" // Ruta de la imagen del proyecto
     },
     {
         nombre: "Ficha Veterinaria",
@@ -13,7 +13,7 @@ const proyectos = [
             "Administra registros de mascotas, historial médico, y citas. Ofrece alertas para vacunas y exámenes, y genera informes detallados sobre la salud y el bienestar de los animales.",
         url: "https://enlace-a-ficha-veterinaria.com", // Cambiar cuando necesario
         langs: ["Javascript", "HTML", "CSS", "Express", "React"],
-        imagen: "assets/img/proyectos/Ficha-Vet.png" // Ruta de la imagen del proyecto
+        imagen: "assets/img/Proyectos/Ficha-Vet.png" // Ruta de la imagen del proyecto
     },
     {
         nombre: "Bot Discord",
