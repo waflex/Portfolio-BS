@@ -3,7 +3,7 @@ const proyectos = [
         nombre: "Sistema de Inventario",
         descripcion:
             "Gestiona productos, controla stock en tiempo real, envía alertas de bajo inventario, y genera informes detallados. Integra con otros sistemas para una gestión eficiente.",
-        url: "https://enlace-a-sistema-inventario.com", // Cambiar cuando necesario
+        url: "https://github.com/waflex", // Cambiar cuando necesario
         langs: ["Javascript", "HTML", "CSS", "Express", "Handlebars"],
         imagen: "assets/img/Proyectos/inventario.png" // Ruta de la imagen del proyecto
     },
@@ -11,7 +11,7 @@ const proyectos = [
         nombre: "Ficha Veterinaria",
         descripcion:
             "Administra registros de mascotas, historial médico, y citas. Ofrece alertas para vacunas y exámenes, y genera informes detallados sobre la salud y el bienestar de los animales.",
-        url: "https://enlace-a-ficha-veterinaria.com", // Cambiar cuando necesario
+        url: "https://github.com/waflex", // Cambiar cuando necesario
         langs: ["Javascript", "HTML", "CSS", "Express", "React"],
         imagen: "assets/img/Proyectos/Ficha-Vet.png" // Ruta de la imagen del proyecto
     },
@@ -19,7 +19,7 @@ const proyectos = [
         nombre: "Bot Discord",
         descripcion:
             "Bot designado para la administración de usuarios y funcionalidades dentro de un servidor de Discord, inspirado por completo en la temática DnD.",
-        url: "https://enlace-a-ficha-veterinaria.com",
+        url: "https://github.com/waflex",
         langs: ["Javascript"],
         imagen: "assets/img/Proyectos/Bot_Discord.png" // Ruta de la imagen del proyecto
     }
