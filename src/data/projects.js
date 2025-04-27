@@ -3,7 +3,7 @@ export const projects = [
     title: "Inventory Management",
     description:
       "Desarrollo de un sistema web para la administración de inventarios, utilizando JavaScript con Express.js en el backend, MySQL como base de datos y Handlebars para la generación dinámica de vistas. El proyecto incorpora buenas prácticas de organización de código y separación de responsabilidades, inspiradas en principios como Clean Architecture y CQRS.",
-    image: "/assets/img/Proyectos/inventory.jpg",
+    image: "/assets/img/Proyectos/inventario.png",
     github: "https://github.com/waflex/InventoryManagement",
     demo: "",
     technologies: [
@@ -28,7 +28,7 @@ export const projects = [
     title: "FichaVet",
     description:
       "Sistema de gestión veterinaria para el manejo de fichas clínicas y control de pacientes",
-    image: "/assets/img/Proyectos/fichavet.jpg",
+    image: "/assets/img/Proyectos/Ficha-Vet.png",
     github: "https://github.com/waflex/Ficha-Vet",
     demo: "",
     technologies: [
@@ -97,6 +97,22 @@ export const projects = [
         icon: "devicon-css3-plain",
         color: "text-blue-500",
       },
+      {
+        name: "JavaScript",
+        icon: "devicon-javascript-plain",
+        color: "text-yellow-400",
+      },
+    ],
+  },
+  {
+    title: "Bot Discord",
+    description:
+      'Bot designado para la administración de usuarios y funcionalidades dentro de un servidor de Discord, inspirado por completo en la temática DnD.',
+    image: "/assets/img/Proyectos/Bot_Discord.png",
+    github: "https://github.com/waflex/BardoPromedio_Bot",
+    demo: "",
+    technologies: [
+      
       {
         name: "JavaScript",
         icon: "devicon-javascript-plain",
