@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: 100%;
+}
+@layer components {
+  .btn-neon {
+    @apply btn btn-primary hover:scale-105 transition-all duration-300 shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] hover:shadow-[0_0_5px_rgb(255_45_85),0_0_20px_rgb(255_45_85)];
+  }
+  
+  .titulo {
+    @apply text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue bg-clip-text text-transparent animate-pulse;
+  }
+
+  .card {
+    @apply backdrop-blur-sm bg-[rgba(26,26,46,0.3)] hover:bg-[rgba(26,26,46,0.5)] transition-all duration-300 border border-[rgba(0,255,255,0.2)] hover:border-[rgba(0,255,255,0.5)];
+  }
+
+  .input, .textarea {
+    @apply bg-[rgba(26,26,46,0.3)] backdrop-blur-sm border-[rgba(0,255,255,0.3)] focus:border-neon-blue hover:shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] transition-all duration-300;
+  }
+}
+
+/* Glitch effect */
+.glitch {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  2%, 64% {
+    transform: translate(2px,0) skew(0deg);
+  }
+  4%, 60% {
+    transform: translate(-2px,0) skew(0deg);
+  }
+  62% {
+    transform: translate(0,0) skew(5deg);
+  }
+}
+

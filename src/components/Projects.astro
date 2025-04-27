@@ -1,0 +1,56 @@
+---
+import { projects } from '../data/projects';
+---
+<section class="mb-10 text-center mx-auto max-w-7xl px-4">
+  <h3 class="titulo mb-8">Mis Proyectos</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      projects.map((project) => (
+        <div class="card backdrop-blur-sm hover:shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] transition-all duration-300">
+          <div class="card-body">
+            <h4 class="card-title text-xl bg-gradient-to-r from-neon-pink to-neon-blue bg-clip-text text-transparent">
+              {project.title}
+            </h4>
+            <p class="text-base-content/80 mb-4">{project.description}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <img src={project.image} alt="" srcset="">
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+              {project.technologies.map((tech) => (
+                <span class="badge badge-outline gap-2 px-3 py-3">
+                  <i class={`${tech.icon} ${tech.color}`}></i>
+                  {tech.name}
+                </span>
+              ))}
+            </div>
+            <div class="card-actions justify-end mt-auto">
+              <a href={project.github} target="_blank" class="btn btn-primary btn-sm gap-2">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              {project.demo && (
+                <a href={project.demo} target="_blank" class="btn btn-secondary btn-sm gap-2">
+                  <i class="fas fa-external-link-alt"></i> Demo
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<dialog id="projectModal" class="modal">
+  <div class="modal-box bg-base-200">
+    <h3 class="font-bold text-lg">Proyecto en Desarrollo</h3>
+    <p class="py-4">
+      Te redirigiré al proyecto en vivo, apenas tenga un enlace a su demo activa.
+    </p>
+    <div class="modal-action">
+      <a href="https://github.com/waflex" target="_blank" class="btn btn-primary">
+        Puedes ir a mi Github si deseas
+      </a>
+      <button class="btn btn-ghost">Cerrar</button>
+    </div>
+  </div>
+</dialog>

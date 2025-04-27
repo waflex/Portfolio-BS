@@ -1,0 +1,46 @@
+---
+// Import components
+import Layout from "../layouts/Layout.astro";
+import Profile from "../components/Profile.astro";
+import Projects from "../components/Projects.astro";
+import WorkHistory from "../components/WorkHistory.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<Layout title="Portafolio de Jonathan Rojas">
+  <header class="py-8 flex items-center justify-center">
+    <div class="w-max">
+      <h1
+        id="typing-text"
+        class="text-3xl sm:text-2xl text-white font-bold leading-relaxed text-center sm:text-left whitespace-normal"
+        style="min-height: 3rem;" 
+      ><!-- Adjust this value based on your font size -->
+        <span id="animated-text"></span>
+        <span class="border-r-4 border-r-white inline-block"></span>
+      </h1>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 my-8">
+    <Profile />
+    <Projects />
+    <WorkHistory />
+    <Contact />
+  </main>
+
+  <script>
+    const text = "Si la vida fuese a base de códigos. Nuestras manos serían el compilador.";
+    const animatedText = document.getElementById("animated-text");
+    let index = 0;
+
+    function typeLetter() {
+      if (index < text.length) {
+        animatedText.textContent += text[index];
+        index++;
+        setTimeout(typeLetter, 100); // Adjust typing speed here
+      }
+    }
+
+    typeLetter();
+  </script>
+</Layout>
