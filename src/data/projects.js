@@ -110,7 +110,7 @@ export const projects = [
       'Bot designado para la administración de usuarios y funcionalidades dentro de un servidor de Discord, inspirado por completo en la temática DnD.',
     image: "/assets/img/Proyectos/Bot_Discord.png",
     github: "https://github.com/waflex/BardoPromedio_Bot",
-    demo: "",
+    demo: "https://discord.com/oauth2/authorize?client_id=857348571246624798",
     technologies: [
       
       {
