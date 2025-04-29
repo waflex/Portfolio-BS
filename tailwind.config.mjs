@@ -53,6 +53,7 @@ export default {
           "neutral": "#1a1a2e",
           "base-100": "#0a0a0f",
           "base-200": "#1a1a2e",
+          "base-content": "#e6e6ef", // Cambiado para mejor contraste
           "info": "#0ff",
           "success": "#00ff9f",
           "warning": "#ffb300",

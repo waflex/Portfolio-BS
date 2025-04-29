@@ -58,9 +58,9 @@ export const projects = [
     title: "Realweb",
     description:
       'Proyecto web desarrollado para "Real, Sabor y Cocina", restaurante ubicado en el centro de La Serena, Chile. El proyecto buscaba mejorar su presencia digital y facilitar el acceso de clientes a su carta y servicios. (Nota: el restaurante cesó sus operaciones durante la pandemia.)',
-    image: "/assets/img/Proyectos/realweb.jpg",
+    image: "/assets/img/Proyectos/realweb.png",
     github: "https://github.com/waflex/Realweb",
-    demo: "",
+    demo: "https://restaurante-real-dev.netlify.app",
     technologies: [
       {
         name: "HTML",

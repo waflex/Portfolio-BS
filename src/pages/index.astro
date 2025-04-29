@@ -12,10 +12,10 @@ import Contact from "../components/Contact.astro";
     <div class="w-max">
       <h1
         id="typing-text"
-        class="text-3xl sm:text-2xl text-white font-bold leading-relaxed text-center sm:text-left whitespace-normal"
+        class="text-3xl sm:text-2xl text-white font-bold leading-relaxed text-center sm:text-left whitespace-normal "
         style="min-height: 3rem;" 
       ><!-- Adjust this value based on your font size -->
-        <span id="animated-text"></span>
+        <span id="animated-text" class="text-lime-300 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)] animate-pulse-subtle font-['Doctor_Glitch'] text-stroke-1 text-stroke-black glitch"></span>
         <span class="border-r-4 border-r-white inline-block"></span>
       </h1>
     </div>
@@ -35,7 +35,7 @@ import Contact from "../components/Contact.astro";
 
     function typeLetter() {
       if (index < text.length) {
-        animatedText.textContent += text[index];
+        if (animatedText) animatedText.textContent += text[index];
         index++;
         setTimeout(typeLetter, 100); // Adjust typing speed here
       }

@@ -8,7 +8,7 @@ import '../styles/global.css';
 ---
 
 <!DOCTYPE html>
-<html lang="es" data-theme="cyberpunk">
+<html lang="es" data-theme="cyberpunk" class="min-h-screen">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,9 +18,71 @@ import '../styles/global.css';
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
       crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <style>
+      body {
+        background: linear-gradient(to bottom right, var(--cyber-black), var(--cyber-dark));
+      }
+      
+      /* Grid de fondo */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/grid.webp');
+        background-size: cover;
+        background-repeat: repeat-y;
+        opacity: 0.1;
+        z-index: -2;
+        pointer-events: none;
+      }
+      
+      /* Degradado inferior */
+      body::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(to bottom, transparent, var(--cyber-black));
+        z-index: -1;
+        pointer-events: none;
+      }
+      
+      /* Líneas cyberpunk */
+      .cyber-lines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 20px 20px,
+          linear-gradient(0deg, rgba(255, 45, 85, 0.03) 1px, transparent 1px) 0 0 / 20px 20px;
+        z-index: -1;
+        pointer-events: none;
+      }
+      
+      /* Líneas diagonales */
+      .cyber-diagonal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          linear-gradient(45deg, rgba(176, 38, 255, 0.02) 1px, transparent 1px) 0 0 / 40px 40px;
+        z-index: -1;
+        pointer-events: none;
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-br from-cyber-black to-cyber-dark text-base-content">
-    <div class="absolute inset-0 bg-[url('/grid.webp')] bg-cover opacity-10 pointer-events-none"></div>
+  <body class="min-h-screen h-full text-base-content relative">
+    <div class="cyber-lines"></div>
+    <div class="cyber-diagonal"></div>
     <slot />
   </body>
 </html>
