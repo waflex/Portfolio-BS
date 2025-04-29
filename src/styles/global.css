@@ -82,6 +82,7 @@ html {
   }
   
   .card:hover::before, .card:hover::after {
+    z-index: -1;
     border-radius: 5px;
     border-color: theme('colors.neon-pink');
     box-shadow: 0 0 5px theme('colors.neon-blue');

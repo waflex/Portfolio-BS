@@ -1,11 +1,11 @@
 ---
-import { workHistory } from '../data/workHistory';
+import { teachingHistory } from '../data/workHistory';
 ---
 <section class="mb-10 text-center mx-auto max-w-7xl px-4">
-  <h3 class="titulo mb-8">Experiencia Laboral</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <h3 class="titulo mb-8">Experiencia en Docencia y Consultoría</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     {
-      workHistory.map((job) => (
+      teachingHistory.map((job) => (
         <div class="card backdrop-blur-sm hover:shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] transition-all duration-300 h-full flex flex-col">
           <div class="card-body flex flex-col flex-grow">
             <h4 class="card-title text-xl bg-gradient-to-r from-neon-pink to-neon-blue bg-clip-text text-transparent">
@@ -16,7 +16,7 @@ import { workHistory } from '../data/workHistory';
             </h5>
             <p class="text-base-content/80 mb-4">{job.description}</p>
             <div class="mb-4">
-              <h6 class="text-left text-neon-pink mb-2">Logros:</h6>
+              <h6 class="text-left text-neon-pink mb-2">Actividades:</h6>
               <ul class="text-left space-y-2">
                 {job.achievements.map((achievement) => (
                   <li class="flex items-start gap-2">
