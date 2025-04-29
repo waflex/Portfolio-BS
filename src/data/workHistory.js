@@ -66,11 +66,6 @@ export const workHistory = [
         color: "text-cyan-400",
       },
       {
-        name: ".NET",
-        icon: "devicon-dot-net-plain",
-        color: "text-purple-500",
-      },
-      {
         name: "MongoDB",
         icon: "devicon-mongodb-plain",
         color: "text-green-500",
@@ -102,7 +97,7 @@ export const workHistory = [
 export const teachingHistory = [
   {
     title: "Docente",
-    company: "Instituto Profesional",
+    company: "Institutos Profesionales",
     period: "2023 - Presente",
     description:
       "Impartición de clases en el área de informática y desarrollo web, enfocadas en tecnologías modernas y metodologías ágiles.",
@@ -128,8 +123,9 @@ export const teachingHistory = [
         color: "text-blue-500",
       }
     ],
-    achievements: [
+    activities: [
       "Desarrollo de material didáctico adaptado a las necesidades actuales del mercado",
+      "Imparticion de clases en institutos educativos como IPCHILE, AIEP, Valle Central",
       "Implementación de metodologías de enseñanza basadas en proyectos reales",
       "Mentoría personalizada para estudiantes en sus proyectos finales",
     ],
@@ -157,7 +153,7 @@ export const teachingHistory = [
         color: "text-blue-500",
       },
     ],
-    achievements: [
+    activities: [
       "Carga y gestión de datos en la plataforma Moodle",
       "Asesoramiento sobre herramientas tecnológicas para mejorar la experiencia educativa",
       "Optimización de procesos de gestión de contenidos educativos",
