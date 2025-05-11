@@ -4,34 +4,63 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" data-theme="cyberpunk" class="min-h-screen">
   <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MSJ0LY0MTG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MSJ0LY0MTG');
-</script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Jonathan Rojas - Desarrollador Full Stack" />
+    <meta
+      name="description"
+      content="Portafolio de Jonathan Rojas - Ingeniero Informático y Desarrollador Full Stack especializado en soluciones tecnológicas personalizadas."
+    />
+    <meta
+      name="keywords"
+      content="Jonathan Rojas, Portafolio, Desarrollador Full Stack, Ingeniero Informático, .NET, JavaScript, React, REST APIs, Desarrollo Web, Chile"
+    />
+    <meta name="author" content="Jonathan Rojas" />
+    <meta
+      property="og:title"
+      content="Portafolio de Jonathan Rojas - Desarrollador Full Stack"
+    />
+    <meta
+      property="og:description"
+      content="Explora mi experiencia profesional, proyectos destacados y habilidades técnicas en mi portafolio personal."
+    />
+    <meta property="og:image" content="/assets/img/Proyectos/inventario.png" />
+    <meta property="og:url" content="https://jonathan-rojas.netlify.app" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Portafolio de Jonathan Rojas" />
+    <meta
+      name="twitter:description"
+      content="Ingeniero Informático y Desarrollador Full Stack especializado en soluciones tecnológicas personalizadas."
+    />
+    <meta name="twitter:image" content="/assets/img/Proyectos/inventario.png" />
+    <link rel="canonical" href="https://jonathan-rojas.netlify.app" />
     <title>{title}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+    />
     <style>
       body {
-        background: linear-gradient(to bottom right, var(--cyber-black), var(--cyber-dark));
+        background: linear-gradient(
+          to bottom right,
+          var(--cyber-black),
+          var(--cyber-dark)
+        );
       }
-      
+
       /* Grid de fondo */
       body::before {
         content: "";
@@ -40,14 +69,14 @@ import '../styles/global.css';
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('/grid.webp');
+        background-image: url("/grid.webp");
         background-size: cover;
         background-repeat: repeat-y;
         opacity: 0.1;
         z-index: -2;
         pointer-events: none;
       }
-      
+
       /* Degradado inferior */
       body::after {
         content: "";
@@ -60,7 +89,7 @@ import '../styles/global.css';
         z-index: -1;
         pointer-events: none;
       }
-      
+
       /* Líneas cyberpunk */
       .cyber-lines {
         position: fixed;
@@ -68,13 +97,15 @@ import '../styles/global.css';
         left: 0;
         width: 100%;
         height: 100%;
-        background: 
-          linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 20px 20px,
-          linear-gradient(0deg, rgba(255, 45, 85, 0.03) 1px, transparent 1px) 0 0 / 20px 20px;
+        background:
+          linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px) 0
+            0 / 20px 20px,
+          linear-gradient(0deg, rgba(255, 45, 85, 0.03) 1px, transparent 1px) 0
+            0 / 20px 20px;
         z-index: -1;
         pointer-events: none;
       }
-      
+
       /* Líneas diagonales */
       .cyber-diagonal {
         position: fixed;
@@ -82,21 +113,47 @@ import '../styles/global.css';
         left: 0;
         width: 100%;
         height: 100%;
-        background: 
-          linear-gradient(45deg, rgba(176, 38, 255, 0.02) 1px, transparent 1px) 0 0 / 40px 40px;
+        background: linear-gradient(
+            45deg,
+            rgba(176, 38, 255, 0.02) 1px,
+            transparent 1px
+          )
+          0 0 / 40px 40px;
         z-index: -1;
         pointer-events: none;
       }
     </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-GP2FKK2LB1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jonathan Rojas",
+        "url": "https://jonathan-rojas.netlify.app",
+        "image": "https://jonathan-rojas.netlify.app/assets/img/Proyectos/inventario.png",
+        "jobTitle": "Ingeniero Informático | Desarrollador Full Stack",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Instituto Profesional Valle Central"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/jonathan-rojas-532b9a146/",
+          "https://github.com/waflex"
+        ]
+      }
+    </script>
 
-  gtag('config', 'G-GP2FKK2LB1');
-</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GP2FKK2LB1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-GP2FKK2LB1");
+    </script>
   </head>
   <body class="min-h-screen h-full text-base-content relative">
     <div class="cyber-lines"></div>
