@@ -133,7 +133,7 @@ export const teachingHistory = [
   {
     title: "Consultor Tecnológico",
     company: "Preuniversitario",
-    period: "2025 - Presente",
+    period: "Mar 2025 - Jun 2025",
     description:
       "Asesoramiento y soporte en el área tecnológica, con enfoque en la plataforma Moodle para la gestión de contenidos educativos.",
     technologies: [
