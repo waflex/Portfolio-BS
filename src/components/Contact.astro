@@ -1,78 +1,121 @@
 ---
+const Web3Forms_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY;
 ---
+
 <section class="mb-10 text-center mx-auto max-w-7xl px-4">
-  <h3 class="text-3xl font-bold mb-8 uppercase bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+  <h3
+    class="text-3xl font-bold mb-8 uppercase bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+  >
     Contacto
   </h3>
-  
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 backdrop-blur-sm bg-base-200/30 rounded-2xl p-8 shadow-lg">
-    <div class="flex flex-col backdrop-blur-sm bg-base-200/50 rounded-xl p-8 justify-between">
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 gap-8 backdrop-blur-sm bg-base-200/30 rounded-2xl p-8 shadow-lg"
+  >
+    <div
+      class="flex flex-col backdrop-blur-sm bg-base-200/50 rounded-xl p-8 justify-between"
+    >
       <div>
-        <h4 class="text-2xl font-semibold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+        <h4
+          class="text-2xl font-semibold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+        >
           Mis Datos de Contacto
         </h4>
-        
-        <ul class="text-left text-lg space-y-6 backdrop-blur-sm rounded-lg p-6 flex flex-col justify-between">
-          <li class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full">
+
+        <ul
+          class="text-left text-lg space-y-6 backdrop-blur-sm rounded-lg p-6 flex flex-col justify-between"
+        >
+          <li
+            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
+          >
             <i class="fa-solid fa-at text-primary text-2xl min-w-[2rem]"></i>
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between w-full">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
+            >
               <strong class="text-secondary">Correo Electrónico:</strong>
-              <a href="mailto:jonathan.rojas.asc@gmail.com" 
-                target="_blank" 
-                class="ml-2 hover:text-primary transition-colors break-all">
+              <a
+                href="mailto:jonathan.rojas.asc@gmail.com"
+                target="_blank"
+                class="ml-2 hover:text-primary transition-colors break-all"
+              >
                 jonathan.rojas.asc@gmail.com
               </a>
             </div>
           </li>
-          
-          <li class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full">
-            <i class="fa-brands fa-whatsapp text-primary text-2xl min-w-[2rem]"></i>
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between w-full">
+
+          <li
+            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
+          >
+            <i class="fa-brands fa-whatsapp text-primary text-2xl min-w-[2rem]"
+            ></i>
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
+            >
               <strong class="text-secondary">Teléfono:</strong>
-              <a href="https://wa.me/56930744391?text=Hola%20quisiera%20consultar%20por%20valores%20en%20desarrollo%20de%20un%20producto"
-                target="_blank" 
-                class="ml-2 hover:text-primary transition-colors">
+              <a
+                href="https://wa.me/56930744391?text=Hola%20quisiera%20consultar%20por%20valores%20en%20desarrollo%20de%20un%20producto"
+                target="_blank"
+                class="ml-2 hover:text-primary transition-colors"
+              >
                 +56 9 3074 4391
               </a>
             </div>
           </li>
-          
-          <li class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full">
-            <i class="fa-brands fa-linkedin text-primary text-2xl min-w-[2rem]"></i>
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between w-full">
+
+          <li
+            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
+          >
+            <i class="fa-brands fa-linkedin text-primary text-2xl min-w-[2rem]"
+            ></i>
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
+            >
               <strong class="text-secondary">LinkedIn:</strong>
-              <a href="https://www.linkedin.com/in/jonathan-rojas-532b9a146/" 
-                target="_blank" 
-                class="ml-2 hover:text-primary transition-colors">
+              <a
+                href="https://www.linkedin.com/in/jonathan-rojas-532b9a146/"
+                target="_blank"
+                class="ml-2 hover:text-primary transition-colors"
+              >
                 Jonathan Rojas
               </a>
             </div>
           </li>
-          
-          <li class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full">
-            <i class="fa-brands fa-github text-primary text-2xl min-w-[2rem]"></i>
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between w-full">
+
+          <li
+            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
+          >
+            <i class="fa-brands fa-github text-primary text-2xl min-w-[2rem]"
+            ></i>
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
+            >
               <strong class="text-secondary">GitHub:</strong>
-              <a href="https://github.com/waflex" 
-                target="_blank" 
-                class="ml-2 hover:text-primary transition-colors">
+              <a
+                href="https://github.com/waflex"
+                target="_blank"
+                class="ml-2 hover:text-primary transition-colors"
+              >
                 Waflex
               </a>
             </div>
           </li>
         </ul>
       </div>
-      
+
       <div class="flex flex-col sm:flex-row justify-center gap-6 mt-8">
-        <a href="/assets/files/CVJRES.pdf" 
-          class="btn btn-primary btn-outline gap-2 hover:scale-105 transition-transform w-full sm:w-auto" 
-          download>
+        <a
+          href="/assets/files/CVJRES.pdf"
+          class="btn btn-primary btn-outline gap-2 hover:scale-105 transition-transform w-full sm:w-auto"
+          download
+        >
           <i class="fas fa-file-download"></i>
           Obtén mi CV
         </a>
-        <a href="/assets/files/CVJREN.pdf" 
-          class="btn btn-primary btn-outline gap-2 hover:scale-105 transition-transform w-full sm:w-auto" 
-          download>
+        <a
+          href="/assets/files/CVJREN.pdf"
+          class="btn btn-primary btn-outline gap-2 hover:scale-105 transition-transform w-full sm:w-auto"
+          download
+        >
           <i class="fas fa-file-download"></i>
           Get my CV
         </a>
@@ -80,49 +123,61 @@
     </div>
 
     <div class="backdrop-blur-sm bg-base-200/50 rounded-xl p-8">
-      <h4 class="text-2xl font-semibold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+      <h4
+        class="text-2xl font-semibold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+      >
         Envíame un Mensaje
       </h4>
-      
-      <form action="https://formspree.io/f/mdknyrvp" method="POST" class="space-y-8">
+
+      <form
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        class="space-y-8"
+        id="contactForm"
+        onsubmit="return validateForm(event)"
+      >
         <div class="form-control">
+          <input type="hidden" name="access_key" value={Web3Forms_KEY} />
           <label for="name" class="label justify-between">
             <span class="label-text text-lg">Nombre</span>
           </label>
-          <input type="text" 
-            class="input input-bordered input-primary bg-base-200/50 backdrop-blur-sm focus:input-primary transition-all duration-300 w-full" 
-            id="name" 
-            name="name" 
-            required 
+          <input
+            type="text"
+            class="input input-bordered input-primary bg-base-200/50 backdrop-blur-sm focus:input-primary transition-all duration-300 w-full"
+            id="name"
+            name="name"
+            required
           />
         </div>
-        
+
         <div class="form-control">
           <label for="email" class="label justify-between">
             <span class="label-text text-lg">Correo Electrónico</span>
           </label>
-          <input type="email" 
-            class="input input-bordered input-primary bg-base-200/50 backdrop-blur-sm focus:input-primary transition-all duration-300 w-full" 
-            id="email" 
-            name="email" 
-            required 
+          <input
+            type="email"
+            class="input input-bordered input-primary bg-base-200/50 backdrop-blur-sm focus:input-primary transition-all duration-300 w-full"
+            id="email"
+            name="email"
+            required
           />
         </div>
-        
+
         <div class="form-control">
           <label for="message" class="label justify-between">
             <span class="label-text text-lg">Mensaje</span>
           </label>
-          <textarea 
-            class="textarea textarea-bordered textarea-primary bg-base-200/50 backdrop-blur-sm focus:textarea-primary transition-all duration-300 min-h-[150px] w-full" 
-            id="message" 
-            name="message" 
-            required
-          ></textarea>
+          <textarea
+            class="textarea textarea-bordered textarea-primary bg-base-200/50 backdrop-blur-sm focus:textarea-primary transition-all duration-300 min-h-[150px] w-full"
+            id="message"
+            name="message"
+            required></textarea>
         </div>
+        <button
+          type="submit"
+          class="btn btn-primary w-full gap-2 hover:scale-105 transition-transform"
+        >
         
-        <button type="submit" 
-          class="btn btn-primary w-full gap-2 hover:scale-105 transition-transform">
           <i class="fas fa-paper-plane"></i>
           Enviar Mensaje
         </button>
