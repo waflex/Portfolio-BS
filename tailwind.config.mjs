@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         'neon-pink': '#ff2d55',
-        'neon-blue': '#0ff',
+        'neon-blue': 'rgba(21, 43, 241, 1)',
         'neon-purple': '#b026ff',
         'cyber-black': '#0a0a0f',
         'cyber-dark': '#1a1a2e'

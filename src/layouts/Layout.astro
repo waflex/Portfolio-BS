@@ -8,7 +8,7 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="es" data-theme="cyberpunk" class="min-h-screen">
+<html lang="es" data-theme="cyberpunk" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -81,9 +81,11 @@ import "../styles/global.css";
         gtag('config', 'G-38HG1QB26H');
     </script>
   </head>
-  <body class="min-h-screen h-full text-base-content relative">
+  <body class="min-h-full text-base-content relative">
     <div class="cyber-lines"></div>
     <div class="cyber-diagonal"></div>
     <slot />
+    <script src="/assets/js/glitch.js" defer></script>
   </body>
+  
 </html>

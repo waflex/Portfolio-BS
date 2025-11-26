@@ -1,14 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/*Body*/
-body {
-  background: linear-gradient(
-    to bottom right,
-    var(--cyber-black),
-    var(--cyber-dark)
-  );
-}
+
 
 /* Grid de fondo */
 body::before {
@@ -34,9 +27,15 @@ body::after {
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(to bottom, transparent, var(--cyber-black));
+  background: linear-gradient(to bottom, transparent, var(--dark-bg, #040316));
   z-index: -1;
   pointer-events: none;
+}
+
+/* Profile section: asegurar color de texto correcto dentro del componente */
+
+.profile-section .prose {
+  color: inherit;
 }
 
 /* Líneas cyberpunk */
@@ -76,8 +75,9 @@ body::after {
 }
 
 html {
-  height: 100%;
+  color-scheme: light dark;
 }
+
 @layer components {
   .btn-neon {
     @apply btn btn-primary hover:scale-105 transition-all duration-300 shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] hover:shadow-[0_0_5px_rgb(255_45_85),0_0_20px_rgb(255_45_85)];
@@ -179,21 +179,6 @@ html {
 }
 
 /* Glitch effect */
-/* .glitch {
-  animation: glitch 1s linear infinite;
-}
-
-@keyframes glitch {
-  2%, 64% {
-    transform: translate(2px,0) skew(0deg);
-  }
-  4%, 60% {
-    transform: translate(-2px,0) skew(0deg);
-  }
-  62% {
-    transform: translate(0,0) skew(5deg);
-  }
-} */
 
 @font-face {
   font-family: "Doctor Glitch";
@@ -222,10 +207,14 @@ html {
   font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  animation: glitch1 2.5s infinite linear alternate,
-    glitch2 3s infinite linear alternate, glitch3 2s infinite linear alternate;
 }
 
+/* Animaciones activas solo si glitch-active está presente */
+.glitch.glitch-active {
+  animation: glitch1 2.5s infinite linear alternate,
+    glitch2 3s infinite linear alternate,
+    glitch3 2s infinite linear alternate;
+}
 /*Keyframes*/
 
 @keyframes glitch1 {
