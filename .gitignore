@@ -27,3 +27,6 @@ pnpm-debug.log*
 .vscode/
 # vscode test folder
 .vscode-test/
+.opencode-memory.json
+desing.md
+screenshot.webp
