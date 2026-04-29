@@ -5,7 +5,7 @@ interface Props {
 }
 const {
   title,
-  description = "Portafolio profesional de Jonathan Rojas, Ingeniero Informático y Desarrollador Full Stack. Especializado en JavaScript, React y soluciones tecnológicas a medida."
+  description = "Portafolio profesional de Jonathan Rojas, Ingeniero Informático y Desarrollador Full Stack. Especializado en JavaScript, React y soluciones tecnológicas a medida.",
 } = Astro.props;
 
 import "../styles/global.css";
@@ -17,13 +17,16 @@ import "../styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="keywords" content="Jonathan Rojas, Portafolio, Full Stack Developer, Ingeniero Informático, JavaScript, React, Node.js, Chile" />
+    <meta
+      name="keywords"
+      content="Jonathan Rojas, Portafolio, Full Stack Developer, Ingeniero Informático, JavaScript, React, Node.js, Chile"
+    />
     <meta name="author" content="Jonathan Rojas" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/assets/img/Proyectos/inventario.png" />
+    <meta property="og:image" content="/assets/img/Favicon.svg" />
     <meta property="og:url" content="https://jrtdev.cl" />
     <meta property="og:type" content="website" />
 
@@ -31,9 +34,11 @@ import "../styles/global.css";
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/assets/img/Proyectos/inventario.png" />
+    <meta name="twitter:image" content="/assets/img/Favicon.svg" />
 
     <link rel="canonical" href="https://jrtdev.cl" />
+    <link rel="icon" type="image/svg+xml" href="/Favicon.svg?v=2" />
+
     <title>{title}</title>
 
     <!-- Font Awesome -->
@@ -66,12 +71,15 @@ import "../styles/global.css";
     </script>
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-38HG1QB26H"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-38HG1QB26H"
+    ></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-38HG1QB26H');
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-38HG1QB26H");
     </script>
   </head>
 
@@ -80,44 +88,50 @@ import "../styles/global.css";
 
     <!-- Navbar scroll effect -->
     <script>
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
         if (window.scrollY > 40) {
-          navbar?.classList.add('navbar-scrolled');
+          navbar?.classList.add("navbar-scrolled");
         } else {
-          navbar?.classList.remove('navbar-scrolled');
+          navbar?.classList.remove("navbar-scrolled");
         }
       });
 
       // Active nav link on scroll
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('.nav-link');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            navLinks.forEach(link => {
-              link.classList.remove('active-link');
-              if (link.getAttribute('href') === `#${entry.target.id}`) {
-                link.classList.add('active-link');
-              }
-            });
-          }
-        });
-      }, { threshold: 0.4 });
-      sections.forEach(s => observer.observe(s));
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-link");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navLinks.forEach((link) => {
+                link.classList.remove("active-link");
+                if (link.getAttribute("href") === `#${entry.target.id}`) {
+                  link.classList.add("active-link");
+                }
+              });
+            }
+          });
+        },
+        { threshold: 0.4 },
+      );
+      sections.forEach((s) => observer.observe(s));
 
       // Fade-up on scroll
-      const fadeEls = document.querySelectorAll('.animate-fade-up');
-      const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = 'running';
-            fadeObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      fadeEls.forEach(el => {
-        el.style.animationPlayState = 'paused';
+      const fadeEls = document.querySelectorAll(".animate-fade-up");
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = "running";
+              fadeObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      fadeEls.forEach((el) => {
+        el.style.animationPlayState = "paused";
         fadeObserver.observe(el);
       });
     </script>
