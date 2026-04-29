@@ -1,83 +1,82 @@
+// Datos de proyectos desde src/data/projects.js
 const proyectos = [
     {
-        nombre: "Sistema de Inventario",
-        descripcion:
-            "Gestiona productos, controla stock en tiempo real, envía alertas de bajo inventario, y genera informes detallados. Integra con otros sistemas para una gestión eficiente.",
-        url: "https://github.com/waflex", // Cambiar cuando necesario
-        langs: ["Javascript", "HTML", "CSS", "Express", "Handlebars"],
-        imagen: "assets/img/Proyectos/inventario.png" // Ruta de la imagen del proyecto
+        nombre: "Inventory Management",
+        descripcion: "Sistema web para administración de inventarios con JavaScript, Express.js y MySQL.",
+        url: "https://github.com/waflex/InventoryManagement",
+        imagen: "/assets/img/Proyectos/inventario.png",
+        tecnologias: ["ExpressJS", "MySQL", "Handlebars"]
     },
     {
-        nombre: "Ficha Veterinaria",
-        descripcion:
-            "Administra registros de mascotas, historial médico, y citas. Ofrece alertas para vacunas y exámenes, y genera informes detallados sobre la salud y el bienestar de los animales.",
-        url: "https://github.com/waflex", // Cambiar cuando necesario
-        langs: ["Javascript", "HTML", "CSS", "Express", "React"],
-        imagen: "assets/img/Proyectos/Ficha-Vet.png" // Ruta de la imagen del proyecto
+        nombre: "FichaVet",
+        descripcion: "Sistema de gestión veterinaria para manejo de fichas clínicas y control de pacientes.",
+        url: "https://github.com/waflex/Ficha-Vet",
+        imagen: "/assets/img/Proyectos/Ficha-Vet.png",
+        tecnologias: ["React", "ExpressJS", "MongoDB", "Tailwind"]
+    },
+    {
+        nombre: "Realweb",
+        descripcion: "Web para restaurante 'Real, Sabor y Cocina' en La Serena, Chile.",
+        url: "https://restaurante-real-dev.netlify.app",
+        imagen: "/assets/img/Proyectos/realweb.png",
+        tecnologias: ["HTML", "CSS", "JavaScript"]
+    },
+    {
+        nombre: "CK Decora",
+        descripcion: "Página web moderna para empresa de decoración de interiores.",
+        url: "https://ckdecora-landing.netlify.app",
+        imagen: "/assets/img/Proyectos/CK-Decora.png",
+        tecnologias: ["HTML", "CSS", "JavaScript"]
     },
     {
         nombre: "Bot Discord",
-        descripcion:
-            "Bot designado para la administración de usuarios y funcionalidades dentro de un servidor de Discord, inspirado por completo en la temática DnD.",
-        url: "https://github.com/waflex",
-        langs: ["Javascript"],
-        imagen: "assets/img/Proyectos/Bot_Discord.png" // Ruta de la imagen del proyecto
+        descripcion: "Bot para administración de usuarios en servidor Discord con temática DnD.",
+        url: "https://discord.com/oauth2/authorize?client_id=857348571246624798",
+        imagen: "/assets/img/Proyectos/Bot_Discord.png",
+        tecnologias: ["JavaScript"]
     }
 ];
+
 function cargarProyectos() {
     const container = document.getElementById('Proyectos');
-    container.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevos proyectos
+    if (!container) return;
+
+    container.innerHTML = '';
 
     proyectos.forEach(proyecto => {
-        // Crear la lista de íconos de lenguajes
-        let langsIcons = proyecto.langs.map(lang => {
-            return `<img src="assets/img/icons/${lang.toLowerCase()}.png" alt="${lang}" class="lang-icon" />`;
-        }).join(' ');
-
         const card = document.createElement('div');
-        card.className = 'col-md-4 mb-4';
+        card.className = 'card-glass p-0 overflow-hidden group';
         card.innerHTML = `
-            <div class="card text-bg-dark h-75">
-                <img src="${proyecto.imagen}" class="card-img-top mt-2" alt="${proyecto.nombre}">
-                <div class="card-body">
-                    <h4 class="card-title">${proyecto.nombre}</h4>
-                    <p class="card-text">${proyecto.descripcion}</p>
-                    <div class="langs-icons mb-3">
-                        ${langsIcons}
-                    </div>
-                    <button
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#projectModal"
-                        onclick="setModalContent('${proyecto.url}')"
-                    >
-                        Ver Proyecto
-                    </button>
+            <div class="relative overflow-hidden h-48">
+                <img src="${proyecto.imagen}"
+                     alt="${proyecto.nombre}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-gradient-to-t from-bg-card to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div class="p-6">
+                <h4 class="font-poppin font-bold text-text-primary text-xl mb-3">${proyecto.nombre}</h4>
+                <p class="font-body text-text-secondary text-sm leading-relaxed mb-4 line-clamp-3">${proyecto.descripcion}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    ${proyecto.tecnologias.map(tech => `
+                        <span class="px-3 py-1 bg-bg-surface rounded-full text-text-muted text-xs">${tech}</span>
+                    `).join('')}
                 </div>
+                <a href="${proyecto.url}"
+                   target="_blank"
+                   class="inline-flex items-center gap-2 text-accent text-sm font-semibold hover:gap-3 transition-all">
+                    View Project <i class="fas fa-external-link-alt text-xs"></i>
+                </a>
             </div>
         `;
         container.appendChild(card);
     });
 }
 
-
 // Cargar proyectos al cargar la página
-window.onload = cargarProyectos();
+document.addEventListener('DOMContentLoaded', cargarProyectos);
 
-/*
-<div class="col-md-4">
-                    <div class="card text-bg-dark mb-4">
-                        <div class="card-body">
-                            <h4 class="card-title">Sistema de Inventario</h4>
-                            <p class="card-text">
-                                Gestiona productos, controla stock en tiempo real, envía
-                                alertas de bajo inventario, y genera informes detallados.
-                                Integra con otros sistemas para una gestión eficiente.
-                            </p>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal">
-                                Ver Proyecto
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                */
+// Eliminar glitch.js si no existe
+const glitchScript = document.querySelector('script[src*="glitch"]');
+if (glitchScript) {
+    glitchScript.remove();
+}

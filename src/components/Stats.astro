@@ -1,0 +1,43 @@
+---
+const stats = [
+  { icon: "fas fa-users",       number: "20+",  label: "Clientes Atendidos" },
+  { icon: "fas fa-code-branch", number: "4+",   label: "Años Desarrollando" },
+  { icon: "fas fa-laptop-code", number: "15+",  label: "Proyectos Entregados" },
+  { icon: "fas fa-chalkboard",  number: "100+", label: "Estudiantes Formados" },
+  { icon: "fas fa-star",        number: "4.5",  label: "Valoración Promedio" },
+];
+---
+
+<section style="background: var(--bg-dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container mx-auto px-6 lg:px-10 py-8">
+    <div class="flex flex-wrap items-center justify-between gap-6">
+      {stats.map((stat, i) => (
+        <>
+          <div class="flex items-center gap-3 flex-1 min-w-[140px] justify-center group">
+            <div class="stat-icon group-hover:border-accent group-hover:text-accent group-hover:shadow-glow-sm">
+              <i class={stat.icon}></i>
+            </div>
+            <div>
+              <p
+                class="font-body text-white text-2xl font-bold leading-none"
+                style="color: var(--text-white);"
+              >
+                {stat.number}
+              </p>
+              <p class="font-body text-xs mt-0.5" style="color: var(--text-muted);">
+                {stat.label}
+              </p>
+            </div>
+          </div>
+
+          {i < stats.length - 1 && (
+            <div
+              class="hidden md:block w-px h-12"
+              style="background: var(--border);"
+            ></div>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</section>

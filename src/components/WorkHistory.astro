@@ -1,43 +1,84 @@
 ---
 import { workHistory } from '../data/workHistory';
 ---
-<section class="mb-10 text-center mx-auto max-w-7xl px-4">
-  <h3 class="titulo mb-8">Experiencia Laboral</h3>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {
-      workHistory.map((job) => (
-        <div class="card backdrop-blur-sm hover:shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] transition-all duration-300 h-full flex flex-col">
-          <div class="card-body flex flex-col flex-grow">
-            <h4 class="card-title text-xl bg-gradient-to-r from-neon-pink to-neon-blue bg-clip-text text-transparent">
-              {job.title}
-            </h4>
-            <h5 class="text-lg opacity-90 mb-2 text-neon-blue">
-              {job.company} | {job.period}
-            </h5>
-            <p class="text-base-content/80 mb-4">{job.description}</p>
-            <div class="mb-4">
-              <h6 class="text-left text-neon-pink mb-2">Logros:</h6>
-              <ul class="text-left space-y-2">
-                {job.achievements.map((achievement) => (
-                  <li class="flex items-start gap-2">
-                    <i class="fas fa-chevron-right text-neon-pink mt-1"></i>
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </ul>
+
+<section id="work" class="py-24" style="background: var(--bg-dark);">
+  <div class="container mx-auto px-6 lg:px-10">
+
+    <!-- Header -->
+    <div class="text-center mb-16 animate-fade-up">
+      <p class="section-label mb-3">TRAYECTORIA</p>
+      <div class="divider-accent mx-auto mb-5"></div>
+      <h2 class="section-title text-3xl lg:text-4xl">
+        Experiencia <span style="color: var(--accent);">Laboral</span>
+      </h2>
+      <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
+        Más de 8 años construyendo soluciones tecnológicas en distintos entornos.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {workHistory.map((job, i) => (
+        <article
+          class="card-glass p-7 flex flex-col animate-fade-up"
+          style={`animation-delay: ${i * 0.15}s;`}
+        >
+          <!-- Header del card -->
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <h3 class="font-body font-bold text-white text-lg leading-tight">{job.title}</h3>
+              <p class="font-body text-sm mt-1" style="color: var(--accent);">{job.company}</p>
             </div>
-            <div class="flex flex-wrap gap-2 mt-auto">
-              <h6 class="w-full text-left text-neon-pink mb-2">Tecnologías:</h6>
-              {job.technologies.map((tech) => (
-                <span class="badge badge-outline gap-2 px-3 py-3">
-                  <i class={`${tech.icon} ${tech.color}`}></i>
-                  {tech.name}
-                </span>
-              ))}
-            </div>
+            <!-- Badge periodo -->
+            <span
+              class="font-body text-xs font-medium px-3 py-1.5 rounded-full flex-shrink-0 mt-1"
+              style="background: rgba(0,229,160,0.12); color: var(--accent); border: 1px solid rgba(0,229,160,0.25);"
+            >
+              {job.period}
+            </span>
           </div>
-        </div>
-      ))
-    }
+
+          <!-- Divisor -->
+          <div class="divider-accent mb-4"></div>
+
+          <!-- Descripción -->
+          <p class="font-body text-sm leading-relaxed mb-5" style="color: var(--text-muted);">
+            {job.description}
+          </p>
+
+          <!-- Logros -->
+          <div class="mb-6 flex-grow">
+            <p class="font-body text-xs font-semibold uppercase tracking-wider mb-3 text-white">
+              Logros clave
+            </p>
+            <ul class="space-y-2">
+              {job.achievements.map(ach => (
+                <li class="flex items-start gap-3">
+                  <div class="timeline-dot mt-[6px]"></div>
+                  <span class="font-body text-sm" style="color: var(--text-gray);">{ach}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Tecnologías -->
+          <div class="flex flex-wrap gap-2">
+            {job.technologies.map(tech => (
+              <span class="tech-badge">
+                <i class={`${tech.icon} ${tech.color} text-sm`}></i>
+                {tech.name}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>
+
+<style>
+.tech-badge i {
+  vertical-align: middle;
+}
+</style>

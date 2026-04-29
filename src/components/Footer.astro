@@ -1,0 +1,82 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="py-8"
+  style="border-top: 1px solid var(--border); background: var(--bg-dark);"
+>
+  <div class="container mx-auto px-6 lg:px-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+
+      <!-- Logo / nombre -->
+      <div class="flex items-center gap-3">
+        <div
+          class="w-8 h-8 rounded-full flex items-center justify-center text-black text-sm font-display font-bold"
+          style="background: var(--accent);"
+        >
+          JR
+        </div>
+        <p class="font-body text-sm" style="color: var(--text-muted);">
+          © {year} <strong class="text-white">Jonathan Rojas</strong>. Todos los derechos reservados.
+        </p>
+      </div>
+
+      <!-- Hecho con -->
+      <p class="font-body text-xs" style="color: var(--text-muted);">
+        Hecho con <span style="color: var(--accent);">♥</span> usando
+        <a
+          href="https://astro.build"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-semibold text-white hover:text-accent transition-colors"
+        >
+          Astro
+        </a>
+        &amp;
+        <a
+          href="https://tailwindcss.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-semibold text-white hover:text-accent transition-colors"
+        >
+          Tailwind
+        </a>
+      </p>
+
+      <!-- Links redes -->
+      <div class="flex gap-4">
+        <a
+          href="https://github.com/waflex"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors duration-200 hover:text-accent"
+          style="color: var(--text-muted);"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/jonathan-rojas-532b9a146/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors duration-200 hover:text-accent"
+          style="color: var(--text-muted);"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin-in text-lg"></i>
+        </a>
+        <a
+          href="https://wa.me/56930744391"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors duration-200 hover:text-accent"
+          style="color: var(--text-muted);"
+          aria-label="WhatsApp"
+        >
+          <i class="fab fa-whatsapp text-lg"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

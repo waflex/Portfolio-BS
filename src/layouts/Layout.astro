@@ -1,69 +1,63 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
+const {
+  title,
+  description = "Portafolio profesional de Jonathan Rojas, Ingeniero Informático y Desarrollador Full Stack. Especializado en JavaScript, React y soluciones tecnológicas a medida."
+} = Astro.props;
 
-const { title } = Astro.props;
 import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="es" data-theme="cyberpunk" class="h-full">
+<html lang="es" data-theme="dark-portfolio" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Portafolio profesional de Jonathan Rojas, Ingeniero Informático y Desarrollador Full Stack. Descubre proyectos, experiencia laboral, docencia y descarga mi CV. Especializado en .NET, JavaScript, React y soluciones tecnológicas a medida."
-    />
-    <meta
-      name="keywords"
-      content="Jonathan Rojas, Portafolio, Desarrollador Full Stack, Ingeniero Informático, .NET, JavaScript, React, REST APIs, Desarrollo Web, Chile, Proyectos, Curriculum, CV, Docente, Consultor, Freelance"
-    />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Jonathan Rojas, Portafolio, Full Stack Developer, Ingeniero Informático, JavaScript, React, Node.js, Chile" />
     <meta name="author" content="Jonathan Rojas" />
-    <meta
-      property="og:title"
-      content="Portafolio de Jonathan Rojas | Ingeniero Informático & Desarrollador Full Stack"
-    />
-    <meta
-      property="og:description"
-      content="Explora mi experiencia profesional, proyectos destacados y habilidades técnicas en mi portafolio personal. Descarga mi CV y contáctame para nuevos proyectos."
-    />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content="/assets/img/Proyectos/inventario.png" />
-    <meta property="og:url" content="https://jonathan-rojas.netlify.app" />
+    <meta property="og:url" content="https://jrtdev.cl" />
     <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Portafolio de Jonathan Rojas" />
-    <meta
-      name="twitter:description"
-      content="Ingeniero Informático y Desarrollador Full Stack especializado en soluciones tecnológicas personalizadas."
-    />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/assets/img/Proyectos/inventario.png" />
-    <link rel="canonical" href="https://jonathan-rojas.netlify.app" />
+
+    <link rel="canonical" href="https://jrtdev.cl" />
     <title>{title}</title>
+
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <!-- Devicon -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
     />
+
+    <!-- Schema.org -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Jonathan Rojas",
-        "url": "https://jonathan-rojas.netlify.app",
-        "image": "https://jonathan-rojas.netlify.app/assets/img/Proyectos/inventario.png",
+        "url": "https://jrtdev.cl",
         "jobTitle": "Ingeniero Informático | Desarrollador Full Stack",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Instituto Profesional Valle Central"
-        },
         "sameAs": [
           "https://www.linkedin.com/in/jonathan-rojas-532b9a146/",
           "https://github.com/waflex"
@@ -71,21 +65,61 @@ import "../styles/global.css";
       }
     </script>
 
-     <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-38HG1QB26H"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-38HG1QB26H');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-38HG1QB26H');
     </script>
   </head>
-  <body class="min-h-full text-base-content relative">
-    <div class="cyber-lines"></div>
-    <div class="cyber-diagonal"></div>
+
+  <body class="min-h-full">
     <slot />
-    <script src="/assets/js/glitch.js" defer></script>
+
+    <!-- Navbar scroll effect -->
+    <script>
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          navbar?.classList.add('navbar-scrolled');
+        } else {
+          navbar?.classList.remove('navbar-scrolled');
+        }
+      });
+
+      // Active nav link on scroll
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.remove('active-link');
+              if (link.getAttribute('href') === `#${entry.target.id}`) {
+                link.classList.add('active-link');
+              }
+            });
+          }
+        });
+      }, { threshold: 0.4 });
+      sections.forEach(s => observer.observe(s));
+
+      // Fade-up on scroll
+      const fadeEls = document.querySelectorAll('.animate-fade-up');
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      fadeEls.forEach(el => {
+        el.style.animationPlayState = 'paused';
+        fadeObserver.observe(el);
+      });
+    </script>
   </body>
-  
 </html>

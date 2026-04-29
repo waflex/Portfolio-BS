@@ -1,0 +1,126 @@
+---
+const navLinks = [
+  { label: "Home",       href: "#home" },
+  { label: "Sobre mí",   href: "#about" },
+  { label: "Proyectos",  href: "#projects" },
+  { label: "Experiencia",href: "#work" },
+  { label: "Docencia",   href: "#teaching" },
+  { label: "Contacto",   href: "#contact" },
+];
+---
+
+<nav
+  id="navbar"
+  class="fixed top-0 left-0 w-full z-40 transition-all duration-300"
+  style="height: 70px;"
+>
+  <div class="container mx-auto px-6 lg:px-10 flex items-center justify-between h-full">
+
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-3 group">
+      <div
+        class="w-10 h-10 rounded-full flex items-center justify-center text-black font-display font-bold text-lg
+               transition-all duration-200 group-hover:scale-110"
+        style="background: var(--accent);"
+      >
+        JR
+      </div>
+      <div class="flex flex-col leading-tight">
+        <span class="font-body font-bold text-white text-sm">JONATHAN</span>
+        <span class="font-body font-bold text-xs" style="color: var(--accent);">ROJAS</span>
+      </div>
+    </a>
+
+    <!-- Links desktop -->
+    <div class="hidden md:flex items-center gap-1">
+      {navLinks.map((link, i) => (
+        <a
+          href={link.href}
+          class={`nav-link px-4 py-2 rounded-full text-sm font-medium font-body transition-all duration-200
+                  ${i === 0
+                    ? 'text-black font-semibold'
+                    : 'text-gray-400 hover:text-white'}`}
+          style={i === 0 ? 'background: var(--accent);' : ''}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <a
+      href="/assets/files/CVJRES.pdf"
+      download
+      class="hidden md:flex items-center gap-2 px-5 py-2 rounded-full border-2 text-sm font-semibold font-body
+             transition-all duration-200 hover:scale-105"
+      style="border-color: var(--accent); color: var(--accent);"
+      onmouseover="this.style.background='var(--accent)'; this.style.color='#000';"
+      onmouseout="this.style.background='transparent'; this.style.color='var(--accent)';"
+    >
+      <div
+        class="w-6 h-6 rounded-full flex items-center justify-center text-black text-xs"
+        style="background: var(--accent);"
+      >
+        <i class="fas fa-download"></i>
+      </div>
+      Descargar CV
+    </a>
+
+    <!-- Hamburger mobile -->
+    <button
+      id="menu-toggle"
+      class="md:hidden w-10 h-10 rounded-full flex items-center justify-center"
+      style="border: 1px solid var(--border-icon); color: var(--text-gray);"
+      aria-label="Abrir menú"
+    >
+      <i class="fas fa-bars text-sm"></i>
+    </button>
+  </div>
+
+  <!-- Menú mobile -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden absolute top-full left-0 w-full py-4 px-6"
+    style="background: rgba(10,10,10,0.97); border-bottom: 1px solid var(--border);"
+  >
+    <div class="flex flex-col gap-2">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="py-3 px-4 rounded-xl text-sm font-medium font-body text-gray-300 hover:text-white
+                 transition-colors"
+          style="border: 1px solid var(--border);"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="/assets/files/CVJRES.pdf"
+        download
+        class="py-3 px-4 rounded-xl text-sm font-semibold font-body text-center mt-2"
+        style="background: var(--accent); color: #000;"
+      >
+        Descargar CV
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Active link style -->
+<style>
+  .nav-link.active-link {
+    background: var(--accent) !important;
+    color: #000 !important;
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+
+  // Cerrar menú al hacer clic en un link
+  menu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => menu.classList.add('hidden'));
+  });
+</script>

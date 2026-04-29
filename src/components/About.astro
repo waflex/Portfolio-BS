@@ -1,0 +1,127 @@
+---
+const skills = [
+  "JavaScript & TypeScript",
+  "React & Node.js",
+  "REST APIs & Express",
+  "MySQL & MongoDB",
+  "PHP & Python",
+  "Redes & Linux",
+  "Metodologías Ágiles",
+  "Docencia Técnica",
+];
+---
+
+<section
+  id="about"
+  class="py-24"
+  style="background: var(--bg-dark);"
+>
+  <div class="container mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+      <!-- ── Foto con blob ──────────────────────── -->
+      <div class="lg:col-span-5 relative animate-fade-up">
+        <!-- Blob verde orgánico animado -->
+        <div
+          class="absolute inset-4 animate-blob"
+          style="background: rgba(0,229,160,0.15); z-index: 0;"
+        ></div>
+
+        <!-- Foto -->
+        <img
+          src="https://avatars.githubusercontent.com/u/38105133?s=600&u=14b646c6385db7fbfed198bede0b9128b74a039e&v=4"
+          alt="Jonathan Rojas"
+          class="relative z-10 w-full max-w-[380px] mx-auto rounded-2xl object-cover"
+          style="box-shadow: var(--shadow-card);"
+          loading="lazy"
+        />
+
+        <!-- Badge experiencia -->
+        <div
+          class="absolute -bottom-4 -left-4 z-20 rounded-2xl px-5 py-4"
+          style="
+            background: rgba(10,10,10,0.95);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-glow);
+          "
+        >
+          <p class="font-display text-4xl leading-none" style="color: var(--accent);">4+</p>
+          <p class="font-body text-xs mt-1 text-white font-medium">Años de Experiencia</p>
+        </div>
+
+        <!-- Badge docencia -->
+        <div
+          class="absolute -top-4 -right-4 z-20 rounded-2xl px-4 py-3"
+          style="
+            background: rgba(10,10,10,0.95);
+            border: 1px solid var(--border);
+          "
+        >
+          <p class="font-body text-xs" style="color: var(--text-muted);">Docente en</p>
+          <p class="font-body text-sm font-bold text-white">AIEP · IPCHILE</p>
+        </div>
+      </div>
+
+      <!-- ── Texto ──────────────────────────────── -->
+      <div class="lg:col-span-7 animate-fade-up stagger-2">
+
+        <!-- Label -->
+        <p class="section-label mb-3">Sobre mí</p>
+        <div class="divider-accent mb-5"></div>
+
+        <!-- Título -->
+        <h2 class="section-title text-3xl lg:text-4xl mb-5">
+          Ingeniero Informático,<br>
+          <span style="color: var(--accent);">Desarrollador</span> & Docente
+        </h2>
+
+        <!-- Descripción -->
+        <p class="font-body text-gray-400 text-base leading-relaxed mb-4">
+          Soy un ingeniero en informática con más de 4 años de experiencia en desarrollo
+          de soluciones tecnológicas personalizadas, enfocadas en la automatización de
+          procesos y la mejora de la eficiencia operacional.
+        </p>
+        <p class="font-body text-gray-400 text-base leading-relaxed mb-8">
+          Actualmente soy docente en <strong class="text-white">AIEP</strong> e
+          <strong class="text-white">IPCHILE</strong>, y como desarrollador Full Stack
+          freelance me especializo en <strong class="text-white">JavaScript</strong> y
+          <strong class="text-white">REST APIs</strong>, creando aplicaciones robustas
+          para distintos sectores.
+        </p>
+
+        <!-- Skills grid -->
+        <div class="grid grid-cols-2 gap-3 mb-8">
+          {skills.map(skill => (
+            <div class="check-item">
+              <div class="check-box">
+                <i class="fas fa-check"></i>
+              </div>
+              <span class="font-body text-sm" style="color: var(--text-gray);">{skill}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-4">
+          <a href="#contact" class="btn-accent-pill">
+            <span>Trabajemos juntos</span>
+            <div
+              class="w-7 h-7 rounded-full flex items-center justify-center"
+              style="background: rgba(0,0,0,0.3);"
+            >
+              <i class="fas fa-arrow-right text-xs" style="color: var(--accent);"></i>
+            </div>
+          </a>
+          <a
+            href="/assets/files/CVJRES.pdf"
+            download
+            class="btn-outline-pill"
+          >
+            <i class="fas fa-file-download text-xs" style="color: var(--accent);"></i>
+            Descargar CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

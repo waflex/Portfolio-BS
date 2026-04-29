@@ -1,383 +1,226 @@
+/* ─── Fuentes ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Reset & Base ────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
-/* Grid de fondo */
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #cccccc;
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Textura de grilla sutil en el fondo */
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://jrtdevbucket.s3.us-east-1.amazonaws.com/grid.webp");
-  background-size: cover;
-  background-repeat: repeat-y;
-  opacity: 0.1;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
   z-index: -2;
   pointer-events: none;
 }
 
-/* Degradado inferior */
+/* Viñeta radial para profundidad */
 body::after {
   content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(to bottom, transparent, var(--dark-bg, #040316));
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Profile section: asegurar color de texto correcto dentro del componente */
-
-.profile-section .prose {
-  color: inherit;
-}
-
-/* Líneas cyberpunk */
-.cyber-lines {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-        90deg,
-        rgba(0, 255, 255, 0.03) 1px,
-        transparent 1px
-      )
-      0 0 / 20px 20px,
-    linear-gradient(0deg, rgba(255, 45, 85, 0.03) 1px, transparent 1px) 0 0 /
-      20px 20px;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, transparent 40%, #0a0a0a 100%);
   z-index: -1;
   pointer-events: none;
 }
 
-/* Líneas diagonales */
-.cyber-diagonal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-      45deg,
-      rgba(176, 38, 255, 0.02) 1px,
-      transparent 1px
-    )
-    0 0 / 40px 40px;
-  z-index: -1;
-  pointer-events: none;
+/* ─── Variables CSS ───────────────────────────────── */
+:root {
+  --accent:       #00e5a0;
+  --accent-hover: #00c988;
+  --bg-main:      #0a0a0a;
+  --bg-dark:      #111111;
+  --bg-card:      rgba(20, 20, 20, 0.85);
+  --text-white:   #ffffff;
+  --text-gray:    #cccccc;
+  --text-muted:   #888888;
+  --border:       rgba(255, 255, 255, 0.10);
+  --border-icon:  rgba(255, 255, 255, 0.15);
+  --shadow-glow:  0 0 24px rgba(0, 229, 160, 0.45);
+  --shadow-card:  0 8px 32px rgba(0, 0, 0, 0.50);
 }
 
-html {
-  color-scheme: light dark;
-}
+/* ─── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #00e5a0; border-radius: 999px; }
 
+/* ─── Tipografía ──────────────────────────────────── */
+.font-display { font-family: 'Bebas Neue', sans-serif; }
+.font-body    { font-family: 'Poppins', sans-serif; }
+
+/* ─── Componentes reutilizables ───────────────────── */
 @layer components {
-  .btn-neon {
-    @apply btn btn-primary hover:scale-105 transition-all duration-300 shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] hover:shadow-[0_0_5px_rgb(255_45_85),0_0_20px_rgb(255_45_85)];
+
+  /* Etiqueta de sección */
+  .section-label {
+    @apply font-body text-xs font-semibold uppercase tracking-[3px];
+    color: var(--accent);
   }
 
-  .titulo {
-    @apply text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue bg-clip-text text-transparent animate-pulse;
+  /* Título de sección */
+  .section-title {
+    @apply font-body font-bold text-white text-3xl leading-snug;
   }
 
-  .card {
-    @apply backdrop-blur-sm bg-[rgba(26,26,46,0.3)] hover:bg-[rgba(26,26,46,0.5)] transition-all duration-300 relative;
-    border: none;
-    box-shadow: none;
+  /* Botón primario verde pill */
+  .btn-accent-pill {
+    @apply inline-flex items-center gap-3 px-7 py-3.5 rounded-full font-body font-semibold text-sm
+           transition-all duration-200 hover:scale-105;
+    background: var(--accent);
+    color: #000;
+    box-shadow: var(--shadow-glow);
+  }
+  .btn-accent-pill:hover { background: var(--accent-hover); }
+
+  /* Botón outlined pill */
+  .btn-outline-pill {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-body font-semibold text-sm
+           border-2 text-white transition-all duration-200 hover:scale-105;
+    border-color: var(--border-icon);
+  }
+  .btn-outline-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
-  .card::before,
-  .card::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-color: theme("colors.neon-blue");
-    transition: all 0.3s ease;
+  /* Tarjeta de glass */
+  .card-glass {
+    @apply rounded-2xl backdrop-blur-md transition-all duration-300;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+  }
+  .card-glass:hover {
+    border-color: rgba(0, 229, 160, 0.25);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.65), 0 0 0 1px rgba(0,229,160,0.15);
+    transform: translateY(-2px);
   }
 
-  .card::before {
-    top: 0;
-    right: 0;
-    border-top: 2px solid;
-    border-right: 2px solid;
+  /* Badge de tecnología */
+  .tech-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium
+           border transition-colors duration-200;
+    border-color: var(--border-icon);
+    color: var(--text-gray);
+  }
+  .tech-badge:hover {
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
-  .card::after {
-    bottom: 0;
-    left: 0;
-    border-bottom: 2px solid;
-    border-left: 2px solid;
+  /* Ícono de stat circular */
+  .stat-icon {
+    @apply w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200;
+    border: 1px solid var(--border-icon);
+    color: var(--text-muted);
+  }
+  .stat-icon:hover, .stat-icon.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 12px rgba(0,229,160,0.30);
   }
 
-  /* Nuevos pseudo-elementos para las otras esquinas */
-
-  .card::before,
-  .card::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-color: theme("colors.neon-pink");
-    transition: all 0.5s ease;
-  }
-
-  .card::before {
-    top: 0;
-    right: 0;
-    border-top: 2px solid;
-    border-right: 2px solid;
-    border-radius: 0 5px 0 0;
-  }
-
-  .card::after {
-    bottom: 0;
-    left: 0;
-    border-bottom: 2px solid;
-    border-left: 2px solid;
-    border-radius: 0 0 0 5px;
-  }
-
-  /* Efecto hover para extender las líneas */
-  .card:hover::before {
-    width: 100%;
-    height: 100%;
-  }
-
-  .card:hover::after {
-    width: 0%;
-    height: 0%;
-  }
-
-  .card:hover::before,
-  .card:hover::after {
-    z-index: -1;
-    border-radius: 5px;
-    border-color: theme("colors.neon-pink");
-    box-shadow: 0 0 5px theme("colors.neon-blue");
-  }
-
-  .input,
-  .textarea {
-    @apply bg-[rgba(26,26,46,0.3)] backdrop-blur-sm border-[rgba(0,255,255,0.3)] focus:border-neon-blue hover:shadow-[0_0_5px_rgb(0_255_255),0_0_20px_rgb(0_255_255)] transition-all duration-300;
-  }
-
-  .text-content {
-    @apply text-[#e6e6ef];
-  }
-
-  .text-content-muted {
-    @apply text-[#b8b8cf];
+  /* Divisor verde */
+  .divider-accent {
+    @apply w-12 h-0.5 rounded-full;
+    background: var(--accent);
   }
 }
 
-/* Glitch effect */
-
-@font-face {
-  font-family: "Doctor Glitch";
-  src: url("/assets/fonts/Doctor Glitch.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+/* ─── Animaciones ─────────────────────────────────── */
+@keyframes blob-morph {
+  0%, 100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; }
+  33%       { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; }
+  66%       { border-radius: 70% 30% 50% 50% / 40% 70% 30% 60%; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(0,229,160,0.30); }
+  50%       { box-shadow: 0 0 28px rgba(0,229,160,0.60); }
+}
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-@layer utilities {
-  .text-stroke-1 {
-    -webkit-text-stroke-width: 0.5px;
-    text-stroke-width: 0.5px;
-  }
+.animate-blob       { animation: blob-morph 8s ease-in-out infinite; }
+.animate-fade-up    { animation: fade-up 0.7s ease forwards; }
+.animate-glow-pulse { animation: glow-pulse 2.5s ease-in-out infinite; }
 
-  .text-stroke-black {
-    -webkit-text-stroke-color: rgba(0, 0, 0, 0.8);
-    text-stroke-color: rgba(0, 0, 0, 0.8);
-  }
+/* Stagger de entrada */
+.stagger-1 { animation-delay: 0.1s; opacity: 0; }
+.stagger-2 { animation-delay: 0.25s; opacity: 0; }
+.stagger-3 { animation-delay: 0.4s; opacity: 0; }
+.stagger-4 { animation-delay: 0.55s; opacity: 0; }
+
+/* ─── Navbar scroll effect ────────────────────────── */
+.navbar-scrolled {
+  background: rgba(10, 10, 10, 0.92) !important;
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
 }
 
-.glitch {
-  position: relative;
-  color: #fff;
-  font-family: "Doctor Glitch", sans-serif;
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+/* ─── Línea decorativa hero ───────────────────────── */
+.hero-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
 
-/* Animaciones activas solo si glitch-active está presente */
-.glitch.glitch-active {
-  animation: glitch1 2.5s infinite linear alternate,
-    glitch2 3s infinite linear alternate,
-    glitch3 2s infinite linear alternate;
+/* ─── Check item ──────────────────────────────────── */
+.check-item {
+  @apply flex items-center gap-3;
 }
-/*Keyframes*/
-
-@keyframes glitch1 {
-  0% {
-    transform: none;
-    opacity: 1;
-  }
-  7% {
-    transform: skew(-0.5deg, -0.9deg);
-    opacity: 0.75;
-  }
-  10% {
-    transform: none;
-    opacity: 1;
-  }
-  27% {
-    transform: none;
-    opacity: 1;
-  }
-  30% {
-    transform: skew(0.8deg, -0.1deg);
-    opacity: 0.75;
-  }
-  35% {
-    transform: none;
-    opacity: 1;
-  }
-  52% {
-    transform: none;
-    opacity: 1;
-  }
-  55% {
-    transform: skew(-1deg, 0.2deg);
-    opacity: 0.75;
-  }
-  50% {
-    transform: none;
-    opacity: 1;
-  }
-  72% {
-    transform: none;
-    opacity: 1;
-  }
-  75% {
-    transform: skew(0.4deg, 1deg);
-    opacity: 0.75;
-  }
-  80% {
-    transform: none;
-    opacity: 1;
-  }
-  100% {
-    transform: none;
-    opacity: 1;
-  }
+.check-box {
+  @apply w-5 h-5 rounded flex items-center justify-center flex-shrink-0 text-black text-xs;
+  background: var(--accent);
 }
 
-@keyframes glitch2 {
-  0% {
-    transform: none;
-    opacity: 0.25;
-  }
-  7% {
-    transform: translate(-2px, -3px);
-    opacity: 0.5;
-  }
-  10% {
-    transform: none;
-    opacity: 0.25;
-  }
-  27% {
-    transform: none;
-    opacity: 0.25;
-  }
-  30% {
-    transform: translate(-5px, -2px);
-    opacity: 0.5;
-  }
-  35% {
-    transform: none;
-    opacity: 0.25;
-  }
-  52% {
-    transform: none;
-    opacity: 0.25;
-  }
-  55% {
-    transform: translate(-5px, -1px);
-    opacity: 0.5;
-  }
-  50% {
-    transform: none;
-    opacity: 0.25;
-  }
-  72% {
-    transform: none;
-    opacity: 0.25;
-  }
-  75% {
-    transform: translate(-2px, -6px);
-    opacity: 0.5;
-  }
-  80% {
-    transform: none;
-    opacity: 0.25;
-  }
-  100% {
-    transform: none;
-    opacity: 0.25;
-  }
+/* ─── Proyecto card timeline dot ─────────────────── */
+.timeline-dot {
+  @apply w-2 h-2 rounded-full flex-shrink-0 mt-2;
+  background: var(--accent);
 }
 
-@keyframes glitch3 {
-  0% {
-    transform: none;
-    opacity: 0.25;
-  }
-  7% {
-    transform: translate(2px, 3px);
-    opacity: 0.5;
-  }
-  10% {
-    transform: none;
-    opacity: 0.25;
-  }
-  27% {
-    transform: none;
-    opacity: 0.25;
-  }
-  30% {
-    transform: translate(5px, 2px);
-    opacity: 0.5;
-  }
-  35% {
-    transform: none;
-    opacity: 0.25;
-  }
-  52% {
-    transform: none;
-    opacity: 0.25;
-  }
-  55% {
-    transform: translate(5px, 1px);
-    opacity: 0.5;
-  }
-  50% {
-    transform: none;
-    opacity: 0.25;
-  }
-  72% {
-    transform: none;
-    opacity: 0.25;
-  }
-  75% {
-    transform: translate(2px, 6px);
-    opacity: 0.5;
-  }
-  80% {
-    transform: none;
-    opacity: 0.25;
-  }
-  100% {
-    transform: none;
-    opacity: 0.25;
-  }
+/* ─── Form inputs ─────────────────────────────────── */
+.form-input {
+  @apply w-full rounded-xl px-4 py-3 text-sm font-body text-white
+         transition-all duration-200 outline-none;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-icon);
+}
+.form-input::placeholder {
+  color: #888888;
+  opacity: 1;
+}
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0,229,160,0.12);
 }

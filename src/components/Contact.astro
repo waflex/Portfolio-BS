@@ -1,189 +1,250 @@
 ---
 const Web3Forms_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY;
+
+const contactInfo = [
+  {
+    icon: "fa-solid fa-at",
+    label: "Correo",
+    value: "contacto@jrtdev.cl",
+    href: "mailto:contacto@jrtdev.cl",
+  },
+  {
+    icon: "fa-brands fa-whatsapp",
+    label: "WhatsApp",
+    value: "+56 9 3074 4391",
+    href: "https://wa.me/56930744391?text=Hola%20quisiera%20consultar%20por%20desarrollo%20web",
+  },
+  {
+    icon: "fa-brands fa-linkedin",
+    label: "LinkedIn",
+    value: "Jonathan Rojas",
+    href: "https://www.linkedin.com/in/jonathan-rojas-532b9a146/",
+  },
+  {
+    icon: "fa-brands fa-github",
+    label: "GitHub",
+    value: "waflex",
+    href: "https://github.com/waflex",
+  },
+];
 ---
 
-<section class="mb-10 text-center mx-auto max-w-7xl px-4">
-  <div class="bg-base-100/20 backdrop-blur-md rounded-2xl p-8">
-  <h3
-    class="text-3xl font-bold mb-8 uppercase bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-  >
-    Contacto
-  </h3>
+<section id="contact" class="py-24" style="background: var(--bg-dark);">
+  <div class="container mx-auto px-6 lg:px-10">
 
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-8 backdrop-blur-sm bg-base-200/30 rounded-2xl p-8 shadow-lg"
-  >
-    <div
-      class="flex flex-col backdrop-blur-sm bg-base-200/50 rounded-xl p-8 justify-between"
-    >
-      <div>
-        <h4
-          class="text-2xl font-semibold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-        >
-          Mis Datos de Contacto
-        </h4>
+    <!-- Header -->
+    <div class="text-center mb-16 animate-fade-up">
+      <p class="section-label mb-3">HABLEMOS</p>
+      <div class="divider-accent mx-auto mb-5"></div>
+      <h2 class="section-title text-3xl lg:text-4xl">
+        Toma <span style="color: var(--accent);">Contacto</span>
+      </h2>
+      <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
+        ¿Tienes un proyecto en mente? Conversemos y encontremos la mejor solución juntos.
+      </p>
+    </div>
 
-        <ul
-          class="text-left text-lg space-y-6 backdrop-blur-sm rounded-lg p-6 flex flex-col justify-between"
-        >
-          <li
-            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
-          >
-            <i class="fa-solid fa-at text-primary text-2xl min-w-[2rem]"></i>
-            <div
-              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
-            >
-              <strong class="text-secondary">Correo Electrónico:</strong>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+      <!-- ── Datos de contacto ──────────────────── -->
+      <div class="card-glass p-8 flex flex-col animate-fade-up">
+        <h3 class="font-body font-bold text-white text-xl mb-6">
+          Información de Contacto
+        </h3>
+
+        <ul class="space-y-5 mb-8 flex-grow">
+          {contactInfo.map(item => (
+            <li>
               <a
-                href="mailto:jonathan.rojas.asc@gmail.com"
+                href={item.href}
                 target="_blank"
-                class="ml-2 hover:text-primary transition-colors break-all"
+                rel="noopener noreferrer"
+                class="flex items-center gap-4 group rounded-xl p-3 -mx-3 transition-colors duration-200"
+                style="hover:background: rgba(0,229,160,0.05);"
+                onmouseover="this.style.background='rgba(0,229,160,0.05)';"
+                onmouseout="this.style.background='transparent';"
               >
-                jonathan.rojas.asc@gmail.com
+                <div
+                  class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 text-black text-lg
+                         transition-transform duration-200 group-hover:scale-110"
+                  style="background: var(--accent);"
+                >
+                  <i class={item.icon}></i>
+                </div>
+                <div>
+                  <p class="font-body text-xs font-medium mb-0.5" style="color: var(--text-muted);">
+                    {item.label}
+                  </p>
+                  <p
+                    class="font-body text-sm font-semibold text-white transition-colors group-hover:text-accent"
+                    style="transition: color 0.2s;"
+                  >
+                    {item.value}
+                  </p>
+                </div>
+                <i
+                  class="fas fa-arrow-right ml-auto text-xs opacity-0 group-hover:opacity-100 transition-opacity"
+                  style="color: var(--accent);"
+                ></i>
               </a>
-            </div>
-          </li>
-
-          <li
-            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
-          >
-            <i class="fa-brands fa-whatsapp text-primary text-2xl min-w-[2rem]"
-            ></i>
-            <div
-              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
-            >
-              <strong class="text-secondary">Teléfono:</strong>
-              <a
-                href="https://wa.me/56930744391?text=Hola%20quisiera%20consultar%20por%20valores%20en%20desarrollo%20de%20un%20producto"
-                target="_blank"
-                class="ml-2 hover:text-primary transition-colors"
-              >
-                +56 9 3074 4391
-              </a>
-            </div>
-          </li>
-
-          <li
-            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
-          >
-            <i class="fa-brands fa-linkedin text-primary text-2xl min-w-[2rem]"
-            ></i>
-            <div
-              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
-            >
-              <strong class="text-secondary">LinkedIn:</strong>
-              <a
-                href="https://www.linkedin.com/in/jonathan-rojas-532b9a146/"
-                target="_blank"
-                class="ml-2 hover:text-primary transition-colors"
-              >
-                Jonathan Rojas
-              </a>
-            </div>
-          </li>
-
-          <li
-            class="flex items-center gap-4 transition-transform hover:translate-x-2 w-full"
-          >
-            <i class="fa-brands fa-github text-primary text-2xl min-w-[2rem]"
-            ></i>
-            <div
-              class="flex flex-col sm:flex-row sm:items-center justify-between w-full"
-            >
-              <strong class="text-secondary">GitHub:</strong>
-              <a
-                href="https://github.com/waflex"
-                target="_blank"
-                class="ml-2 hover:text-primary transition-colors"
-              >
-                Waflex
-              </a>
-            </div>
-          </li>
+            </li>
+          ))}
         </ul>
+
+        <!-- Descarga CV -->
+        <div class="flex gap-4 pt-6" style="border-top: 1px solid var(--border);">
+          <a
+            href="/assets/files/CVJRES.pdf"
+            download
+            class="btn-accent-pill flex-1 justify-center"
+          >
+            <i class="fas fa-file-download"></i>
+            CV en Español
+          </a>
+          <a
+            href="/assets/files/CVJREN.pdf"
+            download
+            class="btn-outline-pill flex-1 justify-center"
+          >
+            <i class="fas fa-file-download text-xs" style="color: var(--accent);"></i>
+            CV in English
+          </a>
+        </div>
       </div>
 
-      <div class="flex flex-col sm:flex-row justify-center gap-6 mt-8">
-        <a
-          href="/assets/files/CVJRES.pdf"
-          class="btn btn-primary btn-outline gap-2 hover:scale-105 transition-transform w-full sm:w-auto"
-          download
-        >
-          <i class="fas fa-file-download"></i>
-          Obtén mi CV
-        </a>
-        <a
-          href="/assets/files/CVJREN.pdf"
-          class="btn btn-primary btn-outline gap-2 hover:scale-105 transition-transform w-full sm:w-auto"
-          download
-        >
-          <i class="fas fa-file-download"></i>
-          Get my CV
-        </a>
-      </div>
-    </div>
+      <!-- ── Formulario ─────────────────────────── -->
+      <div class="card-glass p-8 animate-fade-up stagger-2">
+        <h3 class="font-body font-bold text-white text-xl mb-6">
+          Envíame un Mensaje
+        </h3>
 
-    <div class="backdrop-blur-sm bg-base-200/50 rounded-xl p-8">
-      <h4
-        class="text-2xl font-semibold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-      >
-        Envíame un Mensaje
-      </h4>
-
-      <form
-        action="https://api.web3forms.com/submit"
-        method="POST"
-        class="space-y-8"
-        id="contactForm"
-        onsubmit="return validateForm(event)"
-      >
-        <div class="form-control">
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="space-y-5"
+          id="contactForm"
+        >
           <input type="hidden" name="access_key" value={Web3Forms_KEY} />
-          <label for="name" class="label justify-between">
-            <span class="label-text text-lg">Nombre</span>
-          </label>
-          <input
-            type="text"
-            class="input input-bordered input-primary bg-base-200/50 backdrop-blur-sm focus:input-primary transition-all duration-300 w-full"
-            id="name"
-            name="name"
-            required
-          />
-        </div>
+          <input type="hidden" name="subject" value="Nuevo mensaje desde el portafolio" />
 
-        <div class="form-control">
-          <label for="email" class="label justify-between">
-            <span class="label-text text-lg">Correo Electrónico</span>
-          </label>
-          <input
-            type="email"
-            class="input input-bordered input-primary bg-base-200/50 backdrop-blur-sm focus:input-primary transition-all duration-300 w-full"
-            id="email"
-            name="email"
-            required
-          />
-        </div>
+          <div>
+            <label class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
+              Nombre completo
+            </label>
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Tu nombre"
+              class="form-input"
+            />
+          </div>
 
-        <div class="form-control">
-          <label for="message" class="label justify-between">
-            <span class="label-text text-lg">Mensaje</span>
-          </label>
-          <textarea
-            class="textarea textarea-bordered textarea-primary bg-base-200/50 backdrop-blur-sm focus:textarea-primary transition-all duration-300 min-h-[150px] w-full"
-            id="message"
-            name="message"
-            required></textarea>
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary w-full gap-2 hover:scale-105 transition-transform"
-        >
-        
-          <i class="fas fa-paper-plane"></i>
-          Enviar Mensaje
-        </button>
-      </form>
+          <div>
+            <label class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
+              Correo electrónico
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="tu@correo.com"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
+              Asunto
+            </label>
+            <input
+              type="text"
+              name="subject_message"
+              placeholder="¿En qué puedo ayudarte?"
+              class="form-input"
+            />
+          </div>
+
+          <div>
+            <label class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
+              Mensaje
+            </label>
+            <textarea
+              name="message"
+              required
+              rows="5"
+              placeholder="Cuéntame sobre tu proyecto..."
+              class="form-input resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Estado del envío -->
+          <div id="form-status" class="hidden">
+            <p
+              id="form-success"
+              class="font-body text-sm text-center py-3 rounded-xl hidden"
+              style="background: rgba(0,229,160,0.12); color: var(--accent); border: 1px solid rgba(0,229,160,0.3);"
+            >
+              ✓ Mensaje enviado con éxito. ¡Te responderé pronto!
+            </p>
+            <p
+              id="form-error"
+              class="font-body text-sm text-center py-3 rounded-xl hidden"
+              style="background: rgba(255,45,85,0.12); color: #ff2d55; border: 1px solid rgba(255,45,85,0.3);"
+            >
+              ✗ Hubo un error. Por favor intenta nuevamente.
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            id="submit-btn"
+            class="btn-accent-pill w-full justify-center"
+          >
+            <i class="fas fa-paper-plane"></i>
+            <span>Enviar Mensaje</span>
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn');
+  const formStatus = document.getElementById('form-status');
+  const formSuccess = document.getElementById('form-success');
+  const formError = document.getElementById('form-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn) return;
+
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Enviando...</span>';
+    (submitBtn as HTMLButtonElement).disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      formStatus?.classList.remove('hidden');
+      if (res.ok) {
+        formSuccess?.classList.remove('hidden');
+        formError?.classList.add('hidden');
+        form.reset();
+      } else {
+        formError?.classList.remove('hidden');
+        formSuccess?.classList.add('hidden');
+      }
+    } catch {
+      formStatus?.classList.remove('hidden');
+      formError?.classList.remove('hidden');
+      formSuccess?.classList.add('hidden');
+    }
+
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span>Enviar Mensaje</span>';
+    (submitBtn as HTMLButtonElement).disabled = false;
+  });
+</script>

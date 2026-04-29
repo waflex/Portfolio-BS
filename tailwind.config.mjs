@@ -7,38 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        'neon-pink': '#ff2d55',
-        'neon-blue': 'rgba(21, 43, 241, 1)',
-        'neon-purple': '#b026ff',
-        'cyber-black': '#0a0a0f',
-        'cyber-dark': '#1a1a2e'
+        'accent': '#00e5a0',
+        'accent-hover': '#00c988',
+        'border-subtle': 'rgba(255, 255, 255, 0.08)',
+        'border-icon': 'rgba(255, 255, 255, 0.15)',
+        'blob': 'rgba(0, 229, 160, 0.20)'
+      },
+      fontFamily: {
+        'display': ['Bebas Neue', 'sans-serif'],
+        'body': ['Poppins', 'sans-serif']
       },
       boxShadow: {
-        'neon-glow': '0 0 5px rgb(0 255 255), 0 0 20px rgb(0 255 255)',
-        'neon-pink-glow': '0 0 5px rgb(255 45 85), 0 0 20px rgb(255 45 85)',
-        'neon-purple-glow': '0 0 5px rgb(176 38 255), 0 0 20px rgb(176 38 255)'
-      },
-      keyframes: {
-        typing: {
-          "0%": {
-            width: "0%",
-            visibility: "hidden"
-          },
-          "100%": {
-            width: "100%"
-          }  
-        },
-        blink: {
-          "50%": {
-            borderColor: "transparent"
-          },
-          "100%": {
-            borderColor: "white"
-          }  
-        }
-      },
-      animation: {
-        typing: "typing 2s steps(20) infinite alternate, blink 1s infinite"
+        'glow': '0 0 20px rgba(0, 229, 160, 0.4)',
+        'card': '0 8px 32px rgba(0, 0, 0, 0.4)'
       }
     },
   },
@@ -46,16 +27,16 @@ export default {
   daisyui: {
     themes: [
       {
-        cyberpunk: {
-          "primary": "#ff2d55",
-          "secondary": "#0ff",
-          "accent": "#b026ff",
-          "neutral": "#1a1a2e",
-          "base-100": "#0a0a0f",
-          "base-200": "#1a1a2e",
-          "base-content": "#e6e6ef", // Cambiado para mejor contraste
-          "info": "#0ff",
-          "success": "#00ff9f",
+        'dark-portfolio': {
+          "primary": "#00e5a0",
+          "secondary": "#00c988",
+          "accent": "#00e5a0",
+          "neutral": "#111111",
+          "base-100": "#0a0a0a",
+          "base-200": "#1a1a1a",
+          "base-content": "#ffffff",
+          "info": "#00e5a0",
+          "success": "#00e5a0",
           "warning": "#ffb300",
           "error": "#ff2d55",
         },
