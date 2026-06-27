@@ -1,4 +1,6 @@
 ---
+import CookieConsent from "../components/CookieConsent.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -70,17 +72,6 @@ import "../styles/global.css";
       }
     </script>
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-38HG1QB26H"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-38HG1QB26H");
-    </script>
   </head>
 
   <body class="min-h-full">
@@ -106,7 +97,7 @@ import "../styles/global.css";
             if (entry.isIntersecting) {
               navLinks.forEach((link) => {
                 link.classList.remove("active-link");
-                if (link.getAttribute("href") === `#${entry.target.id}`) {
+                if (link.getAttribute("href").endsWith(`#${entry.target.id}`)) {
                   link.classList.add("active-link");
                 }
               });
@@ -135,5 +126,7 @@ import "../styles/global.css";
         fadeObserver.observe(el);
       });
     </script>
+
+    <CookieConsent />
   </body>
 </html>

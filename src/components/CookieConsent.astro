@@ -1,0 +1,145 @@
+<!--
+  CookieConsent — Consentimiento de datos (Ley Chile 19.628 / 21.719)
+  - No carga Google Analytics hasta que el usuario acepta explícitamente.
+  - Guarda preferencia en localStorage.
+  - Provee botón flotante para cambiar preferencia después.
+-->
+<div id="cookie-consent" aria-live="polite">
+  <!-- Banner principal -->
+  <div
+    id="cookie-banner"
+    class="fixed bottom-0 left-0 w-full z-50 hidden"
+    style="animation: slide-up 0.4s ease forwards;"
+  >
+    <div
+      class="mx-auto max-w-3xl mb-4 mx-4 lg:mx-auto p-5 rounded-2xl backdrop-blur-md"
+      style="background: rgba(15,15,15,0.95); border: 1px solid var(--border); box-shadow: 0 8px 40px rgba(0,0,0,0.7);"
+    >
+      <div class="flex flex-col sm:flex-row items-start gap-4">
+        <div class="flex-1 min-w-0">
+          <p class="font-body text-sm font-semibold text-white mb-1">
+            🍪 Uso de datos
+          </p>
+          <p class="font-body text-xs leading-relaxed" style="color: var(--text-muted);">
+            Este sitio utiliza <strong>Google Analytics</strong> para obtener estadísticas
+            anónimas de navegación (páginas visitadas, duración, origen del tráfico).
+            No recopilamos ni almacenamos datos personales sin tu consentimiento.
+            <br class="hidden sm:block" />
+            Al hacer clic en <strong>"Aceptar"</strong> autorizas el uso de estas
+            herramientas. Puedes cambiar tu decisión en cualquier momento.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto">
+          <button
+            id="cookie-accept"
+            class="flex-1 sm:flex-initial px-5 py-2.5 rounded-full font-body font-semibold text-xs
+                   transition-all duration-200 hover:scale-105"
+            style="background: var(--accent); color: #000;"
+          >
+            Aceptar
+          </button>
+          <button
+            id="cookie-reject"
+            class="flex-1 sm:flex-initial px-5 py-2.5 rounded-full font-body font-semibold text-xs
+                   transition-all duration-200 hover:scale-105"
+            style="background: transparent; color: var(--text-gray); border: 1px solid var(--border-icon);"
+          >
+            Rechazar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón flotante para cambiar preferencia -->
+  <button
+    id="cookie-settings-btn"
+    class="fixed bottom-4 left-4 z-50 hidden w-10 h-10 rounded-full
+           flex items-center justify-center text-sm transition-all duration-200 hover:scale-110"
+    style="background: rgba(15,15,15,0.9); border: 1px solid var(--border-icon); color: var(--text-muted);"
+    aria-label="Preferencias de cookies"
+    title="Cambiar preferencia de datos"
+  >
+    🍪
+  </button>
+</div>
+
+<script>
+  (function () {
+    const GA_ID = "G-38HG1QB26H";
+    const STORAGE_KEY = "jrtdev_cookie_consent";
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("cookie-accept");
+    const rejectBtn = document.getElementById("cookie-reject");
+    const settingsBtn = document.getElementById("cookie-settings-btn");
+
+    // Cargar GA dinámicamente
+    function loadGA() {
+      if (window._gaLoaded) return;
+      window._gaLoaded = true;
+
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", GA_ID);
+    }
+
+    // Mostrar/ocultar elementos según preferencia
+    function applyConsent(choice) {
+      localStorage.setItem(STORAGE_KEY, choice);
+      banner.classList.add("hidden");
+      settingsBtn.classList.remove("hidden");
+
+      if (choice === "accepted") {
+        loadGA();
+      }
+    }
+
+    // Mostrar banner
+    function showBanner() {
+      banner.classList.remove("hidden");
+      settingsBtn.classList.add("hidden");
+    }
+
+    // Abrir preferencias (mostrar banner de nuevo)
+    function openPreferences() {
+      settingsBtn.classList.add("hidden");
+      banner.classList.remove("hidden");
+    }
+
+    // Inicializar
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved === "accepted") {
+      loadGA();
+      settingsBtn.classList.remove("hidden");
+    } else if (saved === "rejected") {
+      settingsBtn.classList.remove("hidden");
+    } else {
+      showBanner();
+    }
+
+    // Eventos
+    acceptBtn?.addEventListener("click", function () {
+      applyConsent("accepted");
+    });
+    rejectBtn?.addEventListener("click", function () {
+      applyConsent("rejected");
+    });
+    settingsBtn?.addEventListener("click", openPreferences);
+  })();
+</script>
+
+<style>
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

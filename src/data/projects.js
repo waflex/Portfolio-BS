@@ -80,27 +80,62 @@ export const projects = [
     ],
   },
   {
-    title: "CK Decora",
+    title: "Server Admin",
     description:
-      'Proyecto web realizado para "CK Decora", empresa dedicada a la decoración de interiores. El proyecto buscaba crear una página web moderna y atractiva para promocionar sus servicios y productos. (Nota: el proyecto fue abandonado por el propietario.)',
-    image: "/assets/img/Proyectos/CK-Decora.png",
-    github: "https://github.com/waflex/CK_Decora",
-    demo: "https://ckdecora-landing.netlify.app",
+      "Herramienta de administración de sistemas para VPS Linux, diseñada para asistir en la ejecución de tareas, manejo del sistema y visualización en tiempo real del uso de recursos (CPU, RAM, Disco). Incluye instalación de servidores de juegos, administración de servicios, gestión de crons y utilidades para la administración completa de un servidor Linux.",
+    image: "",
+    github: "https://github.com/waflex/Server_Admin",
+    demo: "",
     technologies: [
       {
-        name: "HTML",
-        icon: "devicon-html5-plain",
-        color: "text-orange-600",
+        name: "React",
+        icon: "devicon-react-original",
+        color: "text-cyan-400",
       },
       {
-        name: "CSS",
-        icon: "devicon-css3-plain",
-        color: "text-blue-500",
+        name: "NestJS",
+        icon: "devicon-nestjs-plain",
+        color: "text-red-500",
       },
       {
-        name: "JavaScript",
-        icon: "devicon-javascript-plain",
-        color: "text-yellow-400",
+        name: "Bash",
+        icon: "devicon-bash-plain",
+        color: "text-gray-400",
+      },
+      {
+        name: "Linux",
+        icon: "devicon-linux-plain",
+        color: "text-black",
+      },
+    ],
+  },
+  {
+    title: "Rúbrica de Notas",
+    description:
+      "Aplicación web para docentes que utilizan rúbricas de evaluación. Permite configurar escalas de notas, gestionar criterios, registrar alumnos y calcular notas automáticamente según el sistema de evaluación chileno. Los datos se almacenan en Firebase para persistencia y colaboración.",
+    image: "/assets/img/Proyectos/Rubrica-Notas.png",
+    github: "https://github.com/waflex/rubrica-nota",
+    demo: "https://rubrica-nota.vercel.app",
+    technologies: [
+      {
+        name: "React",
+        icon: "devicon-react-original",
+        color: "text-cyan-400",
+      },
+      {
+        name: "Firebase",
+        icon: "devicon-firebase-plain",
+        color: "text-yellow-500",
+      },
+      {
+        name: "Tailwind",
+        icon: "devicon-tailwindcss-plain",
+        color: "text-cyan-400",
+      },
+      {
+        name: "Vite",
+        icon: "devicon-vitejs-plain",
+        color: "text-purple-500",
       },
     ],
   },

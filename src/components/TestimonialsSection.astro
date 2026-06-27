@@ -1,0 +1,96 @@
+---
+import { API_BASE } from "../lib/config";
+---
+
+<section id="testimonials" class="py-24" style="background: var(--bg-dark);" data-api={API_BASE}>
+  <div class="container mx-auto px-6 lg:px-10">
+    <!-- Header -->
+    <div class="text-center mb-16 animate-fade-up">
+      <p class="section-label mb-3">TESTIMONIOS</p>
+      <div class="divider-accent mx-auto mb-5"></div>
+      <h2 class="section-title text-3xl lg:text-4xl">
+        Lo que dicen <span style="color: var(--accent);">mis clientes</span>
+      </h2>
+      <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
+        Personas y empresas con las que he trabajado comparten su experiencia.
+      </p>
+    </div>
+
+    <!-- Grid de testimonios (se carga via JS) -->
+    <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]">
+      <div class="col-span-full flex items-center justify-center">
+        <div class="flex items-center gap-3 font-body text-sm" style="color: var(--text-muted);">
+          <i class="fas fa-spinner fa-spin"></i>
+          <span>Cargando testimonios...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-12 animate-fade-up">
+      <a href="/testimonials" class="btn-outline-pill">
+        <i class="fas fa-comment-dots" style="color: var(--accent);"></i>
+        Deja tu testimonio
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const API_BASE = document.getElementById("testimonials").dataset.api;
+  const grid = document.getElementById("testimonials-grid");
+
+  async function loadTestimonials() {
+    try {
+      const res = await fetch(`${API_BASE}/api/testimonials`);
+      if (!res.ok) throw new Error("Error al cargar");
+      const data = await res.json();
+
+      if (data.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12">
+            <p class="font-body text-sm" style="color: var(--text-muted);">
+              Aún no hay testimonios. ¡Sé el primero en dejar uno!
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = data.map(t => `
+        <article class="card-glass p-6 flex flex-col animate-fade-up">
+          <div class="flex gap-0.5 mb-3">
+            ${Array.from({ length: 5 }, (_, i) =>
+              i < t.rating
+                ? '<i class="fas fa-star" style="color: #FFD700; font-size: 13px;"></i>'
+                : '<i class="far fa-star" style="color: #555; font-size: 13px;"></i>'
+            ).join("")}
+          </div>
+          <blockquote class="font-body text-sm leading-relaxed flex-grow mb-4" style="color: var(--text-gray);">
+            &ldquo;${t.message}&rdquo;
+          </blockquote>
+          <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid var(--border);">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-black text-sm font-bold flex-shrink-0"
+                 style="background: var(--accent);">
+              ${t.name.charAt(0).toUpperCase()}
+            </div>
+            <div>
+              <p class="font-body text-sm font-semibold text-white">${t.name}</p>
+              ${t.company ? `<p class="font-body text-xs" style="color: var(--text-muted);">${t.company}</p>` : ""}
+            </div>
+          </div>
+        </article>
+      `).join("");
+    } catch {
+      grid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <p class="font-body text-sm" style="color: var(--text-muted);">
+            No se pudieron cargar los testimonios.
+          </p>
+        </div>
+      `;
+    }
+  }
+
+  loadTestimonials();
+</script>

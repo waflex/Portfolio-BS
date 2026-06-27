@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: jrtdev-testimonials-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: testimonials
+      POSTGRES_PASSWORD: testimonials_pass
+      POSTGRES_DB: testimonials_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    container_name: jrtdev-testimonials-api
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

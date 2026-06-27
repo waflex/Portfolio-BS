@@ -43,49 +43,38 @@ const socials = [
 
 <style>
   .social-icon-btn {
-    /* Tamaño fijo y centrado perfecto */
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #888888;
+    border: 1px solid var(--border-icon);
+    color: #888;
     text-decoration: none;
-    transition:
-      border-color 0.2s ease,
-      color 0.2s ease,
-      box-shadow 0.2s ease,
-      transform 0.2s ease;
-    /* Sin padding extra que desplace el ícono */
+    transition: all 0.2s ease;
     padding: 0;
+  }
+
+  .social-icon-btn i {
+    display: none;
+    font-size: 16px;
     line-height: 1;
   }
 
-  /* El ícono FA dentro: tamaño y posición fijos */
-  .social-icon-btn i {
-    font-size: 15px;
-    width: 15px;
-    height: 15px;
-    display: none;
-    line-height: 40px;
-    text-align: center;
-    /* Evitar que FA agregue margin/padding */
-    margin: 0;
-    padding: 0;
-  }
   .social-icon-btn:hover {
     border-color: #00e5a0;
     color: #00e5a0;
     box-shadow: 0 0 14px rgba(0, 229, 160, 0.35);
     transform: scale(1.1);
-    align-items: center;
-    justify-content: center;
+    background: rgba(0, 229, 160, 0.06);
   }
   .social-icon-btn:hover i {
-    display: flex;
+    display: inline-block;
+    position: relative;
+    top:0%;
+    left:0%;
     scale: 1.5;
-    transform: translate(15%,100%);
   }
+
 </style>

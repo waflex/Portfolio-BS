@@ -1,0 +1,42 @@
+---
+interface Props {
+  name: string;
+  company?: string;
+  rating: number;
+  message: string;
+}
+
+const { name, company, rating, message } = Astro.props;
+
+function stars(n: number) {
+  return Array.from({ length: 5 }, (_, i) =>
+    i < n
+      ? `<i class="fas fa-star" style="color: #FFD700; font-size: 13px;"></i>`
+      : `<i class="far fa-star" style="color: #555; font-size: 13px;"></i>`
+  ).join("");
+}
+---
+
+<article class="card-glass p-6 flex flex-col animate-fade-up">
+  <!-- Estrellas -->
+  <div class="flex gap-0.5 mb-3" set:html={stars(rating)} />
+
+  <!-- Mensaje -->
+  <blockquote class="font-body text-sm leading-relaxed flex-grow mb-4" style="color: var(--text-gray);">
+    &ldquo;{message}&rdquo;
+  </blockquote>
+
+  <!-- Footer -->
+  <div class="flex items-center gap-3 pt-4" style="border-top: 1px solid var(--border);">
+    <div
+      class="w-10 h-10 rounded-full flex items-center justify-center text-black text-sm font-bold flex-shrink-0"
+      style="background: var(--accent);"
+    >
+      {name.charAt(0).toUpperCase()}
+    </div>
+    <div>
+      <p class="font-body text-sm font-semibold text-white">{name}</p>
+      {company && <p class="font-body text-xs" style="color: var(--text-muted);">{company}</p>}
+    </div>
+  </div>
+</article>

@@ -30,3 +30,7 @@ pnpm-debug.log*
 .opencode-memory.json
 desing.md
 screenshot.webp
+skills-lock.json
+.opencode
+.agents
+/backend/.env.example
