@@ -6,12 +6,16 @@ export default defineConfig({
   outDir: './dist',
   base: '/',
   output: 'static',
+  image: {
+    service: { entrypoint: 'astro/assets/services/sharp' },
+    domains: ['avatars.githubusercontent.com'],
+  },
   vite: {
     define: {
       'import.meta.env.PUBLIC_WEB3FORMS_KEY': JSON.stringify(process.env.Web3Forms_KEY)
     },
     build: {
-      assetsDir: 'assets', // Asegura que las rutas sean coherentes
+      assetsDir: 'assets',
     },
   },
   integrations: [tailwind()],  

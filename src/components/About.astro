@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 const skills = [
   "JavaScript & TypeScript",
   "React & Node.js",
@@ -28,9 +30,11 @@ const skills = [
         ></div>
 
         <!-- Foto -->
-        <img
+        <Image
           src="https://avatars.githubusercontent.com/u/38105133?s=600&u=14b646c6385db7fbfed198bede0b9128b74a039e&v=4"
           alt="Jonathan Rojas"
+          width={600}
+          height={600}
           class="relative z-10 w-full max-w-[380px] mx-auto rounded-2xl object-cover"
           style="box-shadow: var(--shadow-card);"
           loading="lazy"

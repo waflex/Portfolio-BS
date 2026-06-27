@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { API_BASE } from "../lib/config";
+import heroImg from "../assets/img/Jonathan-Rojas.avif";
 ---
 
 <section
@@ -74,11 +76,10 @@ import { API_BASE } from "../lib/config";
           style="background: radial-gradient(circle, rgba(0,229,160,0.12) 0%, transparent 70%);"
         ></div>
 
-        <img
-          src="https://avatars.githubusercontent.com/u/38105133?s=600&u=14b646c6385db7fbfed198bede0b9128b74a039e&v=4"
+        <Image
+          src={heroImg}
           alt="Jonathan Rojas"
-          class="relative w-full max-w-[420px] mx-auto drop-shadow-2xl"
-          style="mix-blend-mode: luminosity; filter: brightness(1.05) contrast(1.05);"
+          class="relative w-full max-w-[420px] mx-auto drop-shadow-2xl rounded-2xl"
           loading="eager"
         />
 
