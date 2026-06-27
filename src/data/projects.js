@@ -140,6 +140,21 @@ export const projects = [
     ],
   },
   {
+    title: "El Tablero",
+    description:
+      "Aplicación para generar encuentros de D&D dado un contexto de zona. Facilita a los Dungeon Masters la creación de encuentros aleatorios basados en el entorno de la partida, agilizando la preparación de sesiones de juego.",
+    image: "",
+    github: "https://github.com/waflex/el-tablero",
+    demo: "",
+    technologies: [
+      {
+        name: "JavaScript",
+        icon: "devicon-javascript-plain",
+        color: "text-yellow-400",
+      },
+    ],
+  },
+  {
     title: "Bot Discord",
     description:
       'Bot designado para la administración de usuarios y funcionalidades dentro de un servidor de Discord, inspirado por completo en la temática DnD.',

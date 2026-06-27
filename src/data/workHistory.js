@@ -131,11 +131,11 @@ export const teachingHistory = [
     ],
   },
   {
-    title: "Consultor Tecnológico",
-    company: "Preuniversitario",
-    period: "Mar 2025 - Jun 2025",
+    title: "Administrador Web / Especialista Moodle",
+    company: "Preuniversitario Impulso Educa",
+    period: "2025",
     description:
-      "Asesoramiento y soporte en el área tecnológica, con enfoque en la plataforma Moodle para la gestión de contenidos educativos.",
+      "Levantamiento y configuración desde cero de la plataforma educativa Moodle, cubriendo la totalidad de requerimientos académicos del preuniversitario. Desarrollo de módulos personalizados y capacitación al personal.",
     technologies: [
       {
         name: "Moodle",
@@ -154,9 +154,9 @@ export const teachingHistory = [
       },
     ],
     activities: [
-      "Carga y gestión de datos en la plataforma Moodle",
-      "Asesoramiento sobre herramientas tecnológicas para mejorar la experiencia educativa",
-      "Optimización de procesos de gestión de contenidos educativos",
+      "Desarrollo de módulos personalizados en PHP que extendieron funcionalidades nativas de Moodle",
+      "Capacitación al personal en el uso de la plataforma, logrando adopción completa sin soporte externo",
+      "Asesoría al equipo directivo en estrategia tecnológica y mejora de procesos digitales",
     ],
   },
 ];
