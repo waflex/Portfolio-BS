@@ -1,10 +1,12 @@
 ---
+import { API_BASE } from "../lib/config";
 ---
 
 <section
   id="home"
   class="min-h-screen flex items-center relative overflow-hidden pt-[70px]"
   style="background-color: #0a0a0a;"
+  data-api={API_BASE}
 >
   <!-- Glow de fondo sutil -->
   <div
@@ -107,11 +109,11 @@
         >
           <div class="flex items-center gap-4">
             <div>
-              <p class="font-body text-white text-2xl font-bold leading-none">4.5</p>
+              <p id="hero-rating-value" class="font-body text-white text-2xl font-bold leading-none">4.5</p>
               <p class="font-body text-xs mt-0.5" style="color: var(--text-muted);">Valoración clientes</p>
             </div>
             <!-- Avatares apilados -->
-            <div class="flex -space-x-2">
+            <div id="hero-avatars" class="flex -space-x-2">
               {['#00e5a0','#4f8ef7','#a855f7','#f43f5e'].map(color => (
                 <div
                   class="w-8 h-8 rounded-full border-2"
@@ -125,3 +127,48 @@
     </div>
   </div>
 </section>
+
+<script>
+  (async function loadHeroStats() {
+    const section = document.getElementById("home");
+    const API = section?.dataset.api;
+    if (!API) return;
+
+    try {
+      const res = await fetch(`${API}/api/testimonials`);
+      if (!res.ok) return;
+      const testimonials = await res.json();
+
+      // Solo activar si hay 5+ testimonios aprobados
+      if (testimonials.length < 5) return;
+
+      // Rating promedio real
+      const avg =
+        testimonials.reduce((sum, t) => sum + t.rating, 0) /
+        testimonials.length;
+      const avgRounded = Math.round(avg * 10) / 10;
+
+      const valEl = document.getElementById("hero-rating-value");
+      if (valEl) valEl.textContent = avgRounded.toFixed(1);
+
+      // Avatares con iniciales reales de los primeros testimonios
+      const container = document.getElementById("hero-avatars");
+      if (container) {
+        const colors = ["#00e5a0", "#4f8ef7", "#a855f7", "#f43f5e"];
+        container.innerHTML = testimonials
+          .slice(0, 4)
+          .map(
+            (t, i) =>
+              `<div
+                class="w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold"
+                style="background:${colors[i % colors.length]}; border-color:rgba(20,20,20,0.90); color:#000;"
+                title="${t.name}"
+              >${t.name.charAt(0).toUpperCase()}</div>`
+          )
+          .join("");
+      }
+    } catch {
+      // Error de red — mantener fallback
+    }
+  })();
+</script>
