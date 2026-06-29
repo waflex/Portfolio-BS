@@ -295,7 +295,7 @@ if __name__ == "__main__":
         session_factory = async_sessionmaker(engine, expire_on_commit=False)
     else:
         print("🐘 Usando BD PostgreSQL (producción/desarrollo)")
-        from app.database import engine, async_session as session_factory
+        from app.database import engine, Base, async_session as session_factory
 
     async def run():
         async with engine.begin() as conn:
