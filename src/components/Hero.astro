@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import { API_BASE } from "../lib/config";
-import heroImg from "../assets/img/Jonathan-Rojas.avif";
 ---
 
 <section
@@ -77,8 +76,10 @@ import heroImg from "../assets/img/Jonathan-Rojas.avif";
         ></div>
 
         <Image
-          src={heroImg}
+          src="https://avatars.githubusercontent.com/u/38105133?s=600&u=14b646c6385db7fbfed198bede0b9128b74a039e&v=4"
           alt="Jonathan Rojas"
+          width={600}
+          height={600}
           class="relative w-full max-w-[420px] mx-auto drop-shadow-2xl rounded-2xl"
           loading="eager"
         />
