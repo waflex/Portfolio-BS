@@ -7,4 +7,4 @@
  * Para producción:        PUBLIC_API_BASE=https://internal.jrtdev.cl
  * Valor por defecto:      http://localhost:8000
  */
-export const API_BASE = import.meta.env.PUBLIC_API_BASE || "http://localhost:8000";
+export const API_BASE = import.meta.env.PUBLIC_API_BASE || "";

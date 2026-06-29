@@ -17,6 +17,11 @@ export default defineConfig({
     build: {
       assetsDir: 'assets',
     },
+    server: {
+      proxy: {
+        '/api': { target: 'http://localhost:8000', changeOrigin: true },
+      },
+    },
   },
   integrations: [tailwind()],  
 });
