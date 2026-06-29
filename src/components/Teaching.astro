@@ -1,5 +1,8 @@
 ---
-import { teachingHistory } from '../data/workHistory';
+import { teachingHistory as fallbackTeaching } from '../data/workHistory';
+import { fetchFromAPI } from "../lib/api";
+
+const teachingHistory = await fetchFromAPI("/api/teaching", fallbackTeaching);
 ---
 
 <section id="teaching" class="py-24" style="background-color: #0a0a0a;">

@@ -1,5 +1,8 @@
 ---
-import { projects } from '../data/projects';
+import { projects as fallbackProjects } from '../data/projects';
+import { fetchFromAPI } from "../lib/api";
+
+const projects = await fetchFromAPI("/api/projects", fallbackProjects);
 ---
 
 <section id="projects" class="py-24" style="background-color: #0a0a0a;">

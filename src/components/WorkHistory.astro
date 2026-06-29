@@ -1,5 +1,8 @@
 ---
-import { workHistory } from '../data/workHistory';
+import { workHistory as fallbackWork } from '../data/workHistory';
+import { fetchFromAPI } from "../lib/api";
+
+const workHistory = await fetchFromAPI("/api/work-history", fallbackWork);
 ---
 
 <section id="work" class="py-24" style="background: var(--bg-dark);">

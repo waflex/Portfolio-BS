@@ -5,6 +5,7 @@ asyncpg==0.30.0
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 pydantic[email]==2.10.4
+aiofiles==24.1.0
 
 # Tests
 pytest==8.3.4

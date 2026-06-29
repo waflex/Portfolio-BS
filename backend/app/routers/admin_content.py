@@ -179,3 +179,36 @@ async def delete_teaching(teaching_id: UUID, db: AsyncSession = Depends(get_db))
     await db.delete(teaching)
     await db.commit()
     return MessageResponse(message="Docencia eliminada")
+
+
+# ── Upload de imágenes ────────────────────────────────────────────────────────
+
+import os
+import uuid as uuid_lib
+import aiofiles
+from fastapi import UploadFile, File
+
+UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "uploads")
+
+
+@router.post("/upload-image")
+async def upload_image(file: UploadFile = File(...)):
+    """Sube una imagen y retorna la URL pública."""
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+    # Validar tipo
+    allowed = {"image/png", "image/jpeg", "image/webp", "image/gif"}
+    if file.content_type not in allowed:
+        raise HTTPException(status_code=400, detail="Formato no permitido. Usa PNG, JPG, WebP o GIF.")
+
+    # Nombre único
+    ext = os.path.splitext(file.filename or "img.png")[1] or ".png"
+    name = f"{uuid_lib.uuid4().hex}{ext}"
+    path = os.path.join(UPLOAD_DIR, name)
+
+    async with aiofiles.open(path, "wb") as f:
+        content = await file.read()
+        await f.write(content)
+
+    url = f"/uploads/{name}"
+    return {"url": url}
