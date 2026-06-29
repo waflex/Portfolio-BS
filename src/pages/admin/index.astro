@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { API_BASE } from "../../lib/config";
 ---
 
-<Layout title="Admin — Dashboard | JRTdev">
+<Layout title="Admin Â— Dashboard | JRTdev">
   <main class="min-h-screen pt-[70px]" style="background-color: #0a0a0a;">
     <div class="container mx-auto px-6 lg:px-10 py-12">
       <div id="app" data-api={API_BASE}>
@@ -12,10 +12,10 @@ import { API_BASE } from "../../lib/config";
         <div id="login-view" class="max-w-sm mx-auto">
           <div class="card-glass p-8">
             <h1 class="font-body font-bold text-white text-xl mb-2">Admin</h1>
-            <p class="font-body text-sm mb-6" style="color: var(--text-muted);">Ingresa tu contraseña para gestionar el portafolio.</p>
+            <p class="font-body text-sm mb-6" style="color: var(--text-muted);">Ingresa tu contraseÃ±a para gestionar el portafolio.</p>
             <form id="login-form" class="space-y-4">
-              <input type="password" id="login-password" placeholder="Contraseña" class="form-input" required />
-              <p id="login-error" class="font-body text-xs hidden" style="color: #ff2d55;">Contraseña incorrecta.</p>
+              <input type="password" id="login-password" placeholder="ContraseÃ±a" class="form-input" required />
+              <p id="login-error" class="font-body text-xs hidden" style="color: #ff2d55;">ContraseÃ±a incorrecta.</p>
               <button type="submit" id="login-btn" class="btn-accent-pill w-full justify-center">
                 <i class="fas fa-lock"></i> <span>Entrar</span>
               </button>
@@ -27,7 +27,7 @@ import { API_BASE } from "../../lib/config";
         <div id="dashboard-view" class="hidden">
           <!-- Header -->
           <div class="flex items-center justify-between mb-6">
-            <h1 class="font-body font-bold text-white text-2xl">Panel de Administración</h1>
+            <h1 class="font-body font-bold text-white text-2xl">Panel de AdministraciÃ³n</h1>
             <button id="logout-btn" class="btn-outline-pill text-sm px-4 py-2">
               <i class="fas fa-sign-out-alt"></i> Salir
             </button>
@@ -35,16 +35,16 @@ import { API_BASE } from "../../lib/config";
 
           <!-- Tabs -->
           <div class="flex flex-wrap gap-1 mb-8 border-b" style="border-color: var(--border);">
-            <button class="tab-btn active" data-tab="testimonials">? Testimonios</button>
-            <button class="tab-btn" data-tab="projects">?? Proyectos</button>
-            <button class="tab-btn" data-tab="work">?? Experiencia</button>
-            <button class="tab-btn" data-tab="teaching">?? Docencia</button>
+            <button class="tab-btn active" data-tab="testimonials"><i class="fas fa-comment-dots"></i> Testimonios</button>
+            <button class="tab-btn" data-tab="projects"><i class="fas fa-code"></i> Proyectos</button>
+            <button class="tab-btn" data-tab="work"><i class="fas fa-briefcase"></i> Experiencia</button>
+            <button class="tab-btn" data-tab="teaching"><i class="fas fa-chalkboard-teacher"></i> Docencia</button>
           </div>
 
           <!-- TAB: TESTIMONIALS -->
           <div id="tab-testimonials" class="tab-content">
             <div class="flex items-center justify-between mb-4">
-              <h2 class="font-body font-bold text-white text-lg">Gestión de Testimonios</h2>
+              <h2 class="font-body font-bold text-white text-lg">GestiÃ³n de Testimonios</h2>
               <span class="font-body text-sm" style="color: var(--text-muted);" id="stats-summary">Cargando...</span>
             </div>
             <div class="flex flex-wrap gap-3 mb-6">
@@ -74,7 +74,7 @@ import { API_BASE } from "../../lib/config";
               </div>
             </div>
             <div class="card-glass p-6">
-              <h3 class="font-body font-bold text-white text-lg mb-4">?? Origen de contactos</h3>
+              <h3 class="font-body font-bold text-white text-lg mb-4"><i class="fas fa-chart-pie"></i> Origen de contactos</h3>
               <div id="source-metrics" class="grid grid-cols-2 md:grid-cols-4 gap-4">Cargando...</div>
             </div>
           </div>
@@ -82,7 +82,7 @@ import { API_BASE } from "../../lib/config";
           <!-- TAB: PROYECTOS -->
           <div id="tab-projects" class="tab-content hidden">
             <div class="flex items-center justify-between mb-6">
-              <h2 class="font-body font-bold text-white text-lg">Gestión de Proyectos</h2>
+              <h2 class="font-body font-bold text-white text-lg">GestiÃ³n de Proyectos</h2>
               <button id="btn-new-project" class="btn-accent-pill text-sm px-4 py-2"><i class="fas fa-plus"></i> Nuevo Proyecto</button>
             </div>
             <div class="card-glass overflow-hidden">
@@ -91,8 +91,8 @@ import { API_BASE } from "../../lib/config";
                   <thead>
                     <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
-                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Título</th>
-                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Tecnologías</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">TÃ­tulo</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">TecnologÃ­as</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">GitHub</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Demo</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Activo</th>
@@ -110,7 +110,7 @@ import { API_BASE } from "../../lib/config";
           <!-- TAB: EXPERIENCIA -->
           <div id="tab-work" class="tab-content hidden">
             <div class="flex items-center justify-between mb-6">
-              <h2 class="font-body font-bold text-white text-lg">Gestión de Experiencia Laboral</h2>
+              <h2 class="font-body font-bold text-white text-lg">GestiÃ³n de Experiencia Laboral</h2>
               <button id="btn-new-work" class="btn-accent-pill text-sm px-4 py-2"><i class="fas fa-plus"></i> Nueva Experiencia</button>
             </div>
             <div class="card-glass overflow-hidden">
@@ -121,7 +121,7 @@ import { API_BASE } from "../../lib/config";
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Cargo</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Empresa</th>
-                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Período</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">PerÃ­odo</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Logros</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Activo</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Acciones</th>
@@ -138,7 +138,7 @@ import { API_BASE } from "../../lib/config";
           <!-- TAB: DOCENCIA -->
           <div id="tab-teaching" class="tab-content hidden">
             <div class="flex items-center justify-between mb-6">
-              <h2 class="font-body font-bold text-white text-lg">Gestión de Docencia</h2>
+              <h2 class="font-body font-bold text-white text-lg">GestiÃ³n de Docencia</h2>
               <button id="btn-new-teaching" class="btn-accent-pill text-sm px-4 py-2"><i class="fas fa-plus"></i> Nueva Entrada</button>
             </div>
             <div class="card-glass overflow-hidden">
@@ -148,8 +148,8 @@ import { API_BASE } from "../../lib/config";
                     <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Rol</th>
-                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Institución</th>
-                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Período</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">InstituciÃ³n</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">PerÃ­odo</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Actividades</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Activo</th>
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Acciones</th>
@@ -217,7 +217,7 @@ import { API_BASE } from "../../lib/config";
 
   async function api(url, opts = {}) {
     const res = await fetch(url, { ...opts, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token, ...opts.headers } });
-    if (res.status === 401) { localStorage.removeItem('jrtdev_admin_token'); token = ''; dashboardView.classList.add('hidden'); loginView.classList.remove('hidden'); throw new Error('Sesión expirada'); }
+    if (res.status === 401) { localStorage.removeItem('jrtdev_admin_token'); token = ''; dashboardView.classList.add('hidden'); loginView.classList.remove('hidden'); throw new Error('SesiÃ³n expirada'); }
     if (!res.ok) { const b = await res.text(); throw new Error(b || 'Error ' + res.status); }
     return res.status === 204 ? null : res.json();
   }
@@ -234,7 +234,7 @@ import { API_BASE } from "../../lib/config";
         token = (await r.json()).token; localStorage.setItem('jrtdev_admin_token', token);
         loginView.classList.add('hidden'); dashboardView.classList.remove('hidden'); loadTab('testimonials');
       } else { loginError.classList.remove('hidden'); }
-    } catch { loginError.classList.remove('hidden'); loginError.textContent = 'Error de conexión.'; }
+    } catch { loginError.classList.remove('hidden'); loginError.textContent = 'Error de conexiÃ³n.'; }
     loginBtn.innerHTML = '<i class=\"fas fa-lock\"></i> Entrar'; loginBtn.disabled = false;
   });
 
@@ -271,7 +271,7 @@ import { API_BASE } from "../../lib/config";
 
   function renderTestimonials() {
     const t = state.testimonials;
-    document.getElementById('stats-summary').textContent = t.length + ' totales · ' + t.filter(x => x.status === 'pending').length + ' pendientes · ' + t.filter(x => x.status === 'approved').length + ' aprobados · ' + t.filter(x => x.status === 'rejected').length + ' rechazados';
+    document.getElementById('stats-summary').textContent = t.length + ' totales Â· ' + t.filter(x => x.status === 'pending').length + ' pendientes Â· ' + t.filter(x => x.status === 'approved').length + ' aprobados Â· ' + t.filter(x => x.status === 'rejected').length + ' rechazados';
     renderTestimonialsTable(); renderSourceMetrics();
   }
 
@@ -299,9 +299,9 @@ import { API_BASE } from "../../lib/config";
   }
 
   function tActions(t) {
-    if (t.status === 'pending') return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\">? Aprobar</button><button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"true\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\">? Destacar</button><button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">? Rechazar</button>';
-    if (t.status === 'approved') return '<button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">? Rechazar</button>';
-    return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\">? Recuperar</button><button data-action=\"delete\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">?? Eliminar</button>';
+    if (t.status === 'pending') return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\"><i class="fas fa-check"></i> Aprobar</button><button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"true\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\"><i class="fas fa-star"></i> Destacar</button><button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-times"></i> Rechazar</button>';
+    if (t.status === 'approved') return '<button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-times"></i> Rechazar</button>';
+    return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\"><i class="fas fa-undo"></i> Recuperar</button><button data-action=\"delete\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-trash"></i> Eliminar</button>';
   }
 
   async function doTAction(id, action, featured) {
@@ -313,7 +313,7 @@ import { API_BASE } from "../../lib/config";
       else if (action === 'delete') await api(API + '/api/admin/testimonials/' + id, { method: 'DELETE' });
       state.testimonials = []; await loadTestimonials();
     } catch { alert('Error'); }
-    btn.innerHTML = featured ? '? Destacar' : '? Aprobar'; btn.disabled = false;
+    btn.innerHTML = featured ? '<i class="fas fa-star"></i> Destacar' : '<i class="fas fa-check"></i> Aprobar'; btn.disabled = false;
   }
 
   // Filters
@@ -330,9 +330,9 @@ import { API_BASE } from "../../lib/config";
     const el = document.getElementById('source-metrics');
     const approved = state.testimonials.filter(t => t.status === 'approved');
     const counts = {}; approved.forEach(t => { counts[t.source] = (counts[t.source] || 0) + 1; });
-    const labels = { whatsapp:'WhatsApp', instagram:'Instagram', x:'X (Twitter)', linkedin:'LinkedIn', github:'GitHub', referral:'Recomendación', google:'Google', other:'Otro' };
+    const labels = { whatsapp:'WhatsApp', instagram:'Instagram', x:'X (Twitter)', linkedin:'LinkedIn', github:'GitHub', referral:'RecomendaciÃ³n', google:'Google', other:'Otro' };
     const entries = Object.entries(counts).sort((a,b) => b[1]-a[1]);
-    if (!entries.length) { el.innerHTML = '<p class=\"font-body text-sm col-span-full\" style=\"color:var(--text-muted);\">Aún no hay datos.</p>'; return; }
+    if (!entries.length) { el.innerHTML = '<p class=\"font-body text-sm col-span-full\" style=\"color:var(--text-muted);\">AÃºn no hay datos.</p>'; return; }
     el.innerHTML = entries.map(([k,c]) => '<div class=\"p-4 rounded-xl\" style=\"background:rgba(255,255,255,0.03);border:1px solid var(--border);\"><p class=\"font-body text-2xl font-bold text-white\">' + c + '</p><p class=\"font-body text-xs\" style=\"color:var(--text-muted);\">' + (labels[k]||k) + '</p></div>').join('');
   }
 
@@ -341,9 +341,9 @@ import { API_BASE } from "../../lib/config";
     projects: {
       label:'Proyecto', labelPlural:'Proyectos', endpoint:'/api/admin/projects', tbodyId:'projects-tbody',
       fields: [
-        {name:'title',label:'Título',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
+        {name:'title',label:'TÃ­tulo',type:'text',req:true},{name:'description',label:'DescripciÃ³n',type:'textarea',req:true},
         {name:'github',label:'URL GitHub',type:'url',req:true},{name:'demo',label:'URL Demo',type:'url'},
-        {name:'image',label:'URL Imagen',type:'url'},{name:'technologies',label:'Tecnologías (JSON)',type:'json'},
+        {name:'image',label:'URL Imagen',type:'url'},{name:'technologies',label:'TecnologÃ­as (JSON)',type:'json'},
         {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
       ],
       row: function(item) {
@@ -351,8 +351,8 @@ import { API_BASE } from "../../lib/config";
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + (item.sort_order||0) + '</td>' +
           '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span></td>' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + (item.technologies||[]).map(function(t){return t.name;}).join(', ') + '</td>' +
-          '<td class=\"px-4 py-3\">' + (item.github ? '<a href=\"' + esc(item.github) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Link</a>' : '<span style=\"color:var(--text-muted)\">—</span>') + '</td>' +
-          '<td class=\"px-4 py-3\">' + (item.demo ? '<a href=\"' + esc(item.demo) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Demo</a>' : '<span style=\"color:var(--text-muted)\">—</span>') + '</td>' +
+          '<td class=\"px-4 py-3\">' + (item.github ? '<a href=\"' + esc(item.github) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Link</a>' : '<span style=\"color:var(--text-muted)\">Â—</span>') + '</td>' +
+          '<td class=\"px-4 py-3\">' + (item.demo ? '<a href=\"' + esc(item.demo) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Demo</a>' : '<span style=\"color:var(--text-muted)\">Â—</span>') + '</td>' +
           '<td class=\"px-4 py-3\">' + toggleChip(item.active, 'projects', item.id) + '</td>' +
           '<td class=\"px-4 py-3\">' + actionBtns('projects', item.id) + '</td></tr>';
       },
@@ -369,8 +369,8 @@ import { API_BASE } from "../../lib/config";
       label:'Experiencia', labelPlural:'Experiencias', endpoint:'/api/admin/work-history', tbodyId:'work-tbody',
       fields: [
         {name:'title',label:'Cargo',type:'text',req:true},{name:'company',label:'Empresa',type:'text',req:true},
-        {name:'period',label:'Período (ej: 2020-2024)',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
-        {name:'technologies',label:'Tecnologías (JSON)',type:'json'},{name:'achievements',label:'Logros (JSON)',type:'json'},
+        {name:'period',label:'PerÃ­odo (ej: 2020-2024)',type:'text',req:true},{name:'description',label:'DescripciÃ³n',type:'textarea',req:true},
+        {name:'technologies',label:'TecnologÃ­as (JSON)',type:'json'},{name:'achievements',label:'Logros (JSON)',type:'json'},
         {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
       ],
       row: function(item) {
@@ -395,9 +395,9 @@ import { API_BASE } from "../../lib/config";
     teaching: {
       label:'Docencia', labelPlural:'Docencias', endpoint:'/api/admin/teaching', tbodyId:'teaching-tbody',
       fields: [
-        {name:'title',label:'Rol',type:'text',req:true},{name:'company',label:'Institución',type:'text',req:true},
-        {name:'period',label:'Período (ej: 2023-2024)',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
-        {name:'technologies',label:'Tecnologías (JSON)',type:'json'},{name:'activities',label:'Actividades (JSON)',type:'json'},
+        {name:'title',label:'Rol',type:'text',req:true},{name:'company',label:'InstituciÃ³n',type:'text',req:true},
+        {name:'period',label:'PerÃ­odo (ej: 2023-2024)',type:'text',req:true},{name:'description',label:'DescripciÃ³n',type:'textarea',req:true},
+        {name:'technologies',label:'TecnologÃ­as (JSON)',type:'json'},{name:'activities',label:'Actividades (JSON)',type:'json'},
         {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
       ],
       row: function(item) {
@@ -451,7 +451,7 @@ import { API_BASE } from "../../lib/config";
     tbody.querySelectorAll('[data-delete]').forEach(function(el) {
       el.addEventListener('click', async function() {
         var s = el.dataset.section, id = el.dataset.id;
-        if (!confirm('¿Eliminar?')) return;
+        if (!confirm('Â¿Eliminar?')) return;
         try { await api(API + SECTIONS[s].endpoint + '/' + id, { method:'DELETE' }); state[s] = state[s].filter(function(x){return x.id!==id;}); renderTable(s); }
         catch { alert('Error'); }
       });
@@ -459,12 +459,12 @@ import { API_BASE } from "../../lib/config";
   }
 
   function toggleChip(active, section, id) {
-    if (active) return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\">? Activo</span>';
-    return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\">? Inactivo</span>';
+    if (active) return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\"><i class="fas fa-check-circle" style="color:var(--accent);"></i> Activo</span>';
+    return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\"><i class="fas fa-times-circle" style="color:#ff2d55;"></i> Inactivo</span>';
   }
 
   function actionBtns(section, id) {
-    return '<button data-edit data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15);cursor:pointer;\">?? Editar</button><button data-delete data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">?? Eliminar</button>';
+    return '<button data-edit data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15);cursor:pointer;\"><i class="fas fa-edit"></i> Editar</button><button data-delete data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-trash"></i> Eliminar</button>';
   }
 
   function esc(str) { if (!str) return ''; var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
