@@ -142,15 +142,35 @@ export const projects = [
   {
     title: "El Tablero",
     description:
-      "Aplicación para generar encuentros de D&D dado un contexto de zona. Facilita a los Dungeon Masters la creación de encuentros aleatorios basados en el entorno de la partida, agilizando la preparación de sesiones de juego.",
+      "Generador de encuentros de D&D 5e con inteligencia artificial. El Dungeon Master selecciona temática (mazmorra, bosque, inframundo, etc.) y condiciones ambientales (oscuridad, tormenta, anti-magia, etc.), y la app usa IA (Gemini / OpenRouter) para sugerir monstruos coherentes con el contexto. Cada monstruo se resuelve contra la API de Open5e mostrando su stat block completo. Ideal para agilizar la preparación de sesiones de juego.",
     image: "",
     github: "https://github.com/waflex/el-tablero",
     demo: "",
     technologies: [
       {
-        name: "JavaScript",
-        icon: "devicon-javascript-plain",
-        color: "text-yellow-400",
+        name: "React",
+        icon: "devicon-react-original",
+        color: "text-cyan-400",
+      },
+      {
+        name: "Vite",
+        icon: "devicon-vitejs-plain",
+        color: "text-purple-500",
+      },
+      {
+        name: "Tailwind",
+        icon: "devicon-tailwindcss-plain",
+        color: "text-cyan-400",
+      },
+      {
+        name: "Gemini AI",
+        icon: "devicon-google-plain",
+        color: "text-blue-400",
+      },
+      {
+        name: "OpenRouter",
+        icon: "fas fa-robot",
+        color: "text-green-400",
       },
     ],
   },

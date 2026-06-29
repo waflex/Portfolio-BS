@@ -33,4 +33,7 @@ screenshot.webp
 skills-lock.json
 .opencode
 .agents
+
+# Scripts de deploy local
+deploy.sh
 /backend/.env.example
