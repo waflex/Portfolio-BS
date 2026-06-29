@@ -1,0 +1,516 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { API_BASE } from "../../lib/config";
+---
+
+<Layout title="Admin — Dashboard | JRTdev">
+  <main class="min-h-screen pt-[70px]" style="background-color: #0a0a0a;">
+    <div class="container mx-auto px-6 lg:px-10 py-12">
+      <div id="app" data-api={API_BASE}>
+
+        <!-- LOGIN -->
+        <div id="login-view" class="max-w-sm mx-auto">
+          <div class="card-glass p-8">
+            <h1 class="font-body font-bold text-white text-xl mb-2">Admin</h1>
+            <p class="font-body text-sm mb-6" style="color: var(--text-muted);">Ingresa tu contraseña para gestionar el portafolio.</p>
+            <form id="login-form" class="space-y-4">
+              <input type="password" id="login-password" placeholder="Contraseña" class="form-input" required />
+              <p id="login-error" class="font-body text-xs hidden" style="color: #ff2d55;">Contraseña incorrecta.</p>
+              <button type="submit" id="login-btn" class="btn-accent-pill w-full justify-center">
+                <i class="fas fa-lock"></i> <span>Entrar</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div id="dashboard-view" class="hidden">
+          <!-- Header -->
+          <div class="flex items-center justify-between mb-6">
+            <h1 class="font-body font-bold text-white text-2xl">Panel de Administración</h1>
+            <button id="logout-btn" class="btn-outline-pill text-sm px-4 py-2">
+              <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
+          </div>
+
+          <!-- Tabs -->
+          <div class="flex flex-wrap gap-1 mb-8 border-b" style="border-color: var(--border);">
+            <button class="tab-btn active" data-tab="testimonials">? Testimonios</button>
+            <button class="tab-btn" data-tab="projects">?? Proyectos</button>
+            <button class="tab-btn" data-tab="work">?? Experiencia</button>
+            <button class="tab-btn" data-tab="teaching">?? Docencia</button>
+          </div>
+
+          <!-- TAB: TESTIMONIALS -->
+          <div id="tab-testimonials" class="tab-content">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="font-body font-bold text-white text-lg">Gestión de Testimonios</h2>
+              <span class="font-body text-sm" style="color: var(--text-muted);" id="stats-summary">Cargando...</span>
+            </div>
+            <div class="flex flex-wrap gap-3 mb-6">
+              <button class="filter-btn active" data-filter="all">Todos</button>
+              <button class="filter-btn" data-filter="pending">Pendientes</button>
+              <button class="filter-btn" data-filter="approved">Aprobados</button>
+              <button class="filter-btn" data-filter="rejected">Rechazados</button>
+            </div>
+            <div class="card-glass overflow-hidden mb-8">
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Fecha</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Nombre</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Rating</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Origen</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Mensaje</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Estado</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="testimonials-tbody">
+                    <tr><td colspan="7" class="text-center py-8 font-body text-sm" style="color:var(--text-muted);"><i class="fas fa-spinner fa-spin"></i> Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-glass p-6">
+              <h3 class="font-body font-bold text-white text-lg mb-4">?? Origen de contactos</h3>
+              <div id="source-metrics" class="grid grid-cols-2 md:grid-cols-4 gap-4">Cargando...</div>
+            </div>
+          </div>
+
+          <!-- TAB: PROYECTOS -->
+          <div id="tab-projects" class="tab-content hidden">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="font-body font-bold text-white text-lg">Gestión de Proyectos</h2>
+              <button id="btn-new-project" class="btn-accent-pill text-sm px-4 py-2"><i class="fas fa-plus"></i> Nuevo Proyecto</button>
+            </div>
+            <div class="card-glass overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Título</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Tecnologías</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">GitHub</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Demo</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Activo</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="projects-tbody">
+                    <tr><td colspan="7" class="text-center py-8 font-body text-sm" style="color:var(--text-muted);"><i class="fas fa-spinner fa-spin"></i> Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: EXPERIENCIA -->
+          <div id="tab-work" class="tab-content hidden">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="font-body font-bold text-white text-lg">Gestión de Experiencia Laboral</h2>
+              <button id="btn-new-work" class="btn-accent-pill text-sm px-4 py-2"><i class="fas fa-plus"></i> Nueva Experiencia</button>
+            </div>
+            <div class="card-glass overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Cargo</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Empresa</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Período</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Logros</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Activo</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="work-tbody">
+                    <tr><td colspan="7" class="text-center py-8 font-body text-sm" style="color:var(--text-muted);"><i class="fas fa-spinner fa-spin"></i> Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB: DOCENCIA -->
+          <div id="tab-teaching" class="tab-content hidden">
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="font-body font-bold text-white text-lg">Gestión de Docencia</h2>
+              <button id="btn-new-teaching" class="btn-accent-pill text-sm px-4 py-2"><i class="fas fa-plus"></i> Nueva Entrada</button>
+            </div>
+            <div class="card-glass overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Rol</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Institución</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Período</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Actividades</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Activo</th>
+                      <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="teaching-tbody">
+                    <tr><td colspan="7" class="text-center py-8 font-body text-sm" style="color:var(--text-muted);"><i class="fas fa-spinner fa-spin"></i> Cargando...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /dashboard-view -->
+      </div><!-- /app -->
+    </div>
+  </main>
+
+  <!-- MODAL CRUD -->
+  <div id="crud-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);">
+    <div class="card-glass w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6" style="border:1px solid var(--border);">
+      <div class="flex items-center justify-between mb-6">
+        <h3 id="modal-title" class="font-body font-bold text-white text-lg"></h3>
+        <button id="modal-close" class="text-white/60 hover:text-white text-xl leading-none">&times;</button>
+      </div>
+      <form id="crud-form" class="space-y-4">
+        <div id="form-fields"></div>
+        <div class="flex gap-3 justify-end pt-4 border-t" style="border-color:var(--border);">
+          <button type="button" id="modal-cancel" class="btn-outline-pill text-sm px-5 py-2">Cancelar</button>
+          <button type="submit" id="modal-submit" class="btn-accent-pill text-sm px-5 py-2">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .tab-btn {
+    padding: 10px 20px; font-family: Poppins, sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer; border: none; border-bottom: 2px solid transparent;
+    background: transparent; color: var(--text-muted); transition: all 0.2s;
+  }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .tab-btn:hover { color: var(--accent); }
+  .filter-btn {
+    padding: 8px 20px; border-radius: 9999px; font-family: Poppins, sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: var(--text-muted);
+  }
+  .filter-btn.active { background: var(--accent); color: #000; border: none; font-weight: 600; }
+  .filter-btn:hover { opacity: 0.8; }
+</style>
+
+<script is:inline>
+  const API = document.getElementById('app').dataset.api;
+  let token = localStorage.getItem('jrtdev_admin_token') || '';
+
+  const loginView = document.getElementById('login-view');
+  const dashboardView = document.getElementById('dashboard-view');
+  const loginForm = document.getElementById('login-form');
+  const loginError = document.getElementById('login-error');
+  const loginBtn = document.getElementById('login-btn');
+
+  const state = { testimonials: [], projects: [], work: [], teaching: [], currentFilter: 'all', currentTab: 'testimonials' };
+
+  async function api(url, opts = {}) {
+    const res = await fetch(url, { ...opts, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token, ...opts.headers } });
+    if (res.status === 401) { localStorage.removeItem('jrtdev_admin_token'); token = ''; dashboardView.classList.add('hidden'); loginView.classList.remove('hidden'); throw new Error('Sesión expirada'); }
+    if (!res.ok) { const b = await res.text(); throw new Error(b || 'Error ' + res.status); }
+    return res.status === 204 ? null : res.json();
+  }
+
+  if (token) { loginView.classList.add('hidden'); dashboardView.classList.remove('hidden'); loadTab('testimonials'); }
+
+  loginForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const pw = document.getElementById('login-password').value;
+    loginBtn.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i> Entrando...'; loginBtn.disabled = true;
+    try {
+      const r = await fetch(API + '/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw }) });
+      if (r.ok) {
+        token = (await r.json()).token; localStorage.setItem('jrtdev_admin_token', token);
+        loginView.classList.add('hidden'); dashboardView.classList.remove('hidden'); loadTab('testimonials');
+      } else { loginError.classList.remove('hidden'); }
+    } catch { loginError.classList.remove('hidden'); loginError.textContent = 'Error de conexión.'; }
+    loginBtn.innerHTML = '<i class=\"fas fa-lock\"></i> Entrar'; loginBtn.disabled = false;
+  });
+
+  document.getElementById('logout-btn')?.addEventListener('click', () => {
+    token = ''; localStorage.removeItem('jrtdev_admin_token');
+    dashboardView.classList.add('hidden'); loginView.classList.remove('hidden');
+    document.getElementById('login-password').value = ''; loginError.classList.add('hidden');
+  });
+
+  // TABS
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach((b) => { b.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach((c) => c.classList.add('hidden'));
+      const tab = btn.dataset.tab; state.currentTab = tab;
+      document.getElementById('tab-' + tab).classList.remove('hidden');
+      loadTab(tab);
+    });
+  });
+
+  function loadTab(tab) {
+    if (tab === 'testimonials' && !state.testimonials.length) loadTestimonials();
+    if (tab === 'projects') loadProjects();
+    if (tab === 'work') loadWork();
+    if (tab === 'teaching') loadTeaching();
+  }
+
+  // TESTIMONIALS
+  async function loadTestimonials() {
+    try { state.testimonials = await api(API + '/api/admin/testimonials'); renderTestimonials(); }
+    catch { document.getElementById('testimonials-tbody').innerHTML = '<tr><td colspan=\"7\" class=\"text-center py-8 font-body text-sm\" style=\"color:#ff2d55;\">Error al cargar testimonios.</td></tr>'; }
+  }
+
+  function renderTestimonials() {
+    const t = state.testimonials;
+    document.getElementById('stats-summary').textContent = t.length + ' totales · ' + t.filter(x => x.status === 'pending').length + ' pendientes · ' + t.filter(x => x.status === 'approved').length + ' aprobados · ' + t.filter(x => x.status === 'rejected').length + ' rechazados';
+    renderTestimonialsTable(); renderSourceMetrics();
+  }
+
+  function renderTestimonialsTable() {
+    const tbody = document.getElementById('testimonials-tbody');
+    const filtered = state.currentFilter === 'all' ? state.testimonials : state.testimonials.filter(t => t.status === state.currentFilter);
+    if (!filtered.length) { tbody.innerHTML = '<tr><td colspan=\"7\" class=\"text-center py-8 font-body text-sm\" style=\"color:var(--text-muted);\">No hay testimonios con este filtro.</td></tr>'; return; }
+    tbody.innerHTML = filtered.map(t => '<tr style=\"border-bottom:1px solid var(--border);\">' +
+      '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);white-space:nowrap;\">' + new Date(t.created_at).toLocaleDateString('es-CL') + '</td>' +
+      '<td class=\"px-4 py-3\"><div class=\"font-body text-sm font-medium text-white\">' + esc(t.name) + '</div><div class=\"font-body text-xs\" style=\"color:var(--text-muted);\">' + esc(t.email) + '</div>' + (t.company ? '<div class=\"font-body text-xs\" style=\"color:var(--accent);\">' + esc(t.company) + '</div>' : '') + '</td>' +
+      '<td class=\"px-4 py-3 font-body text-sm\" style=\"color:#FFD700;\">' + '?'.repeat(t.rating) + '?'.repeat(5-t.rating) + '</td>' +
+      '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + esc(t.source) + '</td>' +
+      '<td class=\"px-4 py-3 font-body text-sm\" style=\"color:var(--text-gray);max-width:240px;\"><div style=\"display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;\">' + esc(t.message) + '</div></td>' +
+      '<td class=\"px-4 py-3\">' + badge(t) + '</td>' +
+      '<td class=\"px-4 py-3\"><div class=\"flex flex-wrap gap-2\">' + tActions(t) + '</div></td>' +
+      '</tr>').join('');
+    tbody.querySelectorAll('[data-action]').forEach(btn => { btn.addEventListener('click', async () => { await doTAction(btn.dataset.id, btn.dataset.action, btn.dataset.featured === 'true'); }); });
+  }
+
+  function badge(t) {
+    const c = t.status === 'pending' ? 'rgba(255,179,0,0.12);color:#ffb300;border:1px solid rgba(255,179,0,0.25)' : t.status === 'approved' ? 'rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25)' : 'rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25)';
+    let l = t.status === 'pending' ? 'Pendiente' : t.status === 'approved' ? 'Aprobado' : 'Rechazado';
+    if (t.featured) l += ' ?';
+    return '<span class=\"font-body text-xs font-medium px-2.5 py-1 rounded-full\" style=\"background:' + c + ';\">' + l + '</span>';
+  }
+
+  function tActions(t) {
+    if (t.status === 'pending') return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\">? Aprobar</button><button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"true\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\">? Destacar</button><button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">? Rechazar</button>';
+    if (t.status === 'approved') return '<button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">? Rechazar</button>';
+    return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\">? Recuperar</button><button data-action=\"delete\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">?? Eliminar</button>';
+  }
+
+  async function doTAction(id, action, featured) {
+    const btn = document.querySelector('[data-action=\"' + action + '\"][data-id=\"' + id + '\"]');
+    btn.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i>'; btn.disabled = true;
+    try {
+      if (action === 'approve') await api(API + '/api/admin/testimonials/' + id + '/approve', { method: 'PUT', body: JSON.stringify({ featured: featured }) });
+      else if (action === 'reject') await api(API + '/api/admin/testimonials/' + id + '/reject', { method: 'PUT' });
+      else if (action === 'delete') await api(API + '/api/admin/testimonials/' + id, { method: 'DELETE' });
+      state.testimonials = []; await loadTestimonials();
+    } catch { alert('Error'); }
+    btn.innerHTML = featured ? '? Destacar' : '? Aprobar'; btn.disabled = false;
+  }
+
+  // Filters
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.currentFilter = btn.dataset.filter;
+      renderTestimonialsTable();
+    });
+  });
+
+  function renderSourceMetrics() {
+    const el = document.getElementById('source-metrics');
+    const approved = state.testimonials.filter(t => t.status === 'approved');
+    const counts = {}; approved.forEach(t => { counts[t.source] = (counts[t.source] || 0) + 1; });
+    const labels = { whatsapp:'WhatsApp', instagram:'Instagram', x:'X (Twitter)', linkedin:'LinkedIn', github:'GitHub', referral:'Recomendación', google:'Google', other:'Otro' };
+    const entries = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+    if (!entries.length) { el.innerHTML = '<p class=\"font-body text-sm col-span-full\" style=\"color:var(--text-muted);\">Aún no hay datos.</p>'; return; }
+    el.innerHTML = entries.map(([k,c]) => '<div class=\"p-4 rounded-xl\" style=\"background:rgba(255,255,255,0.03);border:1px solid var(--border);\"><p class=\"font-body text-2xl font-bold text-white\">' + c + '</p><p class=\"font-body text-xs\" style=\"color:var(--text-muted);\">' + (labels[k]||k) + '</p></div>').join('');
+  }
+
+  // CRUD GENERIC
+  var SECTIONS = {
+    projects: {
+      label:'Proyecto', labelPlural:'Proyectos', endpoint:'/api/admin/projects', tbodyId:'projects-tbody',
+      fields: [
+        {name:'title',label:'Título',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
+        {name:'github',label:'URL GitHub',type:'url',req:true},{name:'demo',label:'URL Demo',type:'url'},
+        {name:'image',label:'URL Imagen',type:'url'},{name:'technologies',label:'Tecnologías (JSON)',type:'json'},
+        {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
+      ],
+      row: function(item) {
+        return '<tr style=\"border-bottom:1px solid var(--border);\">' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + (item.sort_order||0) + '</td>' +
+          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span></td>' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + (item.technologies||[]).map(function(t){return t.name;}).join(', ') + '</td>' +
+          '<td class=\"px-4 py-3\">' + (item.github ? '<a href=\"' + esc(item.github) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Link</a>' : '<span style=\"color:var(--text-muted)\">—</span>') + '</td>' +
+          '<td class=\"px-4 py-3\">' + (item.demo ? '<a href=\"' + esc(item.demo) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Demo</a>' : '<span style=\"color:var(--text-muted)\">—</span>') + '</td>' +
+          '<td class=\"px-4 py-3\">' + toggleChip(item.active, 'projects', item.id) + '</td>' +
+          '<td class=\"px-4 py-3\">' + actionBtns('projects', item.id) + '</td></tr>';
+      },
+      defaults: function() { return {title:'',description:'',github:'',demo:'',image:'',technologies:[],sort_order:0,active:true}; },
+      fromForm: function(d) {
+        var p = {title:d.title, description:d.description, github:d.github};
+        if (d.demo) p.demo = d.demo; if (d.image) p.image = d.image;
+        if (d.technologies) { try { p.technologies = JSON.parse(d.technologies); } catch { p.technologies = []; } }
+        p.sort_order = parseInt(d.sort_order) || 0; p.active = d.active === 'on';
+        return p;
+      }
+    },
+    work: {
+      label:'Experiencia', labelPlural:'Experiencias', endpoint:'/api/admin/work-history', tbodyId:'work-tbody',
+      fields: [
+        {name:'title',label:'Cargo',type:'text',req:true},{name:'company',label:'Empresa',type:'text',req:true},
+        {name:'period',label:'Período (ej: 2020-2024)',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
+        {name:'technologies',label:'Tecnologías (JSON)',type:'json'},{name:'achievements',label:'Logros (JSON)',type:'json'},
+        {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
+      ],
+      row: function(item) {
+        return '<tr style=\"border-bottom:1px solid var(--border);\">' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + (item.sort_order||0) + '</td>' +
+          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span></td>' +
+          '<td class=\"px-4 py-3 font-body text-sm\" style=\"color:var(--text-gray);\">' + esc(item.company) + '</td>' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + esc(item.period) + '</td>' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + (item.achievements||[]).length + ' logros</td>' +
+          '<td class=\"px-4 py-3\">' + toggleChip(item.active, 'work', item.id) + '</td>' +
+          '<td class=\"px-4 py-3\">' + actionBtns('work', item.id) + '</td></tr>';
+      },
+      defaults: function() { return {title:'',company:'',period:'',description:'',technologies:[],achievements:[],sort_order:0,active:true}; },
+      fromForm: function(d) {
+        var p = {title:d.title, company:d.company, period:d.period, description:d.description};
+        if (d.technologies) { try { p.technologies = JSON.parse(d.technologies); } catch { p.technologies = []; } }
+        if (d.achievements) { try { p.achievements = JSON.parse(d.achievements); } catch { p.achievements = []; } }
+        p.sort_order = parseInt(d.sort_order) || 0; p.active = d.active === 'on';
+        return p;
+      }
+    },
+    teaching: {
+      label:'Docencia', labelPlural:'Docencias', endpoint:'/api/admin/teaching', tbodyId:'teaching-tbody',
+      fields: [
+        {name:'title',label:'Rol',type:'text',req:true},{name:'company',label:'Institución',type:'text',req:true},
+        {name:'period',label:'Período (ej: 2023-2024)',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
+        {name:'technologies',label:'Tecnologías (JSON)',type:'json'},{name:'activities',label:'Actividades (JSON)',type:'json'},
+        {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
+      ],
+      row: function(item) {
+        return '<tr style=\"border-bottom:1px solid var(--border);\">' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + (item.sort_order||0) + '</td>' +
+          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span></td>' +
+          '<td class=\"px-4 py-3 font-body text-sm\" style=\"color:var(--text-gray);\">' + esc(item.company) + '</td>' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + esc(item.period) + '</td>' +
+          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + (item.activities||[]).length + ' actividades</td>' +
+          '<td class=\"px-4 py-3\">' + toggleChip(item.active, 'teaching', item.id) + '</td>' +
+          '<td class=\"px-4 py-3\">' + actionBtns('teaching', item.id) + '</td></tr>';
+      },
+      defaults: function() { return {title:'',company:'',period:'',description:'',technologies:[],activities:[],sort_order:0,active:true}; },
+      fromForm: function(d) {
+        var p = {title:d.title, company:d.company, period:d.period, description:d.description};
+        if (d.technologies) { try { p.technologies = JSON.parse(d.technologies); } catch { p.technologies = []; } }
+        if (d.activities) { try { p.activities = JSON.parse(d.activities); } catch { p.activities = []; } }
+        p.sort_order = parseInt(d.sort_order) || 0; p.active = d.active === 'on';
+        return p;
+      }
+    }
+  };
+
+  function loadProjects() { api(API + '/api/admin/projects').then(function(d) { state.projects = d; renderTable('projects'); }).catch(function(){ showError('projects'); }); }
+  function loadWork() { api(API + '/api/admin/work-history').then(function(d) { state.work = d; renderTable('work'); }).catch(function(){ showError('work'); }); }
+  function loadTeaching() { api(API + '/api/admin/teaching').then(function(d) { state.teaching = d; renderTable('teaching'); }).catch(function(){ showError('teaching'); }); }
+
+  function showError(s) { document.getElementById(SECTIONS[s].tbodyId).innerHTML = '<tr><td colspan=\"7\" class=\"text-center py-8 font-body text-sm\" style=\"color:#ff2d55;\">Error al cargar.</td></tr>'; }
+
+  function renderTable(section) {
+    var sec = SECTIONS[section];
+    var items = state[section];
+    var tbody = document.getElementById(sec.tbodyId);
+    if (!items.length) { tbody.innerHTML = '<tr><td colspan=\"7\" class=\"text-center py-8 font-body text-sm\" style=\"color:var(--text-muted);\">No hay registros.</td></tr>'; return; }
+    tbody.innerHTML = items.map(sec.row).join('');
+
+    tbody.querySelectorAll('[data-toggle]').forEach(function(el) {
+      el.addEventListener('click', async function() {
+        var s = el.dataset.section, id = el.dataset.id, item = state[s].find(function(x){return x.id===id;});
+        if (!item) return;
+        try { var up = await api(API + SECTIONS[s].endpoint + '/' + id, { method:'PUT', body:JSON.stringify({active:!item.active}) }); Object.assign(item, up); renderTable(s); }
+        catch { alert('Error'); }
+      });
+    });
+    tbody.querySelectorAll('[data-edit]').forEach(function(el) {
+      el.addEventListener('click', function() {
+        var s = el.dataset.section, id = el.dataset.id, item = state[s].find(function(x){return x.id===id;});
+        if (item) openModal(s, item);
+      });
+    });
+    tbody.querySelectorAll('[data-delete]').forEach(function(el) {
+      el.addEventListener('click', async function() {
+        var s = el.dataset.section, id = el.dataset.id;
+        if (!confirm('¿Eliminar?')) return;
+        try { await api(API + SECTIONS[s].endpoint + '/' + id, { method:'DELETE' }); state[s] = state[s].filter(function(x){return x.id!==id;}); renderTable(s); }
+        catch { alert('Error'); }
+      });
+    });
+  }
+
+  function toggleChip(active, section, id) {
+    if (active) return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\">? Activo</span>';
+    return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\">? Inactivo</span>';
+  }
+
+  function actionBtns(section, id) {
+    return '<button data-edit data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15);cursor:pointer;\">?? Editar</button><button data-delete data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\">?? Eliminar</button>';
+  }
+
+  function esc(str) { if (!str) return ''; var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+  // MODAL
+  var editingId = null, editingSection = null;
+
+  function openModal(section, item) {
+    editingSection = section; var sec = SECTIONS[section]; editingId = item ? item.id : null;
+    document.getElementById('modal-title').textContent = editingId ? 'Editar ' + sec.label : 'Nuevo ' + sec.label;
+    var container = document.getElementById('form-fields');
+    var data = item || sec.defaults();
+    container.innerHTML = sec.fields.map(function(f) {
+      var val = data[f.name]; var valStr = Array.isArray(val) ? JSON.stringify(val, null, 2) : (val || '');
+      var checked = f.type === 'checkbox' && val ? 'checked' : '';
+      var req = f.req && f.type !== 'checkbox' ? 'required' : '';
+      if (f.type === 'checkbox') return '<label class=\"flex items-center gap-3 font-body text-sm\" style=\"color:var(--text-gray);\"><input type=\"checkbox\" name=\"' + f.name + '\" ' + checked + ' style=\"width:18px;height:18px;accent-color:var(--accent);\" /> ' + f.label + '</label>';
+      if (f.type === 'textarea' || f.type === 'json') {
+        var cls = f.type === 'json' ? 'form-input font-mono text-xs' : 'form-input';
+        return '<div><label class=\"block font-body text-xs font-medium mb-1\" style=\"color:var(--text-muted);\">' + f.label + '</label><textarea name=\"' + f.name + '\" ' + req + ' class=\"' + cls + '\" rows=\"3\" style=\"resize:vertical;\">' + esc(valStr) + '</textarea></div>';
+      }
+      return '<div><label class=\"block font-body text-xs font-medium mb-1\" style=\"color:var(--text-muted);\">' + f.label + '</label><input type=\"' + f.type + '\" name=\"' + f.name + '\" value=\"' + esc(valStr) + '\" ' + req + ' class=\"form-input\" /></div>';
+    }).join('');
+    document.getElementById('crud-modal').classList.remove('hidden');
+  }
+
+  function closeModal() { document.getElementById('crud-modal').classList.add('hidden'); editingId = null; editingSection = null; }
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-cancel').addEventListener('click', closeModal);
+
+  document.getElementById('crud-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var sec = SECTIONS[editingSection];
+    var fd = new FormData(e.target); var data = {}; fd.forEach(function(v,k){data[k]=v;});
+    var payload = sec.fromForm(data);
+    var btn = document.getElementById('modal-submit'); btn.innerHTML = 'Guardando...'; btn.disabled = true;
+    try {
+      if (editingId) { var up = await api(API + sec.endpoint + '/' + editingId, { method:'PUT', body:JSON.stringify(payload) }); var idx = state[editingSection].findIndex(function(x){return x.id===editingId;}); if (idx !== -1) state[editingSection][idx] = up; }
+      else { var cr = await api(API + sec.endpoint, { method:'POST', body:JSON.stringify(payload) }); state[editingSection].push(cr); }
+      renderTable(editingSection); closeModal();
+    } catch (err) { alert('Error al guardar: ' + (err.message||'desconocido')); }
+    btn.innerHTML = 'Guardar'; btn.disabled = false;
+  });
+
+  document.getElementById('btn-new-project')?.addEventListener('click', function(){ openModal('projects'); });
+  document.getElementById('btn-new-work')?.addEventListener('click', function(){ openModal('work'); });
+  document.getElementById('btn-new-teaching')?.addEventListener('click', function(){ openModal('teaching'); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+</script>
