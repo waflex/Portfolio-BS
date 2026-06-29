@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import { API_BASE } from "../lib/config";
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
 ---
 
 <section
@@ -23,7 +27,7 @@ import { API_BASE } from "../lib/config";
 
         <!-- Label -->
         <p class="section-label mb-5 animate-fade-up stagger-1">
-          DESARROLLADOR FULL STACK & DOCENTE
+          {t("hero.label")}
         </p>
 
         <!-- Título gigante -->
@@ -31,23 +35,21 @@ import { API_BASE } from "../lib/config";
           class="font-display text-white uppercase leading-[0.88] mb-6 animate-fade-up stagger-2"
           style="font-size: clamp(64px, 10vw, 118px); letter-spacing: -2px;"
         >
-          JONATHAN<br>
-          <span style="color: var(--accent);">ROJAS</span>
+          {t("hero.first_name")}<br>
+          <span style="color: var(--accent);">{t("hero.last_name")}</span>
         </h1>
 
         <!-- Descripción -->
         <p
           class="font-body text-gray-400 text-base leading-relaxed mb-8 max-w-[480px] animate-fade-up stagger-3"
         >
-          Ingeniero Informático con experiencia en desarrollo de soluciones
-          web a medida, automatización de procesos y docencia en tecnología.
-          Especializado en JavaScript, React y arquitecturas REST.
+          {t("hero.description")}
         </p>
 
         <!-- CTAs -->
         <div class="flex flex-wrap gap-4 animate-fade-up stagger-4">
-          <a href="#contact" class="btn-accent-pill">
-            <span>Contáctame</span>
+          <a href={lang !== "es" ? `/${lang}/#contact` : "#contact"} class="btn-accent-pill">
+            <span>{t("hero.cta_contact")}</span>
             <div
               class="w-8 h-8 rounded-full flex items-center justify-center text-sm"
               style="background: rgba(0,0,0,0.3);"
@@ -55,8 +57,8 @@ import { API_BASE } from "../lib/config";
               <i class="fas fa-arrow-right" style="color: var(--accent);"></i>
             </div>
           </a>
-          <a href="#projects" class="btn-outline-pill">
-            Ver Proyectos
+          <a href={lang !== "es" ? `/${lang}/#projects` : "#projects"} class="btn-outline-pill">
+            {t("hero.cta_projects")}
           </a>
         </div>
 
@@ -95,8 +97,8 @@ import { API_BASE } from "../lib/config";
           "
         >
           <p class="font-display text-white text-3xl leading-none" style="color: var(--accent);">4+</p>
-          <p class="font-body text-xs mt-1" style="color: var(--text-muted);">Años de</p>
-          <p class="font-body text-xs font-semibold text-white">Experiencia</p>
+          <p class="font-body text-xs mt-1" style="color: var(--text-muted);">{t("hero.years_label")}</p>
+          <p class="font-body text-xs font-semibold text-white">{t("hero.experience_label")}</p>
         </div>
 
         <!-- Tarjeta de rating flotante -->
@@ -112,7 +114,7 @@ import { API_BASE } from "../lib/config";
           <div class="flex items-center gap-4">
             <div>
               <p id="hero-rating-value" class="font-body text-white text-2xl font-bold leading-none">4.5</p>
-              <p class="font-body text-xs mt-0.5" style="color: var(--text-muted);">Valoración clientes</p>
+              <p class="font-body text-xs mt-0.5" style="color: var(--text-muted);">{t("hero.rating_label")}</p>
             </div>
             <!-- Avatares apilados -->
             <div id="hero-avatars" class="flex -space-x-2">

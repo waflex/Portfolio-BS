@@ -4,17 +4,22 @@ import CookieConsent from "../components/CookieConsent.astro";
 interface Props {
   title: string;
   description?: string;
+  lang?: string;
 }
 const {
   title,
   description = "Portafolio profesional de Jonathan Rojas, Ingeniero Informático y Desarrollador Full Stack. Especializado en JavaScript, React y soluciones tecnológicas.",
+  lang = "es",
 } = Astro.props;
 
 import "../styles/global.css";
+
+const canonicalUrl = lang === "es" ? "https://jrtdev.cl" : `https://jrtdev.cl/${lang}/`;
+const ogUrl = canonicalUrl;
 ---
 
 <!doctype html>
-<html lang="es" data-theme="dark-portfolio" class="h-full">
+<html lang={lang} data-theme="dark-portfolio" class="h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,11 +30,16 @@ import "../styles/global.css";
     />
     <meta name="author" content="Jonathan Rojas" />
 
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="es" href="https://jrtdev.cl/" />
+    <link rel="alternate" hreflang="en" href="https://jrtdev.cl/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://jrtdev.cl/" />
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/assets/img/Favicon.svg" />
-    <meta property="og:url" content="https://jrtdev.cl" />
+    <meta property="og:url" content={ogUrl} />
     <meta property="og:type" content="website" />
 
     <!-- Twitter -->
@@ -38,7 +48,7 @@ import "../styles/global.css";
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/assets/img/Favicon.svg" />
 
-    <link rel="canonical" href="https://jrtdev.cl" />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/Favicon.svg?v=2" />
 
     <title>{title}</title>
@@ -127,6 +137,6 @@ import "../styles/global.css";
       });
     </script>
 
-    <CookieConsent />
+    <CookieConsent lang={lang} />
   </body>
 </html>

@@ -40,6 +40,7 @@ class Project(Base):
     __tablename__ = "projects"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    lang = Column(String(5), nullable=False, default="es")
     title = Column(String(120), nullable=False)
     description = Column(Text, nullable=False)
     image = Column(String(500), nullable=True)
@@ -65,6 +66,7 @@ class WorkHistory(Base):
     __tablename__ = "work_history"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    lang = Column(String(5), nullable=False, default="es")
     title = Column(String(120), nullable=False)
     company = Column(String(120), nullable=False)
     period = Column(String(60), nullable=False)
@@ -90,6 +92,7 @@ class TeachingHistory(Base):
     __tablename__ = "teaching_history"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    lang = Column(String(5), nullable=False, default="es")
     title = Column(String(120), nullable=False)
     company = Column(String(120), nullable=False)
     period = Column(String(60), nullable=False)

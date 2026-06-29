@@ -1,12 +1,17 @@
 ---
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
+
 const navLinks = [
-  { label: "Home",        href: "/#home" },
-  { label: "Sobre mí",    href: "/#about" },
-  { label: "Proyectos",   href: "/#projects" },
-  { label: "Experiencia", href: "/#work" },
-  { label: "Docencia",    href: "/#teaching" },
-  { label: "Testimonios", href: "/testimonials/" },
-  { label: "Contacto",    href: "/#contact" },
+  { key: "home",        href: `/${lang !== "es" ? lang + "/" : ""}#home` },
+  { key: "about",       href: `/${lang !== "es" ? lang + "/" : ""}#about` },
+  { key: "projects",    href: `/${lang !== "es" ? lang + "/" : ""}#projects` },
+  { key: "experience",  href: `/${lang !== "es" ? lang + "/" : ""}#work` },
+  { key: "teaching",    href: `/${lang !== "es" ? lang + "/" : ""}#teaching` },
+  { key: "testimonials",href: `/${lang !== "es" ? lang + "/" : ""}testimonials/` },
+  { key: "contact",     href: `/${lang !== "es" ? lang + "/" : ""}#contact` },
 ];
 ---
 
@@ -43,14 +48,25 @@ const navLinks = [
                     : 'text-gray-400 hover:text-white'}`}
           style={i === 0 ? 'background: var(--accent);' : ''}
         >
-          {link.label}
+          {t("nav." + link.key)}
         </a>
       ))}
+      <!-- Language toggle -->
+      <a
+        href={lang === "es" ? "/en/" : "/"}
+        class="ml-2 w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold font-body
+               transition-all duration-200 hover:scale-110"
+        style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-icon); color: var(--text-gray);"
+        aria-label={t("site.lang_label")}
+        title={lang === "es" ? "English" : "Español"}
+      >
+        {lang === "es" ? "EN" : "ES"}
+      </a>
     </div>
 
     <!-- CTA -->
     <a
-      href="/assets/files/CVJRES.pdf"
+      href={lang === "es" ? "/assets/files/CVJRES.pdf" : "/assets/files/CVJREN.pdf"}
       download
       class="hidden md:flex items-center gap-2 px-5 py-2 rounded-full border-2 text-sm font-semibold font-body
              transition-all duration-200 hover:scale-105"
@@ -64,7 +80,7 @@ const navLinks = [
       >
         <i class="fas fa-download"></i>
       </div>
-      Descargar CV
+      {t("nav.download_cv")}
     </a>
 
     <!-- Hamburger mobile -->
@@ -92,16 +108,24 @@ const navLinks = [
                  transition-colors"
           style="border: 1px solid var(--border);"
         >
-          {link.label}
+          {t("nav." + link.key)}
         </a>
       ))}
+      <!-- Language toggle mobile -->
       <a
-        href="/assets/files/CVJRES.pdf"
+        href={lang === "es" ? "/en/" : "/"}
+        class="py-3 px-4 rounded-xl text-sm font-semibold font-body text-center"
+        style="background: rgba(255,255,255,0.06); border: 1px solid var(--border-icon); color: var(--text-gray);"
+      >
+        {lang === "es" ? "🌐 English" : "🌐 Español"}
+      </a>
+      <a
+        href={lang === "es" ? "/assets/files/CVJRES.pdf" : "/assets/files/CVJREN.pdf"}
         download
         class="py-3 px-4 rounded-xl text-sm font-semibold font-body text-center mt-2"
         style="background: var(--accent); color: #000;"
       >
-        Descargar CV
+        {t("nav.download_cv")}
       </a>
     </div>
   </div>

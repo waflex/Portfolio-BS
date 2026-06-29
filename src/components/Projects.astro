@@ -1,8 +1,13 @@
 ---
 import { projects as fallbackProjects } from '../data/projects';
 import { fetchFromAPI } from "../lib/api";
+import { useTranslation } from "../i18n";
 
-const projects = await fetchFromAPI("/api/projects", fallbackProjects);
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
+
+const apiEndpoint = "/api/projects" + (lang !== "es" ? "?lang=" + lang : "");
+const projects = await fetchFromAPI(apiEndpoint, fallbackProjects);
 ---
 
 <section id="projects" class="py-24" style="background-color: #0a0a0a;">
@@ -10,13 +15,13 @@ const projects = await fetchFromAPI("/api/projects", fallbackProjects);
 
     <!-- Header -->
     <div class="text-center mb-16 animate-fade-up">
-      <p class="section-label mb-3">PORTAFOLIO</p>
+      <p class="section-label mb-3">{t("projects.label")}</p>
       <div class="divider-accent mx-auto mb-5"></div>
       <h2 class="section-title text-3xl lg:text-4xl">
-        Mis <span style="color: var(--accent);">Proyectos</span>
+        {t("projects.title")}
       </h2>
       <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
-        Soluciones reales desarrolladas para clientes y proyectos personales.
+        {t("projects.description")}
       </p>
     </div>
 
@@ -60,12 +65,12 @@ const projects = await fetchFromAPI("/api/projects", fallbackProjects);
             <div class="flex gap-3 mt-auto">
               <a href={project.github} target="_blank" rel="noopener noreferrer" class="proj-btn-ghost flex-1">
                 <i class="fab fa-github"></i>
-                <span>GitHub</span>
+                <span>{t("projects.github_btn")}</span>
               </a>
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noopener noreferrer" class="proj-btn-accent flex-1">
                   <i class="fas fa-external-link-alt"></i>
-                  <span>Demo</span>
+                  <span>{t("projects.demo_btn")}</span>
                 </a>
               )}
             </div>
@@ -77,7 +82,7 @@ const projects = await fetchFromAPI("/api/projects", fallbackProjects);
     <div class="text-center mt-12">
       <a href="https://github.com/waflex" target="_blank" rel="noopener noreferrer" class="btn-outline-pill">
         <i class="fab fa-github" style="color: var(--accent);"></i>
-        Ver más en GitHub
+        {t("projects.see_more")}
       </a>
     </div>
   </div>

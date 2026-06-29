@@ -1,6 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import heroImg from "../assets/img/Jonathan-Rojas.avif";
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
 
 const skills = [
   "JavaScript & TypeScript",
@@ -51,7 +55,7 @@ const skills = [
           "
         >
           <p class="font-display text-4xl leading-none" style="color: var(--accent);">4+</p>
-          <p class="font-body text-xs mt-1 text-white font-medium">Años de Experiencia</p>
+          <p class="font-body text-xs mt-1 text-white font-medium">{t("about.years_badge")}</p>
         </div>
 
         <!-- Badge docencia -->
@@ -62,7 +66,7 @@ const skills = [
             border: 1px solid var(--border);
           "
         >
-          <p class="font-body text-xs" style="color: var(--text-muted);">Docente en</p>
+          <p class="font-body text-xs" style="color: var(--text-muted);">{t("about.teacher_badge")}</p>
           <p class="font-body text-sm font-bold text-white">AIEP · IPCHILE</p>
         </div>
       </div>
@@ -71,27 +75,20 @@ const skills = [
       <div class="lg:col-span-7 animate-fade-up stagger-2">
 
         <!-- Label -->
-        <p class="section-label mb-3">Sobre mí</p>
+        <p class="section-label mb-3">{t("about.label")}</p>
         <div class="divider-accent mb-5"></div>
 
         <!-- Título -->
         <h2 class="section-title text-3xl lg:text-4xl mb-5">
-          Ingeniero Informático,<br>
-          <span style="color: var(--accent);">Desarrollador</span> & Docente
+          {t("about.title_line1")}<br>
+          <span style="color: var(--accent);">{t("about.title_line2")}</span> {t("about.title_line3")}
         </h2>
 
         <!-- Descripción -->
         <p class="font-body text-gray-400 text-base leading-relaxed mb-4">
-          Soy un ingeniero en informática con más de 4 años de experiencia en desarrollo
-          de soluciones tecnológicas personalizadas, enfocadas en la automatización de
-          procesos y la mejora de la eficiencia operacional.
+          {t("about.p1")}
         </p>
-        <p class="font-body text-gray-400 text-base leading-relaxed mb-8">
-          Actualmente soy docente en <strong class="text-white">AIEP</strong> e
-          <strong class="text-white">IPCHILE</strong>, y como desarrollador Full Stack
-          freelance me especializo en <strong class="text-white">JavaScript</strong> y
-          <strong class="text-white">REST APIs</strong>, creando aplicaciones robustas
-          para distintos sectores.
+        <p class="font-body text-gray-400 text-base leading-relaxed mb-8" set:html={t("about.p2")}>
         </p>
 
         <!-- Skills grid -->
@@ -108,8 +105,8 @@ const skills = [
 
         <!-- CTAs -->
         <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="btn-accent-pill">
-            <span>Trabajemos juntos</span>
+          <a href={lang !== "es" ? `/${lang}/#contact` : "#contact"} class="btn-accent-pill">
+            <span>{t("about.cta_work")}</span>
             <div
               class="w-7 h-7 rounded-full flex items-center justify-center"
               style="background: rgba(0,0,0,0.3);"
@@ -118,12 +115,12 @@ const skills = [
             </div>
           </a>
           <a
-            href="/assets/files/CVJRES.pdf"
+            href={lang === "es" ? "/assets/files/CVJRES.pdf" : "/assets/files/CVJREN.pdf"}
             download
             class="btn-outline-pill"
           >
             <i class="fas fa-file-download text-xs" style="color: var(--accent);"></i>
-            Descargar CV
+            {t("about.download_cv")}
           </a>
         </div>
       </div>

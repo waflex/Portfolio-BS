@@ -1,10 +1,15 @@
 ---
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
+
 const stats = [
-  { icon: "fas fa-users",       number: "20+",  label: "Clientes Atendidos" },
-  { icon: "fas fa-code-branch", number: "4+",   label: "Años Desarrollando" },
-  { icon: "fas fa-laptop-code", number: "15+",  label: "Proyectos Entregados" },
-  { icon: "fas fa-chalkboard",  number: "100+", label: "Estudiantes Formados" },
-  { icon: "fas fa-star",        number: "4.5",  label: "Valoración Promedio" },
+  { icon: "fas fa-users",       number: "20+",  key: "clients" },
+  { icon: "fas fa-code-branch", number: "4+",   key: "years" },
+  { icon: "fas fa-laptop-code", number: "15+",  key: "projects" },
+  { icon: "fas fa-chalkboard",  number: "100+", key: "students" },
+  { icon: "fas fa-star",        number: "4.5",  key: "rating" },
 ];
 ---
 
@@ -25,7 +30,7 @@ const stats = [
                 {stat.number}
               </p>
               <p class="font-body text-xs mt-0.5" style="color: var(--text-muted);">
-                {stat.label}
+                {t("stats." + stat.key)}
               </p>
             </div>
           </div>

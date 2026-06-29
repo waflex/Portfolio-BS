@@ -57,6 +57,7 @@ class TechnologyItem(BaseModel):
 
 
 class ProjectCreate(BaseModel):
+    lang: str = Field(default="es", pattern=r"^(es|en)$")
     title: str = Field(..., min_length=1, max_length=120)
     description: str = Field(..., min_length=1)
     image: str | None = Field(None, max_length=500)
@@ -68,6 +69,7 @@ class ProjectCreate(BaseModel):
 
 
 class ProjectUpdate(BaseModel):
+    lang: str | None = Field(None, pattern=r"^(es|en)$")
     title: str | None = Field(None, min_length=1, max_length=120)
     description: str | None = Field(None, min_length=1)
     image: str | None = Field(None, max_length=500)
@@ -80,6 +82,7 @@ class ProjectUpdate(BaseModel):
 
 class ProjectOut(BaseModel):
     id: UUID
+    lang: str
     title: str
     description: str
     image: str | None
@@ -97,6 +100,7 @@ class ProjectOut(BaseModel):
 # ── Experiencia laboral ──────────────────────────────────────────────────────
 
 class WorkHistoryCreate(BaseModel):
+    lang: str = Field(default="es", pattern=r"^(es|en)$")
     title: str = Field(..., min_length=1, max_length=120)
     company: str = Field(..., min_length=1, max_length=120)
     period: str = Field(..., max_length=60)
@@ -108,6 +112,7 @@ class WorkHistoryCreate(BaseModel):
 
 
 class WorkHistoryUpdate(BaseModel):
+    lang: str | None = Field(None, pattern=r"^(es|en)$")
     title: str | None = Field(None, min_length=1, max_length=120)
     company: str | None = Field(None, min_length=1, max_length=120)
     period: str | None = Field(None, max_length=60)
@@ -120,6 +125,7 @@ class WorkHistoryUpdate(BaseModel):
 
 class WorkHistoryOut(BaseModel):
     id: UUID
+    lang: str
     title: str
     company: str
     period: str
@@ -137,6 +143,7 @@ class WorkHistoryOut(BaseModel):
 # ── Docencia & Consultoría ───────────────────────────────────────────────────
 
 class TeachingHistoryCreate(BaseModel):
+    lang: str = Field(default="es", pattern=r"^(es|en)$")
     title: str = Field(..., min_length=1, max_length=120)
     company: str = Field(..., min_length=1, max_length=120)
     period: str = Field(..., max_length=60)
@@ -148,6 +155,7 @@ class TeachingHistoryCreate(BaseModel):
 
 
 class TeachingHistoryUpdate(BaseModel):
+    lang: str | None = Field(None, pattern=r"^(es|en)$")
     title: str | None = Field(None, min_length=1, max_length=120)
     company: str | None = Field(None, min_length=1, max_length=120)
     period: str | None = Field(None, max_length=60)
@@ -160,6 +168,7 @@ class TeachingHistoryUpdate(BaseModel):
 
 class TeachingHistoryOut(BaseModel):
     id: UUID
+    lang: str
     title: str
     company: str
     period: str

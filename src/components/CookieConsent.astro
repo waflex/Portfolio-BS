@@ -1,10 +1,17 @@
+---
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
+---
+
 <!--
   CookieConsent — Consentimiento de datos (Ley Chile 19.628 / 21.719)
   - No carga Google Analytics hasta que el usuario acepta explícitamente.
   - Guarda preferencia en localStorage.
   - Provee botón flotante para cambiar preferencia después.
 -->
-<div id="cookie-consent" aria-live="polite">
+<div id="cookie-consent" aria-live="polite" data-lang={lang}>
   <!-- Banner principal -->
   <div
     id="cookie-banner"
@@ -18,15 +25,9 @@
       <div class="flex flex-col sm:flex-row items-start gap-4">
         <div class="flex-1 min-w-0">
           <p class="font-body text-sm font-semibold text-white mb-1">
-            🍪 Uso de datos
+            {t("cookie.title")}
           </p>
-          <p class="font-body text-xs leading-relaxed" style="color: var(--text-muted);">
-            Este sitio utiliza <strong>Google Analytics</strong> para obtener estadísticas
-            anónimas de navegación (páginas visitadas, duración, origen del tráfico).
-            No recopilamos ni almacenamos datos personales sin tu consentimiento.
-            <br class="hidden sm:block" />
-            Al hacer clic en <strong>"Aceptar"</strong> autorizas el uso de estas
-            herramientas. Puedes cambiar tu decisión en cualquier momento.
+          <p class="font-body text-xs leading-relaxed" style="color: var(--text-muted);" set:html={t("cookie.description")}>
           </p>
         </div>
         <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto">
@@ -36,7 +37,7 @@
                    transition-all duration-200 hover:scale-105"
             style="background: var(--accent); color: #000;"
           >
-            Aceptar
+            {t("cookie.accept")}
           </button>
           <button
             id="cookie-reject"
@@ -44,7 +45,7 @@
                    transition-all duration-200 hover:scale-105"
             style="background: transparent; color: var(--text-gray); border: 1px solid var(--border-icon);"
           >
-            Rechazar
+            {t("cookie.reject")}
           </button>
         </div>
       </div>
@@ -57,8 +58,8 @@
     class="fixed bottom-4 left-4 z-50 hidden w-10 h-10 rounded-full
            flex items-center justify-center text-sm transition-all duration-200 hover:scale-110"
     style="background: rgba(15,15,15,0.9); border: 1px solid var(--border-icon); color: var(--text-muted);"
-    aria-label="Preferencias de cookies"
-    title="Cambiar preferencia de datos"
+    aria-label={t("cookie.settings_title")}
+    title={t("cookie.settings_title")}
   >
     🍪
   </button>

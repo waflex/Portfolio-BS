@@ -1,8 +1,13 @@
 ---
 import { teachingHistory as fallbackTeaching } from '../data/workHistory';
 import { fetchFromAPI } from "../lib/api";
+import { useTranslation } from "../i18n";
 
-const teachingHistory = await fetchFromAPI("/api/teaching", fallbackTeaching);
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
+
+const apiEndpoint = "/api/teaching" + (lang !== "es" ? "?lang=" + lang : "");
+const teachingHistory = await fetchFromAPI(apiEndpoint, fallbackTeaching);
 ---
 
 <section id="teaching" class="py-24" style="background-color: #0a0a0a;">
@@ -10,14 +15,13 @@ const teachingHistory = await fetchFromAPI("/api/teaching", fallbackTeaching);
 
     <!-- Header -->
     <div class="text-center mb-16 animate-fade-up">
-      <p class="section-label mb-3">FORMACIÓN & CONSULTORÍA</p>
+      <p class="section-label mb-3">{t("teaching.label")}</p>
       <div class="divider-accent mx-auto mb-5"></div>
       <h2 class="section-title text-3xl lg:text-4xl">
-        Docencia &amp; <span style="color: var(--accent);">Consultoría</span>
+        {t("teaching.title")}
       </h2>
       <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
-        Formando a la próxima generación de desarrolladores y apoyando
-        organizaciones con soluciones tecnológicas.
+        {t("teaching.description")}
       </p>
     </div>
 
@@ -57,7 +61,7 @@ const teachingHistory = await fetchFromAPI("/api/teaching", fallbackTeaching);
           <!-- Actividades -->
           <div class="mb-6 flex-grow">
             <p class="font-body text-xs font-semibold uppercase tracking-wider mb-3 text-white">
-              Actividades principales
+              {t("teaching.activities_title")}
             </p>
             <ul class="space-y-2">
               {job.activities.map(act => (

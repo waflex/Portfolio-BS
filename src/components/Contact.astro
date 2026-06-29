@@ -1,28 +1,32 @@
 ---
 import { API_BASE } from "../lib/config";
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
 
 const contactInfo = [
   {
     icon: "fa-solid fa-at",
-    label: "Correo",
+    labelKey: "email_label",
     value: "contacto@jrtdev.cl",
     href: "mailto:contacto@jrtdev.cl",
   },
   {
     icon: "fa-brands fa-whatsapp",
-    label: "WhatsApp",
+    labelKey: "",
     value: "+56 9 3074 4391",
     href: "https://wa.me/56930744391?text=Hola%20quisiera%20consultar%20por%20desarrollo%20web",
   },
   {
     icon: "fa-brands fa-linkedin",
-    label: "LinkedIn",
+    labelKey: "",
     value: "Jonathan Rojas",
     href: "https://www.linkedin.com/in/jonathan-rojas-532b9a146/",
   },
   {
     icon: "fa-brands fa-github",
-    label: "GitHub",
+    labelKey: "",
     value: "waflex",
     href: "https://github.com/waflex",
   },
@@ -34,13 +38,13 @@ const contactInfo = [
 
     <!-- Header -->
     <div class="text-center mb-16 animate-fade-up">
-      <p class="section-label mb-3">HABLEMOS</p>
+      <p class="section-label mb-3">{t("contact.label")}</p>
       <div class="divider-accent mx-auto mb-5"></div>
       <h2 class="section-title text-3xl lg:text-4xl">
-        Toma <span style="color: var(--accent);">Contacto</span>
+        {t("contact.title")}
       </h2>
       <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
-        ¿Tienes un proyecto en mente? Conversemos y encontremos la mejor solución juntos.
+        {t("contact.description")}
       </p>
     </div>
 
@@ -49,7 +53,7 @@ const contactInfo = [
       <!-- ── Datos de contacto ──────────────────── -->
       <div class="card-glass p-8 flex flex-col animate-fade-up">
         <h3 class="font-body font-bold text-white text-xl mb-6">
-          Información de Contacto
+          {t("contact.info_title")}
         </h3>
 
         <ul class="space-y-5 mb-8 flex-grow">
@@ -73,7 +77,7 @@ const contactInfo = [
                 </div>
                 <div>
                   <p class="font-body text-xs font-medium mb-0.5" style="color: var(--text-muted);">
-                    {item.label}
+                    {item.labelKey ? t("contact." + item.labelKey) : item.value}
                   </p>
                   <p
                     class="font-body text-sm font-semibold text-white transition-colors group-hover:text-accent"
@@ -99,7 +103,7 @@ const contactInfo = [
             class="btn-accent-pill flex-1 justify-center"
           >
             <i class="fas fa-file-download"></i>
-            CV en Español
+            {t("contact.cv_es")}
           </a>
           <a
             href="/assets/files/CVJREN.pdf"
@@ -107,7 +111,7 @@ const contactInfo = [
             class="btn-outline-pill flex-1 justify-center"
           >
             <i class="fas fa-file-download text-xs" style="color: var(--accent);"></i>
-            CV in English
+            {t("contact.cv_en")}
           </a>
         </div>
       </div>
@@ -115,65 +119,66 @@ const contactInfo = [
       <!-- ── Formulario ─────────────────────────── -->
       <div class="card-glass p-8 animate-fade-up stagger-2">
         <h3 class="font-body font-bold text-white text-xl mb-6">
-          Envíame un Mensaje
+          {t("contact.form_title")}
         </h3>
 
         <form
           class="space-y-5"
           id="contactForm"
           data-api={API_BASE}
+          data-lang={lang}
         >
           <div>
             <label for="contact-name" class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
-              Nombre completo
+              {t("contact.name_label")}
             </label>
             <input
               type="text"
               id="contact-name"
               name="name"
               required
-              placeholder="Tu nombre"
+              placeholder={t("contact.name_placeholder")}
               class="form-input"
             />
           </div>
 
           <div>
             <label for="contact-email" class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
-              Correo electrónico
+              {t("contact.email_label2")}
             </label>
             <input
               type="email"
               id="contact-email"
               name="email"
               required
-              placeholder="tu@correo.com"
+              placeholder={t("contact.email_placeholder")}
               class="form-input"
             />
           </div>
 
           <div>
             <label for="contact-subject" class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
-              Asunto
+              {t("contact.subject_label")}
             </label>
             <input
               type="text"
               id="contact-subject"
               name="subject"
-              placeholder="En qué puedo ayudarte?"
+              placeholder={t("contact.subject_placeholder")}
               class="form-input"
             />
           </div>
 
           <div>
             <label for="contact-message" class="font-body text-xs font-medium mb-2 block" style="color: var(--text-muted);">
-              Mensaje
+              {t("contact.message_label")}
             </label>
             <textarea
               id="contact-message"
               name="message"
               required
               rows="5"
-              placeholder="Cuéntame sobre tu proyecto..."
+              placeholder={t("contact.message_placeholder")}
               class="form-input resize-none"
             ></textarea>
           </div>
@@ -185,14 +190,14 @@ const contactInfo = [
               class="font-body text-sm text-center py-3 rounded-xl hidden"
               style="background: rgba(0,229,160,0.12); color: var(--accent); border: 1px solid rgba(0,229,160,0.3);"
             >
-              ✓ Mensaje enviado con éxito. ¡Te responderé pronto!
+              {t("contact.success_text")}
             </p>
             <p
               id="form-error"
               class="font-body text-sm text-center py-3 rounded-xl hidden"
               style="background: rgba(255,45,85,0.12); color: #ff2d55; border: 1px solid rgba(255,45,85,0.3);"
             >
-              ✗ Hubo un error. Por favor intenta nuevamente.
+              {t("contact.error_text")}
             </p>
           </div>
 
@@ -202,7 +207,7 @@ const contactInfo = [
             class="btn-accent-pill w-full justify-center"
           >
             <i class="fas fa-paper-plane"></i>
-            <span>Enviar Mensaje</span>
+            <span>{t("contact.submit_text")}</span>
           </button>
         </form>
       </div>
@@ -213,16 +218,24 @@ const contactInfo = [
 <script>
   const form = document.getElementById('contactForm');
   const apiBase = form?.dataset.api || '';
+  const lang = form?.dataset.lang || 'es';
   const submitBtn = document.getElementById('submit-btn');
   const formStatus = document.getElementById('form-status');
   const formSuccess = document.getElementById('form-success');
   const formError = document.getElementById('form-error');
 
+  // Mensajes según idioma
+  const msg = {
+    es: { sending: 'Enviando...', sent: '<i class="fas fa-paper-plane"></i><span>Enviar Mensaje</span>' },
+    en: { sending: 'Sending...', sent: '<i class="fas fa-paper-plane"></i><span>Send Message</span>' },
+  };
+  const m = msg[lang] || msg.es;
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!submitBtn) return;
 
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Enviando...</span>';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>' + m.sending + '</span>';
     submitBtn.disabled = true;
 
     const payload = {
@@ -253,7 +266,7 @@ const contactInfo = [
       formSuccess?.classList.add('hidden');
     }
 
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span>Enviar Mensaje</span>';
+    submitBtn.innerHTML = m.sent;
     submitBtn.disabled = false;
   });
 </script>

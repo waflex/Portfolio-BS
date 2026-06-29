@@ -9,5 +9,5 @@
  * Uso cliente:  import { API_BASE } from "../../lib/config";
  * Uso servidor: import { SERVER_API } from "../../lib/config";
  */
-export const API_BASE = import.meta.env.PUBLIC_API_BASE || "";
+export const API_BASE = "";
 export const SERVER_API = "http://localhost:8000";

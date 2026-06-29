@@ -1,18 +1,22 @@
 ---
 import { API_BASE } from "../lib/config";
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
 ---
 
-<section id="testimonials" class="py-24" style="background: var(--bg-dark);" data-api={API_BASE}>
+<section id="testimonials" class="py-24" style="background: var(--bg-dark);" data-api={API_BASE} data-lang={lang}>
   <div class="container mx-auto px-6 lg:px-10">
     <!-- Header -->
     <div class="text-center mb-16 animate-fade-up">
-      <p class="section-label mb-3">TESTIMONIOS</p>
+      <p class="section-label mb-3">{t("testimonials.label")}</p>
       <div class="divider-accent mx-auto mb-5"></div>
       <h2 class="section-title text-3xl lg:text-4xl">
-        Lo que dicen <span style="color: var(--accent);">mis clientes</span>
+        {t("testimonials.title")}
       </h2>
       <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
-        Personas y empresas con las que he trabajado comparten su experiencia.
+        {t("testimonials.description")}
       </p>
     </div>
 
@@ -21,24 +25,33 @@ import { API_BASE } from "../lib/config";
       <div class="col-span-full flex items-center justify-center">
         <div class="flex items-center gap-3 font-body text-sm" style="color: var(--text-muted);">
           <i class="fas fa-spinner fa-spin"></i>
-          <span>Cargando testimonios...</span>
+          <span>{t("testimonials.loading")}</span>
         </div>
       </div>
     </div>
 
     <!-- CTA -->
     <div class="text-center mt-12 animate-fade-up">
-      <a href="/testimonials/" class="btn-outline-pill">
+      <a href={lang === "es" ? "/testimonials/" : `/${lang}/testimonials/`} class="btn-outline-pill">
         <i class="fas fa-comment-dots" style="color: var(--accent);"></i>
-        Deja tu testimonio
+        {t("testimonials.cta")}
       </a>
     </div>
   </div>
 </section>
 
 <script>
-  const API_BASE = document.getElementById("testimonials").dataset.api;
+  const section = document.getElementById("testimonials");
+  const API_BASE = section.dataset.api;
+  const lang = section.dataset.lang || "es";
   const grid = document.getElementById("testimonials-grid");
+
+  // Mini función t para JS cliente
+  const messages = {
+    es: { empty: "Aún no hay testimonios. ¡Sé el primero en dejar uno!", error: "No se pudieron cargar los testimonios." },
+    en: { empty: "No testimonials yet. Be the first to leave one!", error: "Could not load testimonials." }
+  };
+  const m = messages[lang] || messages.es;
 
   async function loadTestimonials() {
     try {
@@ -50,7 +63,7 @@ import { API_BASE } from "../lib/config";
         grid.innerHTML = `
           <div class="col-span-full text-center py-12">
             <p class="font-body text-sm" style="color: var(--text-muted);">
-              Aún no hay testimonios. ¡Sé el primero en dejar uno!
+              ${m.empty}
             </p>
           </div>
         `;
@@ -85,7 +98,7 @@ import { API_BASE } from "../lib/config";
       grid.innerHTML = `
         <div class="col-span-full text-center py-12">
           <p class="font-body text-sm" style="color: var(--text-muted);">
-            No se pudieron cargar los testimonios.
+            ${m.error}
           </p>
         </div>
       `;

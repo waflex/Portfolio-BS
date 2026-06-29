@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { API_BASE } from "../../lib/config";
 ---
 
-<Layout title="Admin  Dashboard | JRTdev">
+<Layout title="Admin - Dashboard | JRTdev">
   <main class="min-h-screen pt-[70px]" style="background-color: #0a0a0a;">
     <div class="container mx-auto px-6 lg:px-10 py-12">
       <div id="app" data-api={API_BASE}>
@@ -55,7 +55,7 @@ import { API_BASE } from "../../lib/config";
             </div>
             <div class="card-glass overflow-hidden mb-8">
               <div class="overflow-x-auto">
-                <table class="w-full text-left">
+                <table class="w-full text-left admin-table">
                   <thead>
                     <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Fecha</th>
@@ -87,7 +87,7 @@ import { API_BASE } from "../../lib/config";
             </div>
             <div class="card-glass overflow-hidden">
               <div class="overflow-x-auto">
-                <table class="w-full text-left">
+                <table class="w-full text-left admin-table">
                   <thead>
                     <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
@@ -115,7 +115,7 @@ import { API_BASE } from "../../lib/config";
             </div>
             <div class="card-glass overflow-hidden">
               <div class="overflow-x-auto">
-                <table class="w-full text-left">
+                <table class="w-full text-left admin-table">
                   <thead>
                     <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
@@ -143,7 +143,7 @@ import { API_BASE } from "../../lib/config";
             </div>
             <div class="card-glass overflow-hidden">
               <div class="overflow-x-auto">
-                <table class="w-full text-left">
+                <table class="w-full text-left admin-table">
                   <thead>
                     <tr style="border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03);">
                       <th class="px-4 py-3 font-body text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted);">Orden</th>
@@ -187,6 +187,7 @@ import { API_BASE } from "../../lib/config";
 </Layout>
 
 <style>
+  /* ── Tabs ───────────────────────────────── */
   .tab-btn {
     padding: 10px 20px; font-family: Poppins, sans-serif; font-size: 14px; font-weight: 500;
     cursor: pointer; border: none; border-bottom: 2px solid transparent;
@@ -194,6 +195,8 @@ import { API_BASE } from "../../lib/config";
   }
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
   .tab-btn:hover { color: var(--accent); }
+
+  /* ── Filter buttons ─────────────────────── */
   .filter-btn {
     padding: 8px 20px; border-radius: 9999px; font-family: Poppins, sans-serif;
     font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s;
@@ -201,6 +204,43 @@ import { API_BASE } from "../../lib/config";
   }
   .filter-btn.active { background: var(--accent); color: #000; border: none; font-weight: 600; }
   .filter-btn:hover { opacity: 0.8; }
+
+  /* ── Admin actions (edit / delete) ──────── */
+  .admin-btn {
+    font-family: Poppins, sans-serif; font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 9999px; cursor: pointer; transition: all 0.2s ease;
+    border: 1px solid transparent; display: inline-flex; align-items: center; gap: 6px;
+    line-height: 1; user-select: none;
+  }
+  .admin-btn:active { transform: scale(0.95); }
+  .admin-btn-edit { background: rgba(96,165,250,0.12); color: #93bbfc; border-color: rgba(96,165,250,0.2); }
+  .admin-btn-edit:hover { background: rgba(96,165,250,0.22); }
+  .admin-btn-delete { background: rgba(248,113,113,0.12); color: #fca5a5; border-color: rgba(248,113,113,0.2); }
+  .admin-btn-delete:hover { background: rgba(248,113,113,0.22); }
+  .admin-btn-approve { background: rgba(0,229,160,0.12); color: #34d399; border-color: rgba(0,229,160,0.2); }
+  .admin-btn-approve:hover { background: rgba(0,229,160,0.22); }
+  .admin-btn-reject { background: rgba(248,113,113,0.12); color: #fca5a5; border-color: rgba(248,113,113,0.2); }
+  .admin-btn-reject:hover { background: rgba(248,113,113,0.22); }
+  .admin-btn-feature { background: rgba(251,191,36,0.12); color: #fcd34d; border-color: rgba(251,191,36,0.2); }
+  .admin-btn-feature:hover { background: rgba(251,191,36,0.22); }
+  .admin-btn-recover { background: rgba(96,165,250,0.12); color: #93bbfc; border-color: rgba(96,165,250,0.2); }
+  .admin-btn-recover:hover { background: rgba(96,165,250,0.22); }
+  .admin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  /* ── Toggle active/inactive ─────────────── */
+  .toggle-chip {
+    font-family: Poppins, sans-serif; font-size: 12px; font-weight: 500;
+    padding: 4px 14px; border-radius: 9999px; cursor: pointer; transition: all 0.2s ease;
+    display: inline-flex; align-items: center; gap: 6px; user-select: none; line-height: 1;
+  }
+  .toggle-chip:active { transform: scale(0.95); }
+  .toggle-chip-active { background: rgba(0,229,160,0.12); color: #34d399; border: 1px solid rgba(0,229,160,0.2); }
+  .toggle-chip-active:hover { background: rgba(248,113,113,0.12); color: #fca5a5; border-color: rgba(248,113,113,0.2); }
+  .toggle-chip-inactive { background: rgba(248,113,113,0.12); color: #fca5a5; border: 1px solid rgba(248,113,113,0.2); }
+  .toggle-chip-inactive:hover { background: rgba(0,229,160,0.12); color: #34d399; border-color: rgba(0,229,160,0.2); }
+
+  /* ── Table row hover ────────────────────── */
+  .admin-table tbody tr:hover { background: rgba(255,255,255,0.02); }
 </style>
 
 <script is:inline>
@@ -222,7 +262,13 @@ import { API_BASE } from "../../lib/config";
     return res.status === 204 ? null : res.json();
   }
 
-  if (token) { loginView.classList.add('hidden'); dashboardView.classList.remove('hidden'); loadTab('testimonials'); }
+  function showTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+    document.getElementById('tab-' + tab).style.display = 'block';
+    state.currentTab = tab;
+  }
+
+  if (token) { loginView.classList.add('hidden'); dashboardView.classList.remove('hidden'); showTab('testimonials'); loadTab('testimonials'); }
 
   loginForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -232,7 +278,7 @@ import { API_BASE } from "../../lib/config";
       const r = await fetch(API + '/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw }) });
       if (r.ok) {
         token = (await r.json()).token; localStorage.setItem('jrtdev_admin_token', token);
-        loginView.classList.add('hidden'); dashboardView.classList.remove('hidden'); loadTab('testimonials');
+        loginView.classList.add('hidden'); dashboardView.classList.remove('hidden'); showTab('testimonials'); loadTab('testimonials');
       } else { loginError.classList.remove('hidden'); }
     } catch { loginError.classList.remove('hidden'); loginError.textContent = 'Error de conexión.'; }
     loginBtn.innerHTML = '<i class=\"fas fa-lock\"></i> Entrar'; loginBtn.disabled = false;
@@ -249,9 +295,8 @@ import { API_BASE } from "../../lib/config";
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach((b) => { b.classList.remove('active'); });
       btn.classList.add('active');
-      document.querySelectorAll('.tab-content').forEach((c) => c.classList.add('hidden'));
-      const tab = btn.dataset.tab; state.currentTab = tab;
-      document.getElementById('tab-' + tab).classList.remove('hidden');
+      const tab = btn.dataset.tab;
+      showTab(tab);
       loadTab(tab);
     });
   });
@@ -299,13 +344,19 @@ import { API_BASE } from "../../lib/config";
   }
 
   function tActions(t) {
-    if (t.status === 'pending') return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\"><i class="fas fa-check"></i> Aprobar</button><button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"true\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\"><i class="fas fa-star"></i> Destacar</button><button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-times"></i> Rechazar</button>';
-    if (t.status === 'approved') return '<button data-action=\"reject\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-times"></i> Rechazar</button>';
-    return '<button data-action=\"approve\" data-id=\"' + t.id + '\" data-featured=\"false\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);cursor:pointer;\"><i class="fas fa-undo"></i> Recuperar</button><button data-action=\"delete\" data-id=\"' + t.id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-trash"></i> Eliminar</button>';
+    if (t.status === 'pending') return '<button data-action="approve" data-id="' + t.id + '" data-featured="false" class="admin-btn admin-btn-approve"><i class="fas fa-check"></i> Aprobar</button><button data-action="approve" data-id="' + t.id + '" data-featured="true" class="admin-btn admin-btn-feature"><i class="fas fa-star"></i> Destacar</button><button data-action="reject" data-id="' + t.id + '" class="admin-btn admin-btn-reject"><i class="fas fa-times"></i> Rechazar</button>';
+    if (t.status === 'approved') {
+      var featBtn = t.featured
+        ? '<button data-action="approve" data-id="' + t.id + '" data-featured="false" class="admin-btn admin-btn-feature"><i class="fas fa-star"></i> Quitar destacado</button>'
+        : '<button data-action="approve" data-id="' + t.id + '" data-featured="true" class="admin-btn admin-btn-feature"><i class="fas fa-star"></i> Destacar</button>';
+      return featBtn + '<button data-action="reject" data-id="' + t.id + '" class="admin-btn admin-btn-reject"><i class="fas fa-times"></i> Rechazar</button>';
+    }
+    return '<button data-action="approve" data-id="' + t.id + '" data-featured="false" class="admin-btn admin-btn-recover"><i class="fas fa-undo"></i> Recuperar</button><button data-action="delete" data-id="' + t.id + '" class="admin-btn admin-btn-delete"><i class="fas fa-trash"></i> Eliminar</button>';
   }
 
   async function doTAction(id, action, featured) {
     const btn = document.querySelector('[data-action=\"' + action + '\"][data-id=\"' + id + '\"]');
+    if (!btn) return;
     btn.innerHTML = '<i class=\"fas fa-spinner fa-spin\"></i>'; btn.disabled = true;
     try {
       if (action === 'approve') await api(API + '/api/admin/testimonials/' + id + '/approve', { method: 'PUT', body: JSON.stringify({ featured: featured }) });
@@ -313,7 +364,7 @@ import { API_BASE } from "../../lib/config";
       else if (action === 'delete') await api(API + '/api/admin/testimonials/' + id, { method: 'DELETE' });
       state.testimonials = []; await loadTestimonials();
     } catch { alert('Error'); }
-    btn.innerHTML = featured ? '<i class="fas fa-star"></i> Destacar' : '<i class="fas fa-check"></i> Aprobar'; btn.disabled = false;
+    try { btn.disabled = false; } catch(e) {}
   }
 
   // Filters
@@ -344,21 +395,22 @@ import { API_BASE } from "../../lib/config";
         {name:'title',label:'Título',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
         {name:'github',label:'URL GitHub',type:'url',req:true},{name:'demo',label:'URL Demo',type:'url'},
         {name:'image',label:'URL Imagen',type:'url'},{name:'technologies',label:'Tecnologías (JSON)',type:'json'},
+        {name:'lang',label:'Idioma',type:'select',options:[{value:'es',label:'Español'},{value:'en',label:'English'}]},
         {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
       ],
       row: function(item) {
         return '<tr style=\"border-bottom:1px solid var(--border);\">' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + (item.sort_order||0) + '</td>' +
-          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span></td>' +
-          '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + (item.technologies||[]).map(function(t){return t.name;}).join(', ') + '</td>' +
-          '<td class=\"px-4 py-3\">' + (item.github ? '<a href=\"' + esc(item.github) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Link</a>' : '<span style=\"color:var(--text-muted)\"></span>') + '</td>' +
-          '<td class=\"px-4 py-3\">' + (item.demo ? '<a href=\"' + esc(item.demo) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Demo</a>' : '<span style=\"color:var(--text-muted)\"></span>') + '</td>' +
+          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span>' +
+          ' <span class=\"font-body text-xs px-2 py-0.5 rounded-full\" style=\"background:' + (item.lang==='en'?'rgba(96,165,250,0.12);color:#93bbfc':'rgba(0,229,160,0.12);color:#34d399') + ';\">' + (item.lang||'es').toUpperCase() + '</span></td>' +
+          '<td class=\"px-4 py-3\">' + (item.github ? '<a href=\"' + esc(item.github) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Link</a>' : '<span class=\"font-body text-xs\" style=\"color:var(--text-muted);opacity:0.6;\"><i class="fas fa-times-circle" style="font-size:10px;"></i> No configurado</span>') + '</td>' +
+          '<td class=\"px-4 py-3\">' + (item.demo ? '<a href=\"' + esc(item.demo) + '\" target=\"_blank\" class=\"font-body text-xs\" style=\"color:var(--accent);\">Demo</a>' : '<span class=\"font-body text-xs\" style=\"color:var(--text-muted);opacity:0.6;\"><i class="fas fa-times-circle" style=\"font-size:10px;"></i> No configurado</span>') + '</td>' +
           '<td class=\"px-4 py-3\">' + toggleChip(item.active, 'projects', item.id) + '</td>' +
           '<td class=\"px-4 py-3\">' + actionBtns('projects', item.id) + '</td></tr>';
       },
-      defaults: function() { return {title:'',description:'',github:'',demo:'',image:'',technologies:[],sort_order:0,active:true}; },
+      defaults: function() { return {title:'',description:'',github:'',demo:'',image:'',technologies:[],lang:'es',sort_order:0,active:true}; },
       fromForm: function(d) {
-        var p = {title:d.title, description:d.description, github:d.github};
+        var p = {title:d.title, description:d.description, github:d.github, lang:d.lang||'es'};
         if (d.demo) p.demo = d.demo; if (d.image) p.image = d.image;
         if (d.technologies) { try { p.technologies = JSON.parse(d.technologies); } catch { p.technologies = []; } }
         p.sort_order = parseInt(d.sort_order) || 0; p.active = d.active === 'on';
@@ -371,21 +423,23 @@ import { API_BASE } from "../../lib/config";
         {name:'title',label:'Cargo',type:'text',req:true},{name:'company',label:'Empresa',type:'text',req:true},
         {name:'period',label:'Período (ej: 2020-2024)',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
         {name:'technologies',label:'Tecnologías (JSON)',type:'json'},{name:'achievements',label:'Logros (JSON)',type:'json'},
+        {name:'lang',label:'Idioma',type:'select',options:[{value:'es',label:'Español'},{value:'en',label:'English'}]},
         {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
       ],
       row: function(item) {
         return '<tr style=\"border-bottom:1px solid var(--border);\">' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + (item.sort_order||0) + '</td>' +
-          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span></td>' +
+          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span>' +
+          ' <span class=\"font-body text-xs px-2 py-0.5 rounded-full\" style=\"background:' + (item.lang==='en'?'rgba(96,165,250,0.12);color:#93bbfc':'rgba(0,229,160,0.12);color:#34d399') + ';\">' + (item.lang||'es').toUpperCase() + '</span></td>' +
           '<td class=\"px-4 py-3 font-body text-sm\" style=\"color:var(--text-gray);\">' + esc(item.company) + '</td>' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + esc(item.period) + '</td>' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + (item.achievements||[]).length + ' logros</td>' +
           '<td class=\"px-4 py-3\">' + toggleChip(item.active, 'work', item.id) + '</td>' +
           '<td class=\"px-4 py-3\">' + actionBtns('work', item.id) + '</td></tr>';
       },
-      defaults: function() { return {title:'',company:'',period:'',description:'',technologies:[],achievements:[],sort_order:0,active:true}; },
+      defaults: function() { return {title:'',company:'',period:'',description:'',technologies:[],achievements:[],lang:'es',sort_order:0,active:true}; },
       fromForm: function(d) {
-        var p = {title:d.title, company:d.company, period:d.period, description:d.description};
+        var p = {title:d.title, company:d.company, period:d.period, description:d.description, lang:d.lang||'es'};
         if (d.technologies) { try { p.technologies = JSON.parse(d.technologies); } catch { p.technologies = []; } }
         if (d.achievements) { try { p.achievements = JSON.parse(d.achievements); } catch { p.achievements = []; } }
         p.sort_order = parseInt(d.sort_order) || 0; p.active = d.active === 'on';
@@ -398,21 +452,23 @@ import { API_BASE } from "../../lib/config";
         {name:'title',label:'Rol',type:'text',req:true},{name:'company',label:'Institución',type:'text',req:true},
         {name:'period',label:'Período (ej: 2023-2024)',type:'text',req:true},{name:'description',label:'Descripción',type:'textarea',req:true},
         {name:'technologies',label:'Tecnologías (JSON)',type:'json'},{name:'activities',label:'Actividades (JSON)',type:'json'},
+        {name:'lang',label:'Idioma',type:'select',options:[{value:'es',label:'Español'},{value:'en',label:'English'}]},
         {name:'sort_order',label:'Orden',type:'number'},{name:'active',label:'Activo',type:'checkbox'}
       ],
       row: function(item) {
         return '<tr style=\"border-bottom:1px solid var(--border);\">' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + (item.sort_order||0) + '</td>' +
-          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span></td>' +
+          '<td class=\"px-4 py-3\"><span class=\"font-body text-sm text-white font-medium\">' + esc(item.title) + '</span>' +
+          ' <span class=\"font-body text-xs px-2 py-0.5 rounded-full\" style=\"background:' + (item.lang==='en'?'rgba(96,165,250,0.12);color:#93bbfc':'rgba(0,229,160,0.12);color:#34d399') + ';\">' + (item.lang||'es').toUpperCase() + '</span></td>' +
           '<td class=\"px-4 py-3 font-body text-sm\" style=\"color:var(--text-gray);\">' + esc(item.company) + '</td>' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-muted);\">' + esc(item.period) + '</td>' +
           '<td class=\"px-4 py-3 font-body text-xs\" style=\"color:var(--text-gray);\">' + (item.activities||[]).length + ' actividades</td>' +
           '<td class=\"px-4 py-3\">' + toggleChip(item.active, 'teaching', item.id) + '</td>' +
           '<td class=\"px-4 py-3\">' + actionBtns('teaching', item.id) + '</td></tr>';
       },
-      defaults: function() { return {title:'',company:'',period:'',description:'',technologies:[],activities:[],sort_order:0,active:true}; },
+      defaults: function() { return {title:'',company:'',period:'',description:'',technologies:[],activities:[],lang:'es',sort_order:0,active:true}; },
       fromForm: function(d) {
-        var p = {title:d.title, company:d.company, period:d.period, description:d.description};
+        var p = {title:d.title, company:d.company, period:d.period, description:d.description, lang:d.lang||'es'};
         if (d.technologies) { try { p.technologies = JSON.parse(d.technologies); } catch { p.technologies = []; } }
         if (d.activities) { try { p.activities = JSON.parse(d.activities); } catch { p.activities = []; } }
         p.sort_order = parseInt(d.sort_order) || 0; p.active = d.active === 'on';
@@ -459,12 +515,12 @@ import { API_BASE } from "../../lib/config";
   }
 
   function toggleChip(active, section, id) {
-    if (active) return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(0,229,160,0.12);color:var(--accent);border:1px solid rgba(0,229,160,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\"><i class="fas fa-check-circle" style="color:var(--accent);"></i> Activo</span>';
-    return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" style=\"cursor:pointer;background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);padding:3px 12px;border-radius:9999px;font-size:12px;font-family:Poppins,sans-serif;\"><i class="fas fa-times-circle" style="color:#ff2d55;"></i> Inactivo</span>';
+    if (active) return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"toggle-chip toggle-chip-active\"><i class="fas fa-check-circle"></i> Activo</span>';
+    return '<span data-toggle data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"toggle-chip toggle-chip-inactive\"><i class="fas fa-times-circle"></i> Inactivo</span>';
   }
 
   function actionBtns(section, id) {
-    return '<button data-edit data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,255,255,0.08);color:white;border:1px solid rgba(255,255,255,0.15);cursor:pointer;\"><i class="fas fa-edit"></i> Editar</button><button data-delete data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"font-body text-xs font-semibold px-3 py-1.5 rounded-full\" style=\"background:rgba(255,45,85,0.12);color:#ff2d55;border:1px solid rgba(255,45,85,0.25);cursor:pointer;\"><i class="fas fa-trash"></i> Eliminar</button>';
+    return '<div class=\"flex gap-2\"><button data-edit data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"admin-btn admin-btn-edit\"><i class="fas fa-edit"></i> Editar</button><button data-delete data-section=\"' + section + '\" data-id=\"' + id + '\" class=\"admin-btn admin-btn-delete\"><i class="fas fa-trash"></i> Eliminar</button></div>';
   }
 
   function esc(str) { if (!str) return ''; var d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
@@ -482,6 +538,10 @@ import { API_BASE } from "../../lib/config";
       var checked = f.type === 'checkbox' && val ? 'checked' : '';
       var req = f.req && f.type !== 'checkbox' ? 'required' : '';
       if (f.type === 'checkbox') return '<label class=\"flex items-center gap-3 font-body text-sm\" style=\"color:var(--text-gray);\"><input type=\"checkbox\" name=\"' + f.name + '\" ' + checked + ' style=\"width:18px;height:18px;accent-color:var(--accent);\" /> ' + f.label + '</label>';
+      if (f.type === 'select') {
+        var opts = (f.options||[]).map(function(o){var s=o.value===valStr?'selected':''; return '<option value=\"' + o.value + '\" ' + s + '>' + o.label + '</option>';}).join('');
+        return '<div><label class=\"block font-body text-xs font-medium mb-1\" style=\"color:var(--text-muted);\">' + f.label + '</label><select name=\"' + f.name + '\" class=\"form-input\">' + opts + '</select></div>';
+      }
       if (f.type === 'textarea' || f.type === 'json') {
         var cls = f.type === 'json' ? 'form-input font-mono text-xs' : 'form-input';
         return '<div><label class=\"block font-body text-xs font-medium mb-1\" style=\"color:var(--text-muted);\">' + f.label + '</label><textarea name=\"' + f.name + '\" ' + req + ' class=\"' + cls + '\" rows=\"3\" style=\"resize:vertical;\">' + esc(valStr) + '</textarea></div>';

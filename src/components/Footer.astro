@@ -1,4 +1,8 @@
 ---
+import { useTranslation } from "../i18n";
+
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
 const year = new Date().getFullYear();
 ---
 
@@ -18,13 +22,13 @@ const year = new Date().getFullYear();
           JR
         </div>
         <p class="font-body text-sm" style="color: var(--text-muted);">
-          © {year} <strong class="text-white">Jonathan Rojas</strong>. Todos los derechos reservados.
+          © {year} <strong class="text-white">Jonathan Rojas</strong>. {t("footer.rights")}
         </p>
       </div>
 
       <!-- Hecho con -->
       <p class="font-body text-xs" style="color: var(--text-muted);">
-        Hecho con <span style="color: var(--accent);">♥</span> usando
+        {t("footer.made_with")} <span style="color: var(--accent);">♥</span> {t("footer.using")}
         <a
           href="https://astro.build"
           target="_blank"

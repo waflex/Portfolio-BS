@@ -1,8 +1,13 @@
 ---
 import { workHistory as fallbackWork } from '../data/workHistory';
 import { fetchFromAPI } from "../lib/api";
+import { useTranslation } from "../i18n";
 
-const workHistory = await fetchFromAPI("/api/work-history", fallbackWork);
+const { lang = "es" } = Astro.props;
+const t = useTranslation(lang);
+
+const apiEndpoint = "/api/work-history" + (lang !== "es" ? "?lang=" + lang : "");
+const workHistory = await fetchFromAPI(apiEndpoint, fallbackWork);
 ---
 
 <section id="work" class="py-24" style="background: var(--bg-dark);">
@@ -10,13 +15,13 @@ const workHistory = await fetchFromAPI("/api/work-history", fallbackWork);
 
     <!-- Header -->
     <div class="text-center mb-16 animate-fade-up">
-      <p class="section-label mb-3">TRAYECTORIA</p>
+      <p class="section-label mb-3">{t("work.label")}</p>
       <div class="divider-accent mx-auto mb-5"></div>
       <h2 class="section-title text-3xl lg:text-4xl">
-        Experiencia <span style="color: var(--accent);">Laboral</span>
+        {t("work.title")}
       </h2>
       <p class="font-body text-gray-400 text-base mt-3 max-w-xl mx-auto">
-        Más de 8 años construyendo soluciones tecnológicas en distintos entornos.
+        {t("work.description")}
       </p>
     </div>
 
@@ -53,7 +58,7 @@ const workHistory = await fetchFromAPI("/api/work-history", fallbackWork);
           <!-- Logros -->
           <div class="mb-6 flex-grow">
             <p class="font-body text-xs font-semibold uppercase tracking-wider mb-3 text-white">
-              Logros clave
+              {t("work.achievements_title")}
             </p>
             <ul class="space-y-2">
               {job.achievements.map(ach => (
