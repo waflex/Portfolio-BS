@@ -145,7 +145,7 @@ export const projects = [
       "Generador de encuentros de D&D 5e con inteligencia artificial. El Dungeon Master selecciona temática (mazmorra, bosque, inframundo, etc.) y condiciones ambientales (oscuridad, tormenta, anti-magia, etc.), y la app usa IA (Gemini / OpenRouter) para sugerir monstruos coherentes con el contexto. Cada monstruo se resuelve contra la API de Open5e mostrando su stat block completo. Ideal para agilizar la preparación de sesiones de juego.",
     image: "",
     github: "https://github.com/waflex/el-tablero",
-    demo: "",
+    demo: "https://el-tablero-guwcfbqwg-waflexs-projects.vercel.app",
     technologies: [
       {
         name: "React",
