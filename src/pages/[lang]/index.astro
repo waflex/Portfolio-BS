@@ -10,7 +10,6 @@ import Teaching from "../../components/Teaching.astro";
 import TestimonialsSection from "../../components/TestimonialsSection.astro";
 import Contact from "../../components/Contact.astro";
 import Footer from "../../components/Footer.astro";
-import SocialSidebar from "../../components/SocialSidebar.astro";
 import { useTranslation } from "../../i18n";
 
 export async function getStaticPaths() {
@@ -25,10 +24,6 @@ const t = useTranslation(lang);
 ---
 
 <Layout title={t("site.title")} description={t("site.description")} lang={lang}>
-  <!-- Sidebar de redes sociales -->
-  <SocialSidebar lang={lang} />
-
-  <!-- Navegación fija -->
   <Navbar lang={lang} />
 
   <main>
