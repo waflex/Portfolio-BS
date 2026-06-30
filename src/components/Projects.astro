@@ -56,7 +56,7 @@ const projects = await fetchFromAPI(apiEndpoint, fallbackProjects);
             <div class="flex flex-wrap gap-2 mb-6">
               {project.technologies.map(tech => (
                 <span class="tech-badge">
-                  <i class={`${tech.icon} ${tech.color}`} style="font-size: 13px;"></i>
+                  <i class={`${tech.icon} ${tech.color}`} style="font-size: 13px; position: inherit;"></i>
                   {tech.name}
                 </span>
               ))}
@@ -64,12 +64,12 @@ const projects = await fetchFromAPI(apiEndpoint, fallbackProjects);
 
             <div class="flex gap-3 mt-auto">
               <a href={project.github} target="_blank" rel="noopener noreferrer" class="proj-btn-ghost flex-1">
-                <i class="fab fa-github"></i>
+                <i class="fab fa-github" style="position: inherit;"></i>
                 <span>{t("projects.github_btn")}</span>
               </a>
               {project.demo && (
                 <a href={project.demo} target="_blank" rel="noopener noreferrer" class="proj-btn-accent flex-1">
-                  <i class="fas fa-external-link-alt"></i>
+                  <i class="fas fa-external-link-alt" style="position: inherit;"></i>
                   <span>{t("projects.demo_btn")}</span>
                 </a>
               )}
@@ -81,7 +81,7 @@ const projects = await fetchFromAPI(apiEndpoint, fallbackProjects);
 
     <div class="text-center mt-12">
       <a href="https://github.com/waflex" target="_blank" rel="noopener noreferrer" class="btn-outline-pill">
-        <i class="fab fa-github" style="color: var(--accent);"></i>
+        <i class="fab fa-github" style="color: var(--accent); position: inherit;"></i>
         {t("projects.see_more")}
       </a>
     </div>
@@ -126,20 +126,12 @@ const projects = await fetchFromAPI(apiEndpoint, fallbackProjects);
     background: #00c988;
   }
 
-  /* El ícono dentro del botón, sin ancho variable */
+  /* El ícono dentro del botón */
   .proj-btn-ghost i,
   .proj-btn-accent i {
     font-size: 13px;
     width: 14px;
     text-align: center;
     flex-shrink: 0;
-    display: none;
-  }
-  .proj-btn-ghost:hover i,
-  .proj-btn-accent:hover i {
-    display: block;
-    position: relative;
-    left: 0%;
-    top: 0%;
   }
 </style>
